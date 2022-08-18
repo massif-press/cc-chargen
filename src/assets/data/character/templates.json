@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Cosmopolitan",
+    "society_selections": ["core", "metropolitan", "union"],
+    "background_selections": ["celebrity", "scientist", "specialist", "technician", "corporate", "traveller", "criminal_high"]
+  },
+  {
+    "name": "Diasporan",
+    "society_selections": ["colony", "station", "spacer"],
+    "background_selections": ["colonist", "criminal_low", "worker", "outlaw", "prisoner", "soldier"]
+  },
+  {
+    "name": "Sparri Tribesperson",
+    "society_selections": ["sparri"],
+    "background_selections": ["criminal_low", "worker", "outlaw", "soldier", "sparri"]
+  },
+  {
+    "name": "HORUS Adherent",
+    "society_selections": ["colony", "station", "spacer"],
+    "background_selections": ["colonist", "criminal_low", "worker", "outlaw", "prisoner", "soldier"]
+  },
+  {
+    "name": "Baronic Noble",
+    "society_selections": ["barony"],
+    "background_selections": ["noble"]
+  },
+  {
+    "name": "Volador Trader",
+    "society_selections": ["volador"],
+    "background_selections": ["volador"]
+  },
+  {
+    "name": "NHP",
+    "society_selections": ["core", "metropolitan", "union"],
+    "background_selections": ["celebrity", "scientist", "specialist", "technician", "corporate"]
+  }
+]
