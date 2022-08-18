@@ -1,4 +1,4 @@
-# battlegroup-demo
+# cc-chargen
 
 ## Project setup
 ```
