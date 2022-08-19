@@ -2,7 +2,15 @@
   {
     "name": "Cosmopolitan",
     "society_selections": ["core", "metropolitan", "union"],
-    "background_selections": ["celebrity", "scientist", "specialist", "technician", "corporate", "traveller", "criminal_high"]
+    "background_selections": [
+      "celebrity",
+      "scientist",
+      "specialist",
+      "technician",
+      "corporate",
+      "traveller",
+      "criminal_high"
+    ]
   },
   {
     "name": "Diasporan",
@@ -21,8 +29,61 @@
   },
   {
     "name": "Baronic Noble",
+    "name_mods": {
+      "extraName": [1, 0.5, 0.2, 0.01],
+      "extraSurname": [0.3, 0.1, 0.01],
+      "suffixChance": 0.8,
+      "suffixes": [
+        " VII",
+        " IX",
+        " XI",
+        " XII",
+        " XIII",
+        " XVI",
+        " XXI",
+        " XVII",
+        " XXVII",
+        ", Heir Apparent",
+        ", [Esteemed|Beloved|Foremost|Successor|Firstborn|Inheritor|Heir Presumptive|Scion|Successor|Issue] of House {housename}",
+        ", First amongst Equals"
+      ],
+      "prefixChance": 0.9,
+      "prefixes": [
+        "Elector",
+        "Duke",
+        "Marquess",
+        "Margrave",
+        "Marquis",
+        "Count",
+        "Earl",
+        "Graf",
+        "Langrave",
+        "Baronet",
+        "Dominus",
+        "Vidame",
+        "Seigneur",
+        "Manor-lord",
+        "Lord",
+        "Patrician",
+        "Laird",
+        "The Illustrious",
+        "The Most High",
+        "The Most Excellent",
+        "{pro_pos} Excellence",
+        "{pro_pos} Excellency",
+        "Potentiate",
+        "The Most Honored",
+        "Highborn",
+        "Wellborn",
+        "The Revered"
+      ]
+    },
     "society_selections": ["barony"],
-    "background_selections": ["noble"]
+    "background_selections": ["noble"],
+    "physicality_selections": ["baseline"],
+    "overrides": {
+      "background": "Noble{gender} of the House of {housename}"
+    }
   },
   {
     "name": "Volador Trader",

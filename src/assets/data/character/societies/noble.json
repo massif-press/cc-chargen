@@ -1,0 +1,18 @@
+{
+    "appearance": [
+      "{name} is clad in a ancient set of armor, maintained by for centuries by {pro_pos} family's retainers as ceremonial garb",
+      "{name} wears a [flowing|elegant|form-fitting] toga of smart metatextile, maintaining {pro_pos} comfort across a wide variety of temperatures and situations",
+      "{name} wears a [floor|kee|thigh]-length gown of [exquisite|subtle|beautiful|dense|delicate|ultra-fine|soft|impeccable], intricately hand-woven metatextile",
+      "{name} wears [an exquisite|a subtle|a beautiful|a dense|a delicate|an ultra-fine|a soft|an impeccable] frock of expensive hand-manufactured fabric, festooned with [precious gems|precious metals|exotic materials] and [silken tassels|Baronic honorifics earned by {pro_pos} family|sparkling lights|glowing lights|a twinkling holographic overlay]",
+      "{name} wears a doublet lined in the [authentic|vat-grown|synthetic] fur of a [increibly rare|rare|venomous|predatory|extinct|long-extinct] animal",
+      "{name} wears a chamail of interwoven metatextile plates, from which hang [gently-glowing chem lights|tiny holoprojectors|miniature representations of the Baronic planets, rendered in precious gems|twinkling holoprojectors]"
+    ],
+    "appearance_extra": [
+      "on {pro_pos} brow rests a symbolic diadem of House {housename}, connoting [authority|high Baronic esteem|battle-honor] and an air of [dignity|respectability|power|glory|reverence]",
+      "{pro_pos} wears a signet ring [embossed|engraved] with {pro_pos} family's crest, made to look as if it was made [entirely|partially] of their House's namesake material",
+      "on {pro_pos} shoulders lays a full-length cape, decorated with [scenes from {pro_pos} family's history|subtle inlays of precious metals|a stylized depiction of Karrakis|a stylized fleet of starships|the constellations of Baronic space, rendered in diamond]",
+      "around {pro_pos} neck is strung a necklace, [hung with precious gems|strung with the teeth of a apex predator native to Baronic space|inset with a representation of {pro_pos} House's namesake|a set of miniature glow-orbs floating gently|from which is hung a restored shard of an ancient dagger, deeply pitted but shinging with a mirrored finish]",
+      "{pro_sub} is crowned with a [towering|short|sweeping|halo-like], [intricate|embellished|elegant] coronet",
+      "{pro_sub} is crowned with a wide Ba tầm, [from which hang silken tassels|intricately decorated|undecorated, but made of exquisitely expensive materials]"
+    ]
+}

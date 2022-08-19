@@ -47,6 +47,12 @@
             </v-btn>
           </v-item>
 
+          <v-item v-slot="{ active, toggle }">
+            <v-btn small text :color="active ? 'purple accent-3' : ''" value="gear" @click="toggle">
+              Gear
+            </v-btn>
+          </v-item>
+
           <!-- <v-item v-slot="{ active, toggle }">
             <v-btn small text :color="active ? 'purple accent-3' : ''" value="hook" @click="toggle">
               Adventure Hook
@@ -95,6 +101,8 @@
           :loading="loading"
           placeholder="Select a generator template"
           hide-details
+          auto-grow
+          rows="20"
         />
         <v-row no-gutters justify="end">
           <v-col cols="auto"><v-btn x-small outlined color="primary darken-1">Export</v-btn></v-col>
