@@ -1,15 +1,23 @@
 {
-  "base": [
-    "{fullname} is a {height} {gender} at or near the human genetic baseline. {name} is of {build} build, and has {hair_type} {hair_color} hair, worn {hair_cut}.{pro_sub} {beard_style}. {pro_pos} eyes are {eye_color} and {eye_type}, set in a {face} face. {name} speaks {voice}.",
-    "{name} is a human-baseline {gender} with a {build} build, {hair_type} {hair_color} hair, {eye_color} {eye_type} eyes, and a {voice}."
+  "base_man": [
+    "{fullname} is a {height} {gender} at or near the human genetic baseline. {name} is of {build} build, and has {hair_type} {hair_color} hair, worn {hair_cut}. {pro_sub} {beard_style}. {pro_pos} eyes are {eye_color} and {eye_type}, set in a {face} face. {name} speaks {voice_style}.",
+    "{name} is a human-baseline {gender} with a {build} build, {hair_type} {hair_color} hair, {eye_type}, {eye_color} eyes, and speaks {voice_style}."
+  ],
+  "base_woman": [
+    "{fullname} is a {height} {gender} at or near the human genetic baseline. {name} is of {build} build, and has {hair_type} {hair_color} hair, worn {hair_cut}. {pro_pos} eyes are {eye_color} and {eye_type}, set in a {face} face. {name} speaks {voice_style}.",
+    "{name} is a human-baseline {gender} with a {build} build, {hair_type} {hair_color} hair, {eye_type}, {eye_color} eyes, and speaks {voice_style}."
   ],
   "height": [
+    "very short",
     "short",
+    "shorter than average",
     "average-height",
     "average-height",
     "average-height",
     "average-height",
-    "tall"
+    "taller than average",
+    "tall",
+    "very tall"
   ],
   "build": [
     "slim",
@@ -58,7 +66,12 @@
     "lush",
     "voluminous",
     "wispy",
-    "wooly"
+    "wooly",
+    "bristly",
+    "downy",
+    "flat",
+    "listless",
+    "luxurious"
   ],
   "hair_color": [
     "jet black",
@@ -105,8 +118,9 @@
     "parted",
     "chin-length",
     "shoulder-length",
+    "waist-length",
     "pinned up",
-    "perfectly styed",
+    "perfectly styled",
     "unusually styled",
     "enticingly styled",
     "pushed-back",
@@ -114,11 +128,17 @@
     "crew-cut",
     "fringed",
     "parted along the side",
-    "undercut"
+    "undercut",
+    "braided",
+    "in coils",
+    "tapered",
+    "bobbed",
+    "layered"
   ],
   "beard_style": [
     "cannot grow facial hair",
     "is clean-shaven",
+    "is beardless",
     "has a constant five o'clock shadow",
     "has some rugged scruff",
     "has a short beard",
@@ -154,6 +174,8 @@
   ],
   "eye_type": [
     "almond-shaped",
+    "doelike",
+    "heavily lidded",
     "big",
     "protruding",
     "narrow",
@@ -161,7 +183,6 @@
     "narrow-set",
     "beady",
     "hard",
-    "drab",
     "hooded",
     "sparkling",
     "dull",
@@ -169,11 +190,12 @@
     "swollen",
     "red-rimmed",
     "steely",
-    "squinty"
+    "squinty",
+    "clear",
+    "alert"
   ],
   "face": [
     "round",
-    "square-jawed",
     "average",
     "rectangular",
     "oblong",
@@ -193,15 +215,18 @@
     "narrow",
     "long",
     "wide",
-    "anemic"
+    "anemic",
+    "freckled",
+    "fresh",
+    "snub-nosed",
+    "expressionless",
+    "expressive"
   ],
-  "voice": [
-    "in a deep baritone",
-    "with a distinct, implacable accent",
+  "face_man": ["square-jawed", "haggard", "prominent", "craggy", "weatherbeaten"],
+  "face_woman": ["heart-shaped", "soft", "feline", "vulpine"],
+  "voice_style": [
     "quite forgettably, and is difficult to pay attention to",
-    "with a gravely voice",
     "in a heavy regional accent",
-    "in an unusually high voice",
     "in manner most find intimidating",
     "quite loud",
     "in a low voice, typically",
@@ -209,7 +234,6 @@
     "quetly, and often mumbles",
     "with a reedy voice",
     "in an unusually sultry manner",
-    "in a strong tenor",
     "in a way most regard as terrifying, at least at first",
     "timidly almost all of the time",
     "barely above a whisper",
@@ -219,9 +243,7 @@
     "barely audibly",
     "with a palpable bitterness",
     "relatively blandly",
-    "with a booming voice",
     "in a way that comes off as quite bored",
-    "boyishly",
     "briskly",
     "calmly",
     "casually",
@@ -237,8 +259,6 @@
     "earnestly",
     "in a gentle voice",
     "in a grating voice",
-    "gruffly",
-    "in a guttural voice",
     "in a harsh voice",
     "with an unusually hoarse voice",
     "in a matter-of-fact sort of way",
@@ -265,10 +285,42 @@
     "in a thick voice",
     "in a thin voice",
     "in a warm voice",
-    "with a stutter"
+    "with a stutter",
+    "warily",
+    "in a plaintive voice",
+    "softly and politely",
+    "unmistakably scornfully",
+    "in coverstaional tones",
+    "in a casual way",
+    "captivatingly",
+    "hypnotically",
+    "mesmerizingly",
+    "musically",
+    "smokily",
+    "barely above a whisper",
+    "confidently"
+  ],
+  "voice_style_man": [
+    "in a deep baritone",
+    "with a gravely voice",
+    "in an unusually high voice",
+    "in a strong tenor",
+    "with a distinct, implacable accent",
+    "with a booming voice",
+    "boyishly",
+    "gruffly",
+    "in a guttural voice"
+  ],
+  "voice_style_woman": [
+    "in a vibrant and penetrating voice",
+    "girlishly",
+    "in a grating falsetto",
+    "in an unusually enticing falsetto",
+    "with a melodic lilt"
   ],
   "extra": [
-    "{pro_obj} is generally regarded as [profoundly attractive|attractive|somewhat attractive|fairly average looking|distinctly average looking|somewhat unattractive|unattractive|distinctly unattractive|ugly|hideous]",
-    "{pro_obj} has a small scar [under|over|beside] ${pro_pos} [right eye|left eye|nose|mouth], due to [a minor accident|a major accident|an animal attack|a violent confrontation] that occured when {name} [was a child|was younger|was drunk|was intoxicated|was undertaking a dare]"
+    "{pro_sub} is generally regarded as [profoundly attractive|attractive|somewhat attractive|fairly average looking|distinctly average looking|somewhat unattractive|unattractive|distinctly unattractive|ugly|hideous]",
+    "{pro_sub} has a small scar [under|over|beside] {pro_pos} [right eye|left eye|nose|mouth], due to [a minor accident|a major accident|an animal attack|a violent confrontation] that occured when {name} [was a child|was younger|was drunk|was intoxicated|was undertaking a dare]",
+    "{pro_sub} has unusually [well-built|muscular|skinny] [arms|legs]"
   ]
 }
