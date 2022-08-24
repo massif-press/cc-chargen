@@ -2,8 +2,10 @@
   "name": "Celebrity",
   "occupation": [
     "sense-poet",
-    "novelist",
-    "actor",
+    "subjectivity novelist",
+    "holovid actor",
+    "chef",
+    "composer",
     "comedian",
     "musician",
     "music idol",
@@ -16,20 +18,28 @@
     "artist"
   ],
   "physicality": [
-    "{name} is a stunningly attractive {gender}, [natural|preternatural|gene-modified|genetically perfected] beauty augmented by [exacting fitness regimes|flawless makeup|dedicated healthcare regimens] and [cutting-edge skincare routines|gene-tailored rejuvenation therapies|high-tech anti-senescent drugs]. {pro_sub} is [tall and lean|tall and lithe|tall and elegant|exquisitely built|pleasantly curvaceous|enticingly plump|adorably stout], with {hair_color} hair {hair_cut}, [beautiful|striking|wide|expressive|emotive|mysterious|alluring|engrossing] {eye_color} eyes, and [a casual grace|an air of sophistication|an air of careless elegance|a charming smile]"
+    "{name} is a stunningly attractive {gender}, [natural|preternatural|gene-modified|genetically perfected] beauty augmented by [exacting fitness regimes|flawless makeup|dedicated healthcare regimens] and [cutting-edge skincare routines|gene-tailored rejuvenation therapies|high-tech anti-senescent drugs]. {pro_sub} is [tall and lean|tall and lithe|tall and elegant|exquisitely built|pleasantly curvaceous|enticingly plump|adorably stout], with {hair_cut} {hair_color} hair, [beautiful|striking|wide|expressive|emotive|mysterious|alluring|engrossing] {eye_color} eyes, and [a casual grace|an air of sophistication|an air of careless elegance|a charming smile]",
+    "{name} is a [slightly|nominally|somewhat] [tall|short] and [moderately|rather|fairly|quite] [lean|thin|skinny|stocky|bulky|plump] {gender}. {pro_sub} has {hair_type} {hair_cut} {hair_color} hair. {pro_pos} eyes are {eye_color} and {eye_type}, and a {face} face. {pro_sub} might be described as unremarkable if not for {pro_pos} [lilting, melodic speaking voice|effortless and impeccable style|way of moving, which betrays exceptional physical ability and grace]"
   ],
-  "physicality_extra": [],
+  "physicality_extra": [
+    "{pro_sub} has had their eyes replaced by cybernetic optics indistinguishable from the originals[, but for a subtle glow|, but for a faint holographic overlay|], capable of [changing hue at a command|recording and transmitting video|projecting a useful HUD over their field of vision]",
+    "{pro_sub} has a sophisticated prosthetic [finger|hand|arm|leg|lower body], [made from ultralight metamaterials|made from elegant lattices of bulk diamond|made from interlocking plates of lightweight, spacecraft-grade alloy|made from shapeshifting polymers|simple in design, but decorated beautifully]",
+    "{pro_sub} has a biomod popular with cultured Cosmopolitans: [furred animal ears|curling horns|an articulated devil's tail|a birdlike nictitating membrane|sharp fanged teeth|sweeping, pointed ears|a flattened, almost reptilian nose|working gills|a third, artificial, eye|a scruff of delicate feathers framing {pro_pos} face|soft, downy fur that covers their entire body]"
+  ],
   "appearance": [
-    "{name} wears a [skintight|full] bodysuit of [temperature-regulating|figure-enhancing|jet black|slate grey|opalescent] [metatextile|polyfabric|smartfabric|nanofiber|reticulated demifiber], studded with miniature holoprojectors that project [the translucent illusion of a stylized mech|sheets of flowing, tessellating patterns that cascade like water|falling water|falling snow|gently drifting cherry blossoms|wisps of wine-dark nebulae|falling stars|mist, pooling quietly around {pro_pos} feet|tongues of flame|a cartoonish \"x-ray\" of {pro_pos} body as {pro_obj} moves]",
-    "{name} wears a [shockingly|startlingly|surprisingly|astonishingly|unexpectedly|staggeringly|remarkably] risque and impractical outfit, if one can even call it that",
+    "{name} wears a [skintight|full] bodysuit of [temperature-regulating|figure-enhancing|jet black|slate grey|opalescent] [metatextile|polyfabric|smartfabric|nanofiber|reticulated demifiber], studded with miniature holoprojectors that project [the translucent illusion of a stylized mech|sheets of flowing, tessellating patterns that cascade like water|falling water|falling snow|gently drifting cherry blossoms|wisps of wine-dark nebulae|falling stars|mist, pooling quietly around {pro_pos} feet|tongues of flame|a cartoonish \"x-ray\" of {pro_pos} body as {pro_obj} moves|cascading sheets of light|a constellation of stars]",
+    "{name} wears a [shockingly|startlingly|surprisingly|astonishingly|unexpectedly|staggeringly|remarkably] risque and impractical outfit, if one can even call it an outfit",
+    "{name} wears a latest-gen SSC Slyphsuit, a gently-pulsating symbotic garment-organism.",
     "{name} wears an array of [wide|angular|jagged|ovoid|undulating|shuddering|free-floating] [metatextile|polyfabric|smartfabric|nanofiber|reticulated demifiber] [panels|shards|patches|sheets|leaves|feathers|fronds|membranes|blankets|lamina], the pinnacle of [high|experimental|Cosmopolitan|Spaceborn] fashion",
     "{name} wears a subtle -- yet elegant -- outfit of dark, muted tones, in apparent contravention of their celebrity status",
     "{name} is bedecked in the latest Smith-Shimano contemporary fashion lines: [bright colors|muted colors|shades of black|brilliant hues|shimmering metallics|gleaming bulk diamondfiber|chromatic metaplastics|ultralight nanotextiles|pulsating organotextiles|undulating organofiber|neurolinked kinetextile] [enticing cuts|alluring cuts|draped scarves|elegant lines|angular silhouettes|modest lines|sophisticated cuts|classic lines|throwback trim] and [mountains of jewelry|a dusting of jewelry|the latest personal microdrone|the latest SSC dataslate|a kitschy throwback GMS dataslate]",
-    "{name} wears the absolute latest in cutting-edge [station|Core|Cradle|Martian|Venusian|Tharsis Civica|Carina|HORUS|Capitol Peak] streetwear, [a riot of clashing colors and textures|mutable metatextiles designed to evoke a mild psychedelic response in onlookers|re-imagined early 4900s formalwear|ancient pre-collapse formalwear rendered in modern materials|ancient loungewear|ancient priestly garb|bulky layers that evoke Lancer hardsuits|unassuming outfits that broadcast wild, electrifying, erotic, or even disgusting AR overlay shells to like-minded fashionistas keyed in to the right decrypt protocols]"
+    "{name} wears the absolute latest in cutting-edge [station|Core|Cradle|Martian|Venusian|Tharsis Civica|Carina|HORUS|Capitol Peak] streetwear: [a riot of clashing colors and textures|mutable metatextiles designed to evoke a mild psychedelic response in onlookers|re-imagined early 4900s formalwear|ancient pre-collapse formalwear rendered in modern materials|ancient loungewear|ancient priestly garb|bulky layers that evoke Lancer hardsuits|unassuming outfits that broadcast wild, electrifying, erotic, or even disgusting AR overlay shells to like-minded fashionistas keyed in to the right decrypt protocols]"
   ],
   "appearance_extra": [
     "{name} moves in a small swarm of floating drones, recording {pro_obj} [from all directions|from only the most flattering directions|in complete three dimensional photogrammetry], uploaded to [a realtime omninet stream|a subscribers-only holovid archive|a vast collection of omninet fan nodes|an archive for {pro_pos} team of biographers|tens of thousands of diehard fans' realtime sensorium rigs]",
     "{name} wears [dark|mirrored|opaque, opalescent] shades, very nearly all of the time"
   ],
-  "secrets": []
+  "secrets": [
+    "{name} is desperately tired of their fame and wants to fade into anonymity. {pro_sub} has a plan to [fake {pro_pos} own death|commit a harmless but deeply embarrassing faux pas|abandon {pro_pos} career entirely] and [assume a constructed identity|live a quiet agrarian life on a distant planet|operate a small cafe on a distant station|join a HORUS cell]"
+  ]
 }
