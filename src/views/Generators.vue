@@ -139,7 +139,7 @@
 </template>
 
 <script lang="ts">
-import { CharacterGenerator, GeneratorTemplate } from '@/logic/CharacterGenerator'
+import { CharacterGenerator } from '@/logic/CharacterGenerator'
 import CharacterTemplates from '@/assets/data/character/templates.json'
 
 import Vue from 'vue'
@@ -158,7 +158,7 @@ export default Vue.extend({
     },
   },
   methods: {
-    async getCharacter(template: GeneratorTemplate) {
+    async getCharacter(template: any) {
       this.loading = true
       this.output = await new CharacterGenerator().Generate(template)
       this.history.push({ name: this.output.split(' ')[0], data: this.output })

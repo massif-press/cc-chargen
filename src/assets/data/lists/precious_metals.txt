@@ -1,0 +1,12 @@
+rhodium
+platinum
+gold
+palladium
+iridium
+osmium
+rhenium
+ruthenium
+germanium
+beryllium
+silver
+tellurium

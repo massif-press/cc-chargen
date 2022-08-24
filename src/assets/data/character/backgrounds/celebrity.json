@@ -1,0 +1,35 @@
+{
+  "name": "Celebrity",
+  "occupation": [
+    "sense-poet",
+    "novelist",
+    "actor",
+    "comedian",
+    "musician",
+    "music idol",
+    "athlete",
+    "model",
+    "omninet influencer",
+    "dancer",
+    "essayist",
+    "entertainer",
+    "artist"
+  ],
+  "physicality": [
+    "{name} is a stunningly attractive {gender}, [natural|preternatural|gene-modified|genetically perfected] beauty augmented by [exacting fitness regimes|flawless makeup|dedicated healthcare regimens] and [cutting-edge skincare routines|gene-tailored rejuvenation therapies|high-tech anti-senescent drugs]. {pro_sub} is [tall and lean|tall and lithe|tall and elegant|exquisitely built|pleasantly curvaceous|enticingly plump|adorably stout], with {hair_color} hair {hair_cut}, [beautiful|striking|wide|expressive|emotive|mysterious|alluring|engrossing] {eye_color} eyes, and [a casual grace|an air of sophistication|an air of careless elegance|a charming smile]"
+  ],
+  "physicality_extra": [],
+  "appearance": [
+    "{name} wears a [skintight|full] bodysuit of [temperature-regulating|figure-enhancing|jet black|slate grey|opalescent] [metatextile|polyfabric|smartfabric|nanofiber|reticulated demifiber], studded with miniature holoprojectors that project [the translucent illusion of a stylized mech|sheets of flowing, tessellating patterns that cascade like water|falling water|falling snow|gently drifting cherry blossoms|wisps of wine-dark nebulae|falling stars|mist, pooling quietly around {pro_pos} feet|tongues of flame|a cartoonish \"x-ray\" of {pro_pos} body as {pro_obj} moves]",
+    "{name} wears a [shockingly|startlingly|surprisingly|astonishingly|unexpectedly|staggeringly|remarkably] risque and impractical outfit, if one can even call it that",
+    "{name} wears an array of [wide|angular|jagged|ovoid|undulating|shuddering|free-floating] [metatextile|polyfabric|smartfabric|nanofiber|reticulated demifiber] [panels|shards|patches|sheets|leaves|feathers|fronds|membranes|blankets|lamina], the pinnacle of [high|experimental|Cosmopolitan|Spaceborn] fashion",
+    "{name} wears a subtle -- yet elegant -- outfit of dark, muted tones, in apparent contravention of their celebrity status",
+    "{name} is bedecked in the latest Smith-Shimano contemporary fashion lines: [bright colors|muted colors|shades of black|brilliant hues|shimmering metallics|gleaming bulk diamondfiber|chromatic metaplastics|ultralight nanotextiles|pulsating organotextiles|undulating organofiber|neurolinked kinetextile] [enticing cuts|alluring cuts|draped scarves|elegant lines|angular silhouettes|modest lines|sophisticated cuts|classic lines|throwback trim] and [mountains of jewelry|a dusting of jewelry|the latest personal microdrone|the latest SSC dataslate|a kitschy throwback GMS dataslate]",
+    "{name} wears the absolute latest in cutting-edge [station|Core|Cradle|Martian|Venusian|Tharsis Civica|Carina|HORUS|Capitol Peak] streetwear, [a riot of clashing colors and textures|mutable metatextiles designed to evoke a mild psychedelic response in onlookers|re-imagined early 4900s formalwear|ancient pre-collapse formalwear rendered in modern materials|ancient loungewear|ancient priestly garb|bulky layers that evoke Lancer hardsuits|unassuming outfits that broadcast wild, electrifying, erotic, or even disgusting AR overlay shells to like-minded fashionistas keyed in to the right decrypt protocols]"
+  ],
+  "appearance_extra": [
+    "{name} moves in a small swarm of floating drones, recording {pro_obj} [from all directions|from only the most flattering directions|in complete three dimensional photogrammetry], uploaded to [a realtime omninet stream|a subscribers-only holovid archive|a vast collection of omninet fan nodes|an archive for {pro_pos} team of biographers|tens of thousands of diehard fans' realtime sensorium rigs]",
+    "{name} wears [dark|mirrored|opaque, opalescent] shades, very nearly all of the time"
+  ],
+  "secrets": []
+}

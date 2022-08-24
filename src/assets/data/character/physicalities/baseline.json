@@ -1,11 +1,11 @@
 {
   "base_man": [
-    "{fullname} is a {height} {gender} at or near the human genetic baseline. {name} is of {build} build, and has {hair_type} {hair_color} hair, worn {hair_cut}. {pro_sub} {beard_style}. {pro_pos} eyes are {eye_color} and {eye_type}, set in a {face} face. {name} speaks {voice_style}.",
-    "{name} is a human-baseline {gender} with a {build} build, {hair_type} {hair_color} hair, {eye_type}, {eye_color} eyes, and speaks {voice_style}."
+    "{fullname} is a {height} {gender} at or near the human genetic baseline. {name} is of {build} build, and has {hair_type} {hair_color} hair, worn {hair_cut}. {pro_sub} {beard_style}. {pro_pos} eyes are {eye_color} and {eye_type}, set in a {face} face. {name} speaks {voice_style}",
+    "{name} is a human-baseline {gender} with a {build} build, {hair_type} {hair_color} hair, {eye_type}, {eye_color} eyes, and speaks {voice_style}"
   ],
   "base_woman": [
-    "{fullname} is a {height} {gender} at or near the human genetic baseline. {name} is of {build} build, and has {hair_type} {hair_color} hair, worn {hair_cut}. {pro_pos} eyes are {eye_color} and {eye_type}, set in a {face} face. {name} speaks {voice_style}.",
-    "{name} is a human-baseline {gender} with a {build} build, {hair_type} {hair_color} hair, {eye_type}, {eye_color} eyes, and speaks {voice_style}."
+    "{fullname} is a {height} {gender} at or near the human genetic baseline. {name} is of {build} build, and has {hair_type} {hair_color} hair, worn {hair_cut}. {pro_pos} eyes are {eye_color} and {eye_type}, set in a {face} face. {name} speaks {voice_style}",
+    "{name} is a human-baseline {gender} with a {build} build, {hair_type} {hair_color} hair, {eye_type}, {eye_color} eyes, and speaks {voice_style}"
   ],
   "height": [
     "very short",
@@ -42,7 +42,7 @@
     "stout",
     "portly",
     "heavy",
-    "subtantial"
+    "substantial"
   ],
   "hair_type": [
     "sparse",
@@ -112,7 +112,7 @@
     "close-cropped",
     "faded",
     "cropped",
-    "quiffed",
+    "quaffed",
     "spiked",
     "tapered",
     "parted",
@@ -174,7 +174,7 @@
   ],
   "eye_type": [
     "almond-shaped",
-    "doelike",
+    "doe-like",
     "heavily lidded",
     "big",
     "protruding",
@@ -231,7 +231,7 @@
     "quite loud",
     "in a low voice, typically",
     "in a monotone voice",
-    "quetly, and often mumbles",
+    "quietly, and often mumbles",
     "with a reedy voice",
     "in an unusually sultry manner",
     "in a way most regard as terrifying, at least at first",
@@ -247,8 +247,8 @@
     "briskly",
     "calmly",
     "casually",
-    "cheerfuly, in almost all situations",
-    "clearly and with excellent pronounciation",
+    "cheerfully, in almost all situations",
+    "clearly and with excellent pronunciation",
     "coarsely",
     "coldly, most of the time",
     "with a very cultured vocabulary",
@@ -290,7 +290,7 @@
     "in a plaintive voice",
     "softly and politely",
     "unmistakably scornfully",
-    "in coverstaional tones",
+    "in conversational tones",
     "in a casual way",
     "captivatingly",
     "hypnotically",
@@ -319,7 +319,6 @@
     "with a melodic lilt"
   ],
   "extra": [
-    "{pro_sub} is generally regarded as [profoundly attractive|attractive|somewhat attractive|fairly average looking|distinctly average looking|somewhat unattractive|unattractive|distinctly unattractive|ugly|hideous]",
     "{pro_sub} has a small scar [under|over|beside] {pro_pos} [right eye|left eye|nose|mouth], due to [a minor accident|a major accident|an animal attack|a violent confrontation] that occured when {name} [was a child|was younger|was drunk|was intoxicated|was undertaking a dare]",
     "{pro_sub} has unusually [well-built|muscular|skinny] [arms|legs]"
   ]

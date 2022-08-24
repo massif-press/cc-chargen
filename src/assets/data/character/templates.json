@@ -2,15 +2,9 @@
   {
     "name": "Cosmopolitan",
     "society_selections": ["core", "metropolitan", "union"],
-    "background_selections": [
-      "celebrity",
-      "scientist",
-      "specialist",
-      "technician",
-      "corporate",
-      "traveller",
-      "criminal_high"
-    ]
+    "physicality_selections": ["baseline"],
+    "background_selections": ["celebrity"],
+    "x": ["scientist", "specialist", "technician", "corporate", "traveler", "criminal_high"]
   },
   {
     "name": "Diasporan",
@@ -43,7 +37,7 @@
         " XXI",
         " XVII",
         " XXVII",
-        ", [Heir Apparent|steemed|Beloved|Foremost|Successor|Firstborn|Inheritor|Heir Presumptive|Scion|Successor|Issue] of House {housename}"
+        ", [Heir Apparent|Esteemed|Beloved|Foremost|Successor|Firstborn|Inheritor|Heir Presumptive|Scion|Successor|Issue] of House {housename}"
       ],
       "prefixChance": 0.9,
       "prefixes": [
@@ -61,6 +55,9 @@
         "{hon} Dominus",
         "{hon} Vidame",
         "{hon} Seigneur",
+        "{hon} Underbaron",
+        "{hon} Subbaron",
+        "{hon} Principe",
         "The Illustrious {hon}",
         "{pro_pos} Excellence, {hon}",
         "{pro_pos} Excellency, {hon}",
@@ -73,7 +70,7 @@
     "background_selections": ["noble"],
     "physicality_selections": ["baseline"],
     "overrides": {
-      "background": [
+      "occupation": [
         "Noble{gender} of the House of {minor_housename}, minor House of the House of {major_housename}",
         "Noble{gender} of the House of {major_housename}",
         "High noble{gender} of the House of {major_housename}",
