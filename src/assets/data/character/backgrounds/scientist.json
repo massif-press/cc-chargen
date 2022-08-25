@@ -1,0 +1,41 @@
+{
+  "name": "Scientist",
+  "name_mods": {
+    "prefixChance": 0.98,
+    "prefixes": ["Dr.", "Professor"]
+  },
+  "occupation_prefix": [
+    "respected ",
+    "cutting-edge ",
+    "highly esteemed",
+    "respected ",
+    "esteemed ",
+    "well-regarded",
+    "brilliant ",
+    "genius ",
+    "fringe ",
+    "crackpot ",
+    "radical ",
+    "unorthodox ",
+    "innovative ",
+    "distinctive ",
+    "groundbreaking ",
+    "crank ",
+    "eccentric ",
+    "pioneering "
+  ],
+  "occupation": ["{occupation_prefix%3}{science} {scientist}"],
+  "science": [
+    "[quantum|nanoscale|femtoscale|picoscale|blink|blinkspace|fusion|cold fusion|exotic|singularity|paracausal|demiparacausal|baryonic|exotic matter|n-mass|acausal|tachyon|quantum gravitational|planck-negative|metamaterial|computational|supersymmetric|monopole|string|membrane|manifold|bimetric|gravitational|planetary|stellar|entanglement|atomic|molecular|condensed matter|high energy|] [astro|]physics",
+    "[paracausal|exotic|n-mass|metamaterial|computational|monopole|nuclear|stellar|materials|entanglement|analytical|bio|] [xeno|]chemistry",
+    "[nano|micro|xeno|astro|exotic |evolutionary ]biololgy",
+    "[xeno|][eco|eco|geo|oceano|metero|zoo|archaeo|astro|psycho|anthropo|pharmaco]logy",
+    "[xeno|]botany"
+  ],
+  "scientist": ["researcher", "experimentalist", "theoretician"],
+  "physicality": [],
+  "physicality_extra": [],
+  "appearance": [],
+  "appearance_extra": [],
+  "secrets": []
+}

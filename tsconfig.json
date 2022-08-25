@@ -3,6 +3,8 @@
     "target": "esnext",
     "module": "esnext",
     "strict": true,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "jsx": "preserve",

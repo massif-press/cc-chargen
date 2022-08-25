@@ -1,5 +1,7 @@
 {
+  "name": "Noble",
   "affiliations": ["neo-passacaglian", "hagiographer", "federalist"],
+  "occupation": ["noble"],
   "physicality": [
     "{name} is a perfect human specimen, preserved and maintained at the pinnacle of physical health [by teams of physicians, pharmacists, and biological nanotechnicians|by heavy genetic modification|by regular intravenous infusions of nanotechnological apparatus|by a regimen of bespoke, genetically-tailored anti-senescent medication]. {pro_sub} is [tall and athletic|menacingly tall and muscular|beautifully lithe and elegant], and speaks in a [melodic lilt|smooth and resonant tenor|silken murmur]. {name} has [wide|expressive|angular], [piercing blue|sparkling green|gold-flecked|silver-flecked|shimmering purple|purple-flecked|orange-flecked|startling grey] eyes set in a perfectly symmetrical face. {pro_sub} wears {pro_pos} {hair_color} hair {hair_cut}"
   ],
@@ -27,7 +29,7 @@
     "{pro_sub} carries a [ceremonial|heirloom|House|Baronic] [sword|scepter|censer|dagger|amulet|talisman], [a hallmark of|an emblem of|a sign of|a symbol of|identifying] {pro_pos} House and considerable [station|esteem|rank|standing]",
     "while in public, {pro_sub} wears a mask [of a pure precious metal|of carbon nanofiber|of gleaming alloy|in the likeness of Passacaglia]",
     "{pro_sub} wears a [polished|engraved|lightweight] gorget that projects a subtle image of [Karrakis|the moon Arrudye|Ispahsalar|Khayradin|Tilimsan|Eyalet-a|Umara|Begum|distant Bo] about {pro_pos} head at all times, like a halo",
-    "{pro_sub}, smokes a long [antique|heirloom|embellished|lacquered|golden|silver|platinum|quartz|ebony] [kiseru|churchwarden|tyrolean|calabash] pipe, from which wafts a [pleasant citrus aroma|noxious smoke|cooling, minty vapor|an acrid fog|a purplish miasma|thick cloud of opaque vapor]"
+    "{pro_sub} smokes a long [antique|heirloom|embellished|lacquered|golden|silver|platinum|quartz|ebony] [kiseru|churchwarden|tyrolean|calabash] pipe, from which wafts a [pleasant citrus aroma|noxious smoke|cooling, minty vapor|an acrid fog|a purplish miasma|thick cloud of opaque vapor]"
   ],
   "secrets": [
     "in actuality, {name} is the latest in a long line of clones of the founder of the House, whom {pro_sub} claims as a distant ancestor. [However, clone fidelity has been deteriorating over the last several generations, and {pro_sub} is quickly losing {pro_pos} mental and physical faculties| This is in direct contravention of an ancient inter-House treaty|Unbeknownst to all, {pro_sub} is a failed clone, escaped from the vats. {pro_sub} killed the \"active\" clone and assumed {pro_pos} role. {pro_pos} retinue is beginning to suspect something is off|{pro_sub} is beginning to recover unlooked-for memories about a serious crime {pro_pos} progenitor committed|{pro_sub} has terrifying nightmares about his own death|{pro_pos} has terrifying nightmares of his decanting at the cloning vats, something that should not be possible|However, something went wrong with the personality transcription process, and {pro_sub} was decanted Tabula Rasa, and has been faking his identity the entire time]",

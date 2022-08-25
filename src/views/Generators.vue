@@ -95,15 +95,40 @@
       <v-divider vertical />
       <v-col>
         <div class="caption">OUTPUT</div>
-        <v-textarea
-          v-model="output"
-          filled
-          :loading="loading"
-          placeholder="Select a generator template"
-          hide-details
-          auto-grow
-          rows="20"
-        />
+        <v-tabs v-model="outputTab">
+          <v-tab>Rendered</v-tab>
+          <v-tab>Markdown</v-tab>
+          <v-tab>HTML</v-tab>
+        </v-tabs>
+        <v-tabs-items v-model="outputTab">
+          <v-tab-item>
+            <v-card>
+              <v-card-text v-html="outputHtml" />
+            </v-card>
+          </v-tab-item>
+          <v-tab-item>
+            <v-textarea
+              v-model="outputRaw"
+              filled
+              :loading="loading"
+              placeholder="Select a generator template"
+              hide-details
+              auto-grow
+              rows="20"
+            />
+          </v-tab-item>
+          <v-tab-item>
+            <v-textarea
+              :value="outputHtml"
+              filled
+              :loading="loading"
+              placeholder="Select a generator template"
+              hide-details
+              auto-grow
+              rows="20"
+            />
+          </v-tab-item>
+        </v-tabs-items>
         <v-row no-gutters justify="end">
           <v-col cols="auto"><v-btn x-small outlined color="primary darken-1">Export</v-btn></v-col>
         </v-row>
@@ -139,8 +164,9 @@
 </template>
 
 <script lang="ts">
-import { CharacterGenerator } from '@/logic/CharacterGenerator'
+import { CharacterGenerator } from '@/logic/character/CharacterGenerator'
 import CharacterTemplates from '@/assets/data/character/templates.json'
+import showdown from 'showdown'
 
 import Vue from 'vue'
 export default Vue.extend({
@@ -148,10 +174,17 @@ export default Vue.extend({
   data: () => ({
     type: 'character',
     selected: null,
-    output: '',
+    outputRaw: '',
+    outputHtml: '<i class="text--disabled">Select a generator template</i>',
     loading: false,
+    outputTab: 0,
     history: [] as { name: string; data: string }[],
+    converter: null,
   }),
+  mounted() {
+    this.converter = new showdown.Converter()
+    this.converter.setOption('tables', true)
+  },
   computed: {
     characterTemplates() {
       return CharacterTemplates
@@ -160,8 +193,9 @@ export default Vue.extend({
   methods: {
     async getCharacter(template: any) {
       this.loading = true
-      this.output = await new CharacterGenerator().Generate(template)
-      this.history.push({ name: this.output.split(' ')[0], data: this.output })
+      this.outputRaw = await new CharacterGenerator().Generate(template)
+      this.outputHtml = this.converter.makeHtml(this.outputRaw)
+      this.history.push({ name: this.outputRaw.split(' ')[0], data: this.outputRaw })
       this.loading = false
     },
   },

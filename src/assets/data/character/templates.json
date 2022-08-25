@@ -1,10 +1,17 @@
 [
   {
-    "name": "Cosmopolitan",
+    "name": "Metropolitan",
     "society_selections": ["core", "metropolitan", "union"],
-    "physicality_selections": ["baseline"],
-    "background_selections": ["celebrity"],
-    "x": ["scientist", "specialist", "technician", "corporate", "traveler", "criminal_high"]
+    "physicality_selections": ["baseline", "exotic"],
+    "background_selections": ["celebrity", "scientist"],
+    "x": ["specialist", "technician", "corporate", "traveler", "criminal_high"]
+  },
+  {
+    "name": "Cosmopolitan",
+    "society_selections": ["union"],
+    "physicality_selections": ["baseline", "exotic"],
+    "background_selections": ["celebrity", "scientist"],
+    "x": ["specialist", "technician", "corporate", "traveler", "criminal_high"]
   },
   {
     "name": "Diasporan",

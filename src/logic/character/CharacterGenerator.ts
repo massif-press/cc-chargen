@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import _ from 'lodash'
-import { pullRandom } from './dataloader'
+import { pullRandom } from '../dataloader'
 
 const genders: WeightedItem[] = [
   {
@@ -47,13 +47,14 @@ const nameMods = {
 }
 
 class CharacterGenerator {
-  // TODO: collect all pools in one object, and make all selections from those pools (probably one-at-a-time)
-
-  // TODO: search syntax:
+  // search syntax:
   // {xxxx} sample from array xxx
   // [aaa|bbb|ccc] sample from a,b,c
-  // [aaa:1|bbb:3|ccc:2] sample from a,b,c with weights 1,3,2
+  // {fff%10} sample fff 10% of the time
   // %pppp% sample from textfile at path pppp
+
+  // TODO: search syntax:
+  // [aaa:1|bbb:3|ccc:2] sample from a,b,c with weights 1,3,2
   // <zzzz.qqqq> sample from json object at path zzzz, array qqqq
 
   // check for circular references
@@ -66,6 +67,7 @@ class CharacterGenerator {
   public background = null
   public physicality = null
   public affiliation = null
+
   public genderSetname = 'man'
   public namePrefix = ''
   public nameSuffix = ''
@@ -105,7 +107,7 @@ class CharacterGenerator {
       this.society.affiliations.filter(x => this.background.affiliations.some(y => y === x.name))
     )
 
-    console.log(this.affiliation)
+    this.occupation = _.sample(this.background.occupation)
 
     if (this.preset.name === 'Baronic Noble') {
       const houses = require('@/assets/data/character/names/housenames')
@@ -113,13 +115,16 @@ class CharacterGenerator {
       this.majorHousename = _.sample(houses.major)
     }
 
-    console.log(this.background, this.society, this.physicality)
-
     for (const k in this.preset.overrides) {
       if (Object.hasOwn(this, k)) this[k] = _.sample(this.preset.overrides[k])
     }
 
-    let out = `${this.fullName} (${this.gender.pronouns.sub}/${this.gender.pronouns.obj})\n${this.occupation}`
+    let out = `# ${this.fullName} (${this.gender.pronouns.sub}/${this.gender.pronouns.obj})
+## ${this.occupation}
+
+---
+
+`
 
     this.physicalAppearance = this.generatePhysicalAppearance()
 
@@ -132,16 +137,44 @@ class CharacterGenerator {
       if (e) this.backgroundAppearance += ` ${this.capitalize(e)}.`
     }
 
-    out += `\n\nAppearance:\n${this.appearance}`
+    out += `## Appearance\n${this.appearance}.`
 
-    if (Math.random() > 0) {
-      out += `\n\nSecrets:\n${_.sample(this.background.secrets)}`
+    if (Math.random() > 0.5) {
+      out += `\n\nSecrets:\n${_.sample(this.background.secrets)}.`
     }
 
-    return this.processText(out)
+    while (out.includes('|') || out.includes('[') || out.includes('{')) {
+      out = this.poolSelectText(out)
+    }
+
+    return this.finalizeText(out)
   }
 
-  private processText(input: string, extraInserts?: Map<string, string[]>): string {
+  private get replaceMap(): Map<string, string[]> {
+    function prepMap(o: object) {
+      const n = { ...o }
+      for (const key in n) {
+        if (!Array.isArray(n[key])) delete n[key]
+      }
+      return new Map(Object.entries(n))
+    }
+
+    return new Map([
+      ...prepMap(this.preset),
+      ...prepMap(this.society),
+      ...prepMap(this.background),
+      ...prepMap(this.physicality),
+      ...prepMap(this.affiliation),
+    ])
+  }
+
+  private finalizeText(input: string): string {
+    return input.replace(/(^|\. *)([a-z])/g, function(match, separator, char) {
+      return separator + char.toUpperCase()
+    })
+  }
+
+  private poolSelectText(input: string): string {
     let out = input
     // basic multi-select: []
     const choiceRegex = /(?<=\[)(.*?)(?=\])/g
@@ -156,8 +189,18 @@ class CharacterGenerator {
     const insertRegex = /(?<=\{)(.*?)(?=\})/g
     const matchedInserts = out.match(insertRegex) || []
     matchedInserts.forEach(str => {
-      const replace = this.replaceStr(str, extraInserts)
-      out = out.replace(`{${str}}`, replace)
+      const pct = str.split('%')
+      if (pct.length > 1) {
+        if (this.floatBetween(0, 100) > Number(pct[1])) {
+          out = out.replace(`{${str}}`, '')
+        } else {
+          const replace = this.replaceStr(pct[0])
+          out = out.replace(`{${str}}`, replace)
+        }
+      } else {
+        const replace = this.replaceStr(str)
+        out = out.replace(`{${str}}`, replace)
+      }
     })
 
     //list lookup : <>
@@ -171,10 +214,9 @@ class CharacterGenerator {
     return out
   }
 
-  private replaceStr(input: string, extraInserts?: Map<string, string[]>): string {
-    if (extraInserts) {
-      if (Array.from(extraInserts.keys()).includes(input)) return _.sample(extraInserts.get(input))
-    }
+  private replaceStr(input: string): string {
+    if (Array.from(this.replaceMap.keys()).includes(input))
+      return _.sample(this.replaceMap.get(input))
 
     // todo: replace this with a map, like above. build map from multiple sources
     switch (input) {
@@ -224,7 +266,7 @@ class CharacterGenerator {
 
     const template = _.sample(tSelections)
 
-    let out = `${template}`
+    let out = `${template}.`
 
     const keys = Object.keys(this.physicality)
 
@@ -245,7 +287,7 @@ class CharacterGenerator {
       if (e) out += ` ${this.capitalize(e)}.`
     }
 
-    return this.processText(out, new Map(Object.entries(this.physicality)))
+    return out
   }
 
   private async getName(): Promise<void> {
@@ -298,6 +340,10 @@ class CharacterGenerator {
 
   private intBetween(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min)
+  }
+
+  private floatBetween(min, max) {
+    return Math.random() * (max - min) + min
   }
 
   private capitalize(str) {

@@ -1,0 +1,20 @@
+{
+  "base": [
+    "{fullname} is a heavily gene-edited {gender}, with an extensive and exotic set of biomods, genome alterations, and cybernetic and biological augmentations"
+  ],
+  "height": ["very short"],
+  "build": ["slim"],
+  "hair_type": ["sparse"],
+  "hair_color": ["jet black"],
+  "hair_cut": ["short"],
+  "beard_style": ["cannot grow facial hair"],
+  "eye_color": ["light gray"],
+  "eye_type": ["almond-shaped"],
+  "face": ["round"],
+  "voice_style": ["quite forgettably, and is difficult to pay attention to"],
+  "extra": [
+    "{pro_pos} arms split at the elbow into two separate forearms, and four pairs of hands",
+    "most of {pro_pos} facial bone and musculature has been replaced with polymorphic bioplastics and nanoactuators, allowing {pro_obj} to alter {pro_pos} entire facial structure at a whim",
+    "most of {pro_pos} skin has been replaced with high-tensile synthetic polymer"
+  ]
+}
