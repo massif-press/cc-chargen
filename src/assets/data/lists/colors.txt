@@ -1,0 +1,146 @@
+alice blue
+antique white
+aqua
+aquamarine
+azure
+beige
+bisque
+black
+blanched almond
+blue
+brown
+cadet blue
+chartreuse
+chocolate
+coral
+cornflower blue
+cornsilk
+crimson
+cyan
+dark blue
+dark brown
+dark buff
+dark cyan
+dark gold
+dark goldenrod
+dark gray
+dark green
+dark ivory
+dark khaki
+dark magenta
+dark mustard
+dark olive green
+dark orange
+dark orchid
+dark pink
+dark red
+dark salmon
+dark sea green
+dark silver
+dark slate blue
+dark slate gray
+dark turquoise
+dark violet
+dark yellow
+deep pink
+deep sky blue
+dim gray
+firebrick
+floral white
+forest green
+fuchsia
+ghost white
+gold
+goldenrod
+gray
+green
+green yellow
+hot pink
+indigo
+ivory
+khaki
+lavender
+lavender blush
+lawn green
+lemon chiffon
+light black
+light blue
+light brown
+light buff
+light coral
+light cyan
+light gold
+light goldenrod
+light gray
+light green
+light ivory
+light magenta
+light mustard
+light orange
+light pink
+light red
+light salmon
+light sea green
+light silver
+light sky blue
+light slate gray
+light steel blue
+light turquoise
+light violet
+light yellow
+lime
+lime green
+linen
+magenta
+maroon
+medium aquamarine
+medium blue
+medium purple
+medium sea green
+medium slate blue
+medium spring green
+medium turquoise
+medium violet red
+midnight blue
+mustard
+navy blue
+olive
+olive drab
+olive green
+orange
+orange-red
+pale goldenrod
+pale green
+pale turquoise
+pale violet red
+pink
+plum
+powder blue
+purple
+red
+rosy brown
+royal blue
+saddle brown
+salmon
+sea green
+seashell
+sienna
+silver
+sky blue
+slate blue
+slate gray
+snow
+spring green
+steel blue
+tan
+teal
+thistle
+tomato
+turquoise
+violet
+violet red
+wheat
+white
+white smoke
+yellow
+yellow green

@@ -1,35 +1,46 @@
 [
   {
-    "name": "Metropolitan",
-    "society_selections": ["core", "metropolitan", "union"],
+    "template_name": "Cosmopolitan",
+    "society_selections": ["cosmopolitan"],
     "physicality_selections": ["baseline", "exotic"],
-    "background_selections": ["celebrity", "scientist"],
-    "x": ["specialist", "technician", "corporate", "traveler", "criminal_high"]
+    "background_selections": ["celebrity", "scholar"],
+    "x": ["specialist", "technician", "corporate", "criminal_high"],
+    "society_x": ["cosmopolitan", "union"]
   },
   {
-    "name": "Cosmopolitan",
-    "society_selections": ["union"],
-    "physicality_selections": ["baseline", "exotic"],
-    "background_selections": ["celebrity", "scientist"],
-    "x": ["specialist", "technician", "corporate", "traveler", "criminal_high"]
-  },
-  {
-    "name": "Diasporan",
+    "template_name": "Diasporan",
     "society_selections": ["colony", "station", "spacer"],
-    "background_selections": ["colonist", "criminal_low", "worker", "outlaw", "prisoner", "soldier"]
+    "background_selections": [
+      "colonist",
+      "criminal_low",
+      "worker",
+      "outlaw",
+      "prisoner",
+      "soldier"
+    ],
+    "disabled": true
   },
   {
-    "name": "Sparri Tribesperson",
+    "template_name": "Sparri Tribesperson",
     "society_selections": ["sparri"],
-    "background_selections": ["criminal_low", "worker", "outlaw", "soldier", "sparri"]
+    "background_selections": ["criminal_low", "worker", "outlaw", "soldier", "sparri"],
+    "disabled": true
   },
   {
-    "name": "HORUS Adherent",
+    "template_name": "HORUS Adherent",
     "society_selections": ["colony", "station", "spacer"],
-    "background_selections": ["colonist", "criminal_low", "worker", "outlaw", "prisoner", "soldier"]
+    "background_selections": [
+      "colonist",
+      "criminal_low",
+      "worker",
+      "outlaw",
+      "prisoner",
+      "soldier"
+    ],
+    "disabled": true
   },
   {
-    "name": "Baronic Noble",
+    "template_name": "Baronic Noble",
     "name_mods": {
       "extraName": [1, 0.2, 0.02],
       "extraSurname": [0.1, 0.1],
@@ -44,7 +55,7 @@
         " XXI",
         " XVII",
         " XXVII",
-        ", [Heir Apparent|Esteemed|Beloved|Foremost|Successor|Firstborn|Inheritor|Heir Presumptive|Scion|Successor|Issue] of House {housename}"
+        ", [Heir Apparent|Esteemed|Beloved|Foremost|Successor|Firstborn|Inheritor|Heir Presumptive|Scion|Successor|Issue] of House {minor_housename}"
       ],
       "prefixChance": 0.9,
       "prefixes": [
@@ -74,26 +85,18 @@
       ]
     },
     "society_selections": ["barony"],
-    "background_selections": ["noble"],
-    "physicality_selections": ["baseline"],
-    "overrides": {
-      "occupation": [
-        "Noble{gender} of the House of {minor_housename}, minor House of the House of {major_housename}",
-        "Noble{gender} of the House of {major_housename}",
-        "High noble{gender} of the House of {major_housename}",
-        "Noble{gender} of the House of {minor_housename}, [subsidiary|subordinate|auxiliary|attendant] House of the House of {major_housename}",
-        "Noble{gender} of the House of {minor_housename}, retainers to the House of {major_housename}"
-      ]
-    }
+    "background_selections": ["noble"]
   },
   {
-    "name": "Volador Trader",
+    "template_name": "Volador Trader",
     "society_selections": ["volador"],
-    "background_selections": ["volador"]
+    "background_selections": ["volador"],
+    "disabled": true
   },
   {
-    "name": "NHP",
+    "template_name": "NHP",
     "society_selections": ["core", "metropolitan", "union"],
-    "background_selections": ["celebrity", "scientist", "specialist", "technician", "corporate"]
+    "background_selections": ["celebrity", "scientist", "specialist", "technician", "corporate"],
+    "disabled": true
   }
 ]

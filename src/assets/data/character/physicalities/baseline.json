@@ -1,11 +1,12 @@
 {
-  "base_man": [
-    "{fullname} is a {height} {gender} at or near the human genetic baseline. {name} is of {build} build, and has {hair_type} {hair_color} hair, worn {hair_cut}. {pro_sub} {beard_style}. {pro_pos} eyes are {eye_color} and {eye_type}, set in a {face} face. {name} speaks {voice_style}",
-    "{name} is a human-baseline {gender} with a {build} build, {hair_type} {hair_color} hair, {eye_type}, {eye_color} eyes, and speaks {voice_style}"
+  "physicality": [],
+  "physicality_man": [
+    "{fullname} is a {height} {gender} at or near the human genetic baseline. {shortname} is of {build} build, and has {hair_type} {hair_color} hair, worn {hair_cut}. {pro_sub} {beard_style}. {pro_pos} eyes are {eye_color} and {eye_type}, set in a {face} face. {shortname} speaks {voice_style}",
+    "{shortname} is a human-baseline {gender} with a {build} build, {hair_type} {hair_color} hair, {eye_type}, {eye_color} eyes, and speaks {voice_style}"
   ],
-  "base_woman": [
-    "{fullname} is a {height} {gender} at or near the human genetic baseline. {name} is of {build} build, and has {hair_type} {hair_color} hair, worn {hair_cut}. {pro_pos} eyes are {eye_color} and {eye_type}, set in a {face} face. {name} speaks {voice_style}",
-    "{name} is a human-baseline {gender} with a {build} build, {hair_type} {hair_color} hair, {eye_type}, {eye_color} eyes, and speaks {voice_style}"
+  "physicality_woman": [
+    "{fullname} is a {height} {gender} at or near the human genetic baseline. {shortname} is of {build} build, and has {hair_type} {hair_color} hair, worn {hair_cut}. {pro_pos} eyes are {eye_color} and {eye_type}, set in a {face} face. {shortname} speaks {voice_style}",
+    "{shortname} is a human-baseline {gender} with a {build} build, {hair_type} {hair_color} hair, {eye_type}, {eye_color} eyes, and speaks {voice_style}"
   ],
   "height": [
     "very short",
@@ -319,8 +320,15 @@
     "in an unusually enticing falsetto",
     "with a melodic lilt"
   ],
-  "extra": [
-    "{pro_sub} has a small scar [under|over|beside] {pro_pos} [right eye|left eye|nose|mouth], due to [a minor accident|a major accident|an animal attack|a violent confrontation] that occured when {name} [was a child|was younger|was drunk|was intoxicated|was undertaking a dare]",
+  "physicality_extra": [
+    "{pro_sub} has a small scar [under|over|beside] {pro_pos} [right eye|left eye|nose|mouth], due to [a minor accident|a major accident|an animal attack|a violent confrontation] that occurred when {pro_sub} [was a child|was younger|was drunk|was intoxicated|was undertaking a dare]",
     "{pro_sub} has unusually [well-built|muscular|skinny] [arms|legs]"
+  ],
+  "relationships": [],
+  "relationships_extra": [
+    "{gen_name_family}, [sibling|parent|child]",
+    "{gen_name}, [crèchemate|ward|apotropos|legal guardian]",
+    "{gen_name}, [close|longtime|old|childhood] friend",
+    "{gen_name}, [current|long-term|on-again-off-again|intermittent|estranged] [lover|partner|paramour]"
   ]
 }

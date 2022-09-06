@@ -7,7 +7,7 @@ Jupiter
 Saturn
 Neptune
 Pluto
-Karrakin
+Karrakis
 Ras Sharma
 Deimos
 Tharsis
@@ -29,18 +29,6 @@ Titania
 Callisto
 Enceladus
 Rhea
-Andes Line
-Rocky Mountain Line
-Kunlun Line
-Ural Line
-Atlas Line
-Himalaya Line
-Altai Line
-Carpathian Line
-Sierra Madre Line
-Karakoram Line
-Cascade Line
-Annamite Line
 Aconcagua Station
 Cerro Bonete Station
 Galán Station

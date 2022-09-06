@@ -1,0 +1,12 @@
+{
+  "occupation_name": "Noble",
+  "title": [
+    "Noble{gender} of the House of {minor_housename}, minor House of the House of {major_housename}",
+    "Noble{gender} of the House of {major_housename}",
+    "High noble{gender} of the House of {major_housename}",
+    "Noble{gender} of the House of {minor_housename}, [subsidiary|subordinate|auxiliary|attendant] House of the House of {major_housename}",
+    "Noble{gender} of the House of {minor_housename}, retainers to the House of {major_housename}"
+  ],
+  "occupation": ["$keyname{title}$"],
+  "occupation_extra": ["TODO"]
+}

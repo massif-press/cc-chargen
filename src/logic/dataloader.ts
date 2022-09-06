@@ -6,6 +6,10 @@ function pullRandom(path: string, count: number): string[] {
   return _.sampleSize(arr, count).map(x => x.replace(/[\n\r]/g, ''))
 }
 
+function inject(path: string): string {
+  return require(`raw-loader!@/assets/data/${path}.txt`).default
+}
+
 // function callsign(): string {
 //   const callsigns = require('raw-loader!@/assets/generators/callsigns.txt').default.concat(
 //     store.getters.Tables?.callsigns || []
@@ -65,4 +69,4 @@ function pullRandom(path: string, count: number): string[] {
 //   return output
 // }
 
-export { pullRandom }
+export { pullRandom, inject }

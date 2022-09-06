@@ -1,8 +1,14 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import _ from 'lodash'
-import { pullRandom } from '../dataloader'
+import { pullRandom, inject } from '../dataloader'
+import { weightedSelection, intBetween, floatBetween, capitalize } from '../util'
 
-const genders: WeightedItem[] = [
+// defined again here to satisfy require
+function getRandom(arr: any[]): any {
+  return arr[Math.floor(Math.random() * arr.length)]
+}
+
+const genders = [
   {
     name: 'man',
     weight: 48,
@@ -35,13 +41,10 @@ const genders: WeightedItem[] = [
   },
 ]
 
-interface WeightedItem {
-  weight: number
-}
-
-const nameMods = {
+const baseNameMods = {
+  extraName: [0.02],
+  extraSurname: [0.1],
   middleNameChance: 0.05,
-  secondSurnameChance: 0.08,
   suffixChance: 0.1,
   suffixes: ['II', 'III', 'IV', 'V', 'VI', 'VII'],
 }
@@ -51,13 +54,15 @@ class CharacterGenerator {
   // {xxxx} sample from array xxx
   // [aaa|bbb|ccc] sample from a,b,c
   // {fff%10} sample fff 10% of the time
-  // %pppp% sample from textfile at path pppp
+  // #{pppp}# sample from textfile at path pppp
+  // @{pppp}@ substitute textfile at path pppp
+  // $xxxx{zzzz}$ set map xxxx from selection zzzz
 
   // TODO: search syntax:
   // [aaa:1|bbb:3|ccc:2] sample from a,b,c with weights 1,3,2
   // <zzzz.qqqq> sample from json object at path zzzz, array qqqq
 
-  // check for circular references
+  // TODO: capitalize hint: +{}+
 
   // generate alignment, choose items based on alignment
 
@@ -65,10 +70,13 @@ class CharacterGenerator {
   public gender = null
   public society = null
   public background = null
+  public occupation = null
   public physicality = null
   public affiliation = null
 
-  public genderSetname = 'man'
+  public valueMap = new Map<string, string>()
+
+  public grammaticalGender = 'man'
   public namePrefix = ''
   public nameSuffix = ''
   public firstname = ''
@@ -78,100 +86,177 @@ class CharacterGenerator {
   public majorHousename = ''
   public physicalAppearance = ''
   public backgroundAppearance = ''
-  public occupation = ''
+  public nickname = ''
+  public jobtitle = ''
 
-  public async Generate(preset: GeneratorTemplate): string {
+  public async Generate(preset: any): Promise<string> {
     this.preset = preset
-    // first get a title. templates have pools of titles (applicable jobs)
-    // title determines alias and name pool
-    // title can overrwite name/alias (no alias/unknown name, etc)
-    this.gender = genders[this.weightedSelection(genders)]
-    this.genderSetname =
+
+    this.gender = genders[weightedSelection(genders)]
+    this.grammaticalGender =
       this.gender.name === 'person' ? (Math.random() > 0.5 ? 'man' : 'woman') : this.gender.name
 
-    await this.getName()
-
-    this.background = require(`@/assets/data/character/backgrounds/${this.getRandom(
+    this.background = require(`@/assets/data/character/backgrounds/${getRandom(
       preset.background_selections
     )}.json`)
 
-    this.society = require(`@/assets/data/character/societies/${this.getRandom(
-      preset.society_selections
-    )}.json`)
-
-    this.physicality = require(`@/assets/data/character/physicalities/${this.getRandom(
-      preset.physicality_selections
-    )}.json`)
-
-    this.affiliation = _.sample(
-      this.society.affiliations.filter(x => this.background.affiliations.some(y => y === x.name))
-    )
-
-    this.occupation = _.sample(this.background.occupation)
-
-    if (this.preset.name === 'Baronic Noble') {
+    if (this.background.background_name === 'Noble') {
       const houses = require('@/assets/data/character/names/housenames')
       this.minorHousename = _.sample(houses.minor)
       this.majorHousename = _.sample(houses.major)
     }
 
-    for (const k in this.preset.overrides) {
-      if (Object.hasOwn(this, k)) this[k] = _.sample(this.preset.overrides[k])
-    }
+    this.occupation = require(`@/assets/data/character/occupations/${_.sample(
+      this.background.occupations
+    )}.json`)
+
+    this.jobtitle = this.poolSelectText(_.sample(this.occupation.title))
+
+    this.society = require(`@/assets/data/character/societies/${getRandom(
+      preset.society_selections
+    )}.json`)
+
+    if (preset.physicality_selections)
+      this.physicality = require(`@/assets/data/character/physicalities/${getRandom(
+        preset.physicality_selections
+      )}.json`)
+
+    const affiliationName = this.background.affiliations
+      ? _.sample(
+          this.society.affiliations.filter(x =>
+            this.background.affiliations.some(y => y === x.name)
+          )
+        )
+      : _.sample(this.society.affiliations)
+
+    this.affiliation = require(`@/assets/data/character/affiliations.json`).find(
+      x => x.name === affiliationName
+    )
+
+    await this.getName()
 
     let out = `# ${this.fullName} (${this.gender.pronouns.sub}/${this.gender.pronouns.obj})
-## ${this.occupation}
+## ${this.jobtitle} 
+
 
 ---
 
+## Appearance
+${this.generateField('physicality', 3)}
+
+${this.generateField('appearance', 3)}
+
+## Occupation
+${this.generateField('occupation', 3)}
+
+## Personality
+${this.generateField('personality', 3)}
+${this.generateField('opinions', 0)}
+${this.generateField('ideals', 0)}
+${this.generateField('flaws', 0)}
+
+
+## History
+${this.generateField('history_early', 2)}
+${this.generateField('history_middle', 2)}
+${this.generateField('history_recent', 3)}
+
+## Relationships
+${this.generateField('relationships', 3, true)}
 `
 
-    this.physicalAppearance = this.generatePhysicalAppearance()
+    // TODO:
 
-    this.backgroundAppearance = `${_.sample(this.background.appearance)}.`
-
-    const extras = [...this.background.appearance_extra]
-
-    for (let index = this.intBetween(0, 3); index > 0; index--) {
-      const e = extras.splice(this.intBetween(0, extras.length - 1), 1)[0]
-      if (e) this.backgroundAppearance += ` ${this.capitalize(e)}.`
+    if (Math.random() > 0.2) {
+      const s = _.sample(this.replaceMap.get('secrets'))
+      if (s) out += `\n## Secrets\n${s}.`
     }
 
-    out += `## Appearance\n${this.appearance}.`
+    out = this.setValueMap(out)
 
-    if (Math.random() > 0.5) {
-      out += `\n\nSecrets:\n${_.sample(this.background.secrets)}.`
-    }
-
-    while (out.includes('|') || out.includes('[') || out.includes('{')) {
+    let limit = 100
+    while (limit > 0 && (out.includes('|') || out.includes('[') || out.includes('{'))) {
       out = this.poolSelectText(out)
+      limit--
     }
 
     return this.finalizeText(out)
   }
 
-  private get replaceMap(): Map<string, string[]> {
-    function prepMap(o: object) {
+  private get replaceMap(): Map<string, any> {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
+    const self = this
+
+    function prepMap(o: object): Map<string, any[]> {
       const n = { ...o }
       for (const key in n) {
-        if (!Array.isArray(n[key])) delete n[key]
+        if (n[`${key}_${self.grammaticalGender}`]) {
+          n[key] = [...n[key], ...n[`${key}_${self.grammaticalGender}`]]
+          delete n[`${key}_${self.grammaticalGender}`]
+        }
       }
       return new Map(Object.entries(n))
     }
 
-    return new Map([
-      ...prepMap(this.preset),
-      ...prepMap(this.society),
-      ...prepMap(this.background),
-      ...prepMap(this.physicality),
-      ...prepMap(this.affiliation),
-    ])
+    const map = this.mapUnion(
+      prepMap(this.preset),
+      prepMap(this.society),
+      prepMap(this.background),
+      prepMap(this.occupation),
+      prepMap(this.physicality),
+      prepMap(this.affiliation)
+    )
+
+    return map
+  }
+
+  private mapUnion(...maps: Map<string, any[]>[]): Map<string, any> {
+    const out = new Map<string, any>()
+    maps.forEach(m => {
+      for (const key of m.keys()) {
+        if (out.has(key)) out.set(key, [...m.get(key), ...out.get(key)])
+        else out.set(key, m.get(key))
+      }
+    })
+    return out
   }
 
   private finalizeText(input: string): string {
     return input.replace(/(^|\. *)([a-z])/g, function(match, separator, char) {
       return separator + char.toUpperCase()
     })
+  }
+
+  private setValueMap(input: string) {
+    let out = input
+    // set map : @set:key{values}@
+    // collect key
+    const keynameRegex = /(?<=\$)(.*?)(?={)/g
+    const key = out.match(keynameRegex)?.at(0) || ''
+
+    if (!key) return out
+
+    // collect replacement set
+    const keyvalRegex = new RegExp('(?<=\\$' + key + '{)(.*?)(?=}\\$)', 'g')
+    const replaceVal = out.match(keyvalRegex)?.at(0) || ''
+
+    // clear key setter
+    out = out.replace(`$${key}{`, '{')
+    out = out.replace(`}$`, '}')
+
+    // replace value selection set with valuemap key
+    out = out.replace(replaceVal, key)
+
+    const val = this.poolSelectText(`{${replaceVal}}`)
+
+    this.valueMap.set(key, val)
+
+    if (this.valueMap.has(key)) {
+      console.info('valuemap includes ', key, 'skipping...')
+      return out
+    }
+
+    return out
   }
 
   private poolSelectText(input: string): string {
@@ -191,7 +276,7 @@ class CharacterGenerator {
     matchedInserts.forEach(str => {
       const pct = str.split('%')
       if (pct.length > 1) {
-        if (this.floatBetween(0, 100) > Number(pct[1])) {
+        if (floatBetween(0, 100) > Number(pct[1])) {
           out = out.replace(`{${str}}`, '')
         } else {
           const replace = this.replaceStr(pct[0])
@@ -203,29 +288,39 @@ class CharacterGenerator {
       }
     })
 
-    //list lookup : <>
-    const lookupRegex = /(?<=<)(.*?)(?=>)/g
+    //list lookup : #{}#
+    const lookupRegex = /(?<=#{)(.*?)(?=}#)/g
     const lookupInserts = out.match(lookupRegex) || []
     lookupInserts.forEach(str => {
-      const sel = pullRandom(str, 1)
-      out = out.replace(`<${str}>`, sel)
+      out = out.replace(`#{${str}}#`, pullRandom(str, 1)[0])
+    })
+
+    //substitute lookup : @{}@
+    const subRegex = /(?<=@{)(.*?)(?=}@)/g
+    const subInserts = out.match(subRegex) || []
+    subInserts.forEach(str => {
+      out = out.replace(`@{${str}}@`, inject(str))
     })
 
     return out
   }
 
   private replaceStr(input: string): string {
-    if (Array.from(this.replaceMap.keys()).includes(input))
+    if (Array.from(this.replaceMap.keys()).some(x => x === input))
       return _.sample(this.replaceMap.get(input))
+
+    if (Array.from(this.valueMap.keys()).some(x => x === input)) {
+      return this.valueMap.get(input)
+    }
 
     // todo: replace this with a map, like above. build map from multiple sources
     switch (input) {
       case 'fullname':
-        return `${this.firstname}${this.middlename}${this.lastname}`
+        return `${this.firstname}${this.middlename} ${this.lastname}`
       case 'hon':
         return this.gender.name === 'man' ? 'Lord' : this.gender.name === 'woman' ? 'Lady' : 'Peer'
-      case 'name':
-        return this.firstname
+      case 'shortname':
+        return this.nickname ? this.nickname : this.firstname
       case 'pro_ref':
         return this.gender.pronouns.ref
       case 'pro_sub':
@@ -240,114 +335,117 @@ class CharacterGenerator {
         return this.minorHousename
       case 'major_housename':
         return this.majorHousename
+      case 'gen_name_family':
+        return `${this.genName(true)} ${this.lastname}`
+      case 'gen_name':
+        return this.genName()
+      case 'jobtitle':
+        return this.jobtitle
       default:
         return `{${input}}`
     }
   }
 
   private get fullName(): string {
-    return this.capitalize(
-      `${this.namePrefix}${this.firstname}${this.middlename}${this.lastname}${this.nameSuffix}`
+    return capitalize(
+      `${this.namePrefix}${this.firstname}${this.middlename} ${this.lastname}${this.nameSuffix}`
     )
   }
 
-  private get appearance(): string {
-    return this.capitalize(`${this.physicalAppearance}\n\n${this.backgroundAppearance}`)
-  }
+  private generateField(key: string, maxExtras: number, list?: boolean): string {
+    let out = ''
 
-  private generatePhysicalAppearance(): string {
-    // expand template selections with choices from background:
-    const tSelections = [
-      ...(this.physicality.base || []),
-      ...(this.physicality[`base_${this.genderSetname}`] || []),
-      ...(this.background.physicality || []),
-      ...(this.background[`physicality_${this.genderSetname}`] || []),
-    ]
+    const l = list ? '- ' : ''
 
-    const template = _.sample(tSelections)
+    if (this.replaceMap.has(key) && this.replaceMap.get(key).length)
+      out = `${l}${_.sample(this.replaceMap.get(key))}${list ? '\n' : '.'}`
 
-    let out = `${template}.`
+    if (!this.replaceMap.has(`${key}_extra`)) return out
 
-    const keys = Object.keys(this.physicality)
+    const extras = [...this.replaceMap.get(`${key}_extra`)]
 
-    //expand physicality w/ gendered traits
-    for (const k of keys) {
-      if (Object.hasOwn(this.physicality, `${k}_${this.genderSetname}`)) {
-        this.physicality[k] = [
-          ...this.physicality[k],
-          ...this.physicality[`${k}_${this.genderSetname}`],
-        ]
-      }
-    }
+    if (!extras) return out
 
-    const pExtras = [...this.physicality.extra, ...this.background.physicality_extra]
-
-    for (let i = this.intBetween(0, 3); i < pExtras.length; i++) {
-      const e = pExtras.splice(this.intBetween(0, pExtras.length - 1), 1)[0]
-      if (e) out += ` ${this.capitalize(e)}.`
+    for (let i = intBetween(0, maxExtras); i < extras.length; i++) {
+      const e = extras.splice(intBetween(0, extras.length - 1), 1)[0]
+      if (e) out += `${l} ${capitalize(e)}${list ? '\n' : '.'}`
     }
 
     return out
   }
 
-  private async getName(): Promise<void> {
-    const firstnames = pullRandom(`character/names/basic/${this.genderSetname}`, 8)
+  private genName(firstOnly?: boolean, gender?: string): string {
+    // TODO: nicknames
+    let name = ''
+
+    const g = gender || _.sample(['man', 'woman'])
+    const firstnames = pullRandom(`character/names/basic/${g}`, 8)
     const lastnames = pullRandom('character/names/basic/surname', 8)
-    if (this.preset.name_mods) {
-      this.firstname = firstnames[0]
-      this.preset.name_mods.extraName.forEach((c, i) => {
-        if (Math.random() < c) this.middlename += `${i === 0 ? '' : ' '}${firstnames[i + 1]}`
+
+    let nameMods = this.replaceMap.get('name_mods') as any
+    if (!nameMods) nameMods = baseNameMods
+
+    name = firstnames[0]
+
+    if (nameMods.extraName)
+      nameMods.extraName.forEach((c, i) => {
+        if (Math.random() < c) name += ` ${firstnames[i + 1]}`
       })
 
-      this.lastname = ` ${lastnames[0]}`
+    if (firstOnly) return name
 
-      this.preset.name_mods.extraSurname.forEach((c, i) => {
+    name += ` ${lastnames[0]}`
+
+    if (nameMods.extraSurname)
+      nameMods.extraSurname.forEach((c, i) => {
+        if (Math.random() < c) name += `-${lastnames[i + 1]}`
+      })
+
+    if (nameMods.suffixChance)
+      if (Math.random() < nameMods.suffixChance) {
+        name += ` ${_.sample(nameMods.suffixes)}`
+      }
+
+    if (nameMods.prefixChance)
+      if (Math.random() < nameMods.prefixChance) {
+        name = `${_.sample(nameMods.prefixes)} ${name}`
+      }
+
+    return name
+  }
+
+  private async getName(): Promise<void> {
+    // TODO: nicknames
+
+    const firstnames = pullRandom(`character/names/basic/${this.grammaticalGender}`, 8)
+    const lastnames = pullRandom('character/names/basic/surname', 8)
+
+    let nameMods = this.replaceMap.get('name_mods') as any
+    if (!nameMods) nameMods = baseNameMods
+
+    this.firstname = firstnames[0]
+
+    if (nameMods.extraName)
+      nameMods.extraName.forEach((c, i) => {
+        if (Math.random() < c) this.middlename += ` ${firstnames[i + 1]}`
+      })
+
+    this.lastname = `${lastnames[0]}`
+
+    if (nameMods.extraSurname)
+      nameMods.extraSurname.forEach((c, i) => {
         if (Math.random() < c) this.lastname += `-${lastnames[i + 1]}`
       })
 
-      if (Math.random() < this.preset.name_mods.suffixChance) {
-        this.nameSuffix += `${_.sample(this.preset.name_mods.suffixes)}`
+    if (nameMods.suffixChance)
+      if (Math.random() < nameMods.suffixChance) {
+        this.nameSuffix += `${_.sample(nameMods.suffixes)}`
       }
 
-      if (Math.random() < this.preset.name_mods.prefixChance) {
-        this.namePrefix = `${_.sample(this.preset.name_mods.prefixes)} ${name}`
+    if (nameMods.prefixChance)
+      if (Math.random() < nameMods.prefixChance) {
+        this.namePrefix = `${_.sample(nameMods.prefixes)} ${this.namePrefix}`
       }
-    } else {
-      this.firstname = firstnames[0]
-      if (Math.random() <= nameMods.middleNameChance) this.middlename = firstnames[1]
-      this.lastname = lastnames[0]
-      if (Math.random() <= nameMods.secondSurnameChance) this.lastname += `-${lastnames[1]}`
-
-      if (Math.random() <= nameMods.suffixChance)
-        this.nameSuffix += ` ${_.sample(nameMods.suffixes)}`
-    }
-  }
-
-  private weightedSelection(collection: WeightedItem[]) {
-    const arr = []
-    const totalWeight = collection.reduce((n, { weight }) => n + weight, 0)
-    for (const i in collection) {
-      for (let j = 0; j < collection[i].weight * totalWeight; j++) {
-        arr.push(i)
-      }
-    }
-    return this.getRandom(arr)
-  }
-
-  private getRandom(arr: any[]) {
-    return arr[Math.floor(Math.random() * arr.length)]
-  }
-
-  private intBetween(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min)
-  }
-
-  private floatBetween(min, max) {
-    return Math.random() * (max - min) + min
-  }
-
-  private capitalize(str) {
-    return str.charAt(0).toUpperCase() + str.slice(1)
   }
 }
 

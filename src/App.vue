@@ -15,6 +15,9 @@
         <v-tab>
           raw data
         </v-tab>
+        <v-tab>
+          contributors
+        </v-tab>
       </v-tabs>
     </v-app-bar>
     <v-main>
@@ -29,6 +32,7 @@
           <faq />
         </v-tab-item>
         <v-tab-item><raw-data /></v-tab-item>
+        <v-tab-item><contributors /></v-tab-item>
       </v-tabs-items>
       <v-container>
         <v-alert outlined prominent dense icon="mdi-help">
@@ -49,12 +53,13 @@
 import Vue from 'vue'
 import Generators from './views/Generators.vue'
 import Premades from './views/Premades.vue'
+import Contributors from './views/Contributors.vue'
 import Faq from './views/FAQ.vue'
 import RawData from './views/RawData.vue'
 
 export default Vue.extend({
   name: 'App',
-  components: { Generators, Premades, Faq, RawData },
+  components: { Generators, Premades, Faq, RawData, Contributors },
   data: () => ({
     tab: 0,
   }),
