@@ -1,12 +1,12 @@
 {
   "physicality": [],
   "physicality_man": [
-    "{fullname} is a {height} {gender} at or near the human genetic baseline. {shortname} is of {build} build, and has {hair_type} {hair_color} hair, worn {hair_cut}. {pro_sub} {beard_style}. {pro_pos} eyes are {eye_color} and {eye_type}, set in a {face} face. {shortname} speaks {voice_style}",
-    "{shortname} is a human-baseline {gender} with a {build} build, {hair_type} {hair_color} hair, {eye_type}, {eye_color} eyes, and speaks {voice_style}"
+    "{fullname} is a {height} {gender} at or near the human genetic baseline. {firstname} is of {build} build, and has {hair_type} {hair_color} hair, worn {hair_cut}. {pro_sub} {beard_style}. {pro_pos} eyes are {eye_color} and {eye_type}, set in a {face} face. {firstname} speaks {voice_style}",
+    "{firstname} is a human-baseline {gender} with a {build} build, {hair_type} {hair_color} hair, {eye_type}, {eye_color} eyes, and speaks {voice_style}"
   ],
   "physicality_woman": [
-    "{fullname} is a {height} {gender} at or near the human genetic baseline. {shortname} is of {build} build, and has {hair_type} {hair_color} hair, worn {hair_cut}. {pro_pos} eyes are {eye_color} and {eye_type}, set in a {face} face. {shortname} speaks {voice_style}",
-    "{shortname} is a human-baseline {gender} with a {build} build, {hair_type} {hair_color} hair, {eye_type}, {eye_color} eyes, and speaks {voice_style}"
+    "{fullname} is a {height} {gender} at or near the human genetic baseline. {firstname} is of {build} build, and has {hair_type} {hair_color} hair, worn {hair_cut}. {pro_pos} eyes are {eye_color} and {eye_type}, set in a {face} face. {firstname} speaks {voice_style}",
+    "{firstname} is a human-baseline {gender} with a {build} build, {hair_type} {hair_color} hair, {eye_type}, {eye_color} eyes, and speaks {voice_style}"
   ],
   "height": [
     "very short",

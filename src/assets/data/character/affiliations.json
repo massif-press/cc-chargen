@@ -11,7 +11,7 @@
       "typical",
       "center-left"
     ],
-    "appearance_extra": [],
+    "clothing_extra": [],
     "secrets": [],
     "ideals": [],
     "opinions": [
@@ -33,7 +33,7 @@
       "small-Union",
       "corporatist"
     ],
-    "appearance_extra": [],
+    "clothing_extra": [],
     "secrets": [],
     "ideals": [],
     "opinions": [
@@ -60,7 +60,7 @@
       "colonialist",
       "Forward Progress"
     ],
-    "appearance_extra": [],
+    "clothing_extra": [],
     "secrets": [],
     "ideals": [],
     "opinions": [
@@ -81,7 +81,7 @@
     "name": "new solidarity coalition",
     "member": "new solidarity coalitionist",
     "prefixes": ["leftist", "far-left", "anarchist", "interventionist", "anticorporate", "radical"],
-    "appearance_extra": [],
+    "clothing_extra": [],
     "secrets": [],
     "ideals": [],
     "opinions": [],
@@ -99,7 +99,7 @@
       "diaspora-isolationist",
       "anti-interventionist"
     ],
-    "appearance_extra": [],
+    "clothing_extra": [],
     "secrets": [],
     "ideals": [],
     "opinions": [],
@@ -110,7 +110,7 @@
     "name": "independent",
     "member": "independent",
     "prefixes": [],
-    "appearance_extra": [],
+    "clothing_extra": [],
     "secrets": [],
     "ideals": [],
     "opinions": [],
@@ -129,7 +129,7 @@
       "reactionary",
       "devoted"
     ],
-    "appearance_extra": [
+    "clothing_extra": [
       "{pro_sub} wears an icon of Passacaglia, Imperial Messiah, wreathed in [gold|platinum|jade|onyx|sapphires|emeralds] on the back of {pro_pos} right hand, in the [traditional|classical|ancient] style"
     ],
     "secrets": [],
@@ -141,7 +141,7 @@
   {
     "name": "hagiographers",
     "member": "hagiographer",
-    "appearance_extra": [],
+    "clothing_extra": [],
     "secrets": [],
     "ideals": [],
     "opinions": [],
@@ -151,7 +151,7 @@
   {
     "name": "federalists",
     "member": "federalist",
-    "appearance_extra": [],
+    "clothing_extra": [],
     "secrets": [],
     "ideals": [],
     "opinions": [],
@@ -161,7 +161,7 @@
   {
     "name": "republicans",
     "member": "republican",
-    "appearance_extra": [],
+    "clothing_extra": [],
     "secrets": [],
     "ideals": [],
     "opinions": [],
@@ -171,7 +171,7 @@
   {
     "name": "liberals",
     "member": "liberal",
-    "appearance_extra": [],
+    "clothing_extra": [],
     "secrets": [],
     "ideals": [],
     "opinions": [],

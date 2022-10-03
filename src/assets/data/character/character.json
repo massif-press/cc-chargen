@@ -1,0 +1,10 @@
+{
+  "name": "character",
+  "configurations": {
+    "Cosmopolitan": {
+      "society": ["cosmopolitan"],
+      "physicality": ["baseline", "exotic"],
+      "background": ["celebrity", "scholar"]
+    }
+  }
+}

@@ -8,17 +8,16 @@
             <v-list-item
               v-for="(t, i) in characterTemplates"
               :key="`ct_${i}`"
-              :disabled="t.disabled"
               @click="getCharacter(t)"
             >
               <v-list-item-icon class="m-0 p-0">
-                <v-icon size="28" v-text="'cci-pilot'" />
+                <!-- <v-icon size="28" v-text="'cci-pilot'" /> -->
               </v-list-item-icon>
               <v-list-item-content>
                 <v-list-item-title
                   class="text-button"
-                  style="font-size: 13px!important"
-                  v-text="t.template_name"
+                  style="font-size: 13px !important"
+                  v-text="t.key"
                 />
               </v-list-item-content>
             </v-list-item>
@@ -27,78 +26,20 @@
       </v-col>
       <v-divider vertical />
       <v-col>
-        <!-- <v-expansion-panels accordion hover tile>
-          <v-expansion-panel>
-            <v-expansion-panel-header color="grey darken-4">
-              Settings
-            </v-expansion-panel-header>
-            <v-expansion-panel-content color="grey darken-4">
-              <div class="caption mb-n2">
-                <b>Physicality</b>
-              </div>
-              <v-row dense align="center" justify="space-between">
-                <v-col cols="1" class="caption">Mundane</v-col>
-                <v-col><v-slider dense hide-details /></v-col>
-                <v-col cols="1" class="caption">Exotic</v-col>
-                <v-col cols="auto"></v-col>
-              </v-row>
-              <div class="caption mb-n2">
-                <b>Appearance</b>
-              </div>
-              <v-row dense align="center" justify="space-between">
-                <v-col cols="1" class="caption">Simple</v-col>
-                <v-col><v-slider dense hide-details /></v-col>
-                <v-col cols="1" class="caption">Detailed</v-col>
-                <v-col cols="auto"></v-col>
-              </v-row>
-              <div class="caption mb-n2">
-                <b>History</b>
-              </div>
-              <v-row dense align="center" justify="space-between">
-                <v-col cols="1" class="caption">Younger</v-col>
-                <v-col><v-slider dense hide-details /></v-col>
-                <v-col cols="1" class="caption">Older</v-col>
-                <v-col cols="auto"></v-col>
-              </v-row>
-              <div class="caption mb-n2">
-                <b>Personality</b>
-              </div>
-              <v-row dense align="center" justify="space-between">
-                <v-col cols="1" class="caption">Open</v-col>
-                <v-col><v-slider dense hide-details /></v-col>
-                <v-col cols="1" class="caption">Secretive</v-col>
-                <v-col cols="auto"></v-col>
-              </v-row>
-              <v-row dense align="center" justify="space-between">
-                <v-col cols="1" class="caption">Reserved</v-col>
-                <v-col><v-slider dense hide-details /></v-col>
-                <v-col cols="1" class="caption">Opinionated</v-col>
-                <v-col cols="auto"></v-col>
-              </v-row>
-              <v-row dense align="center" justify="space-between">
-                <v-col cols="1" class="caption">Introverted</v-col>
-                <v-col><v-slider dense hide-details /></v-col>
-                <v-col cols="1" class="caption">Extroverted</v-col>
-                <v-col cols="auto"></v-col>
-              </v-row>
-            </v-expansion-panel-content>
-          </v-expansion-panel>
-        </v-expansion-panels> -->
-
         <div class="caption">OUTPUT</div>
 
         <v-tabs v-model="outputTab">
-          <v-tab>Rendered</v-tab>
-          <v-tab>Markdown</v-tab>
-          <v-tab>HTML</v-tab>
+          <v-tab value="rendered">Rendered</v-tab>
+          <v-tab value="markdown">Markdown</v-tab>
+          <v-tab value="html">HTML</v-tab>
         </v-tabs>
-        <v-tabs-items v-model="outputTab">
-          <v-tab-item>
+        <v-window v-model="outputTab">
+          <v-window-item value="rendered">
             <v-card>
               <v-card-text v-html="outputHtml" />
             </v-card>
-          </v-tab-item>
-          <v-tab-item>
+          </v-window-item>
+          <v-window-item value="markdown">
             <v-textarea
               v-model="outputRaw"
               filled
@@ -108,8 +49,8 @@
               auto-grow
               rows="20"
             />
-          </v-tab-item>
-          <v-tab-item>
+          </v-window-item>
+          <v-window-item value="html">
             <v-textarea
               :value="outputHtml"
               filled
@@ -119,10 +60,14 @@
               auto-grow
               rows="20"
             />
-          </v-tab-item>
-        </v-tabs-items>
+          </v-window-item>
+        </v-window>
         <v-row no-gutters justify="end">
-          <v-col cols="auto"><v-btn x-small outlined color="primary darken-1">Export</v-btn></v-col>
+          <v-col cols="auto"
+            ><v-btn x-small outlined color="primary darken-1"
+              >Export</v-btn
+            ></v-col
+          >
         </v-row>
 
         <div v-show="history.length">
@@ -141,12 +86,19 @@
           </v-chip>
           <v-row dense justify="end">
             <v-col cols="auto">
-              <v-btn x-small outlined color="error darken-2" @click="history = []">
+              <v-btn
+                x-small
+                outlined
+                color="error darken-2"
+                @click="history = []"
+              >
                 Delete All
               </v-btn>
             </v-col>
             <v-col cols="auto">
-              <v-btn x-small outlined color="primary darken-1">Export All</v-btn>
+              <v-btn x-small outlined color="primary darken-1"
+                >Export All</v-btn
+              >
             </v-col>
           </v-row>
         </div>
@@ -156,12 +108,13 @@
 </template>
 
 <script lang="ts">
-import { CharacterGenerator } from '@/logic/character/CharacterGenerator'
-import CharacterTemplates from '@/assets/data/character/templates.json'
-import showdown from 'showdown'
+import { CharacterGenerator } from '../../logic/character/CharacterGenerator';
+import { Generator } from '../../logic/generator';
+import * as templates from '../../assets/data/character/index';
+import showdown from 'showdown';
+import genders from '../../assets/data/character/genders.json';
 
-import Vue from 'vue'
-export default Vue.extend({
+export default {
   name: 'home',
   data: () => ({
     type: 'character',
@@ -174,22 +127,31 @@ export default Vue.extend({
     converter: null,
   }),
   mounted() {
-    this.converter = new showdown.Converter()
-    this.converter.setOption('tables', true)
+    this.converter = new showdown.Converter();
+    this.converter.setOption('tables', true);
   },
   computed: {
     characterTemplates() {
-      return CharacterTemplates
+      return templates;
     },
   },
   methods: {
     async getCharacter(template: any) {
-      this.loading = true
-      this.outputRaw = await new CharacterGenerator().Generate(template)
-      this.outputHtml = this.converter.makeHtml(this.outputRaw)
-      this.history.push({ name: this.outputRaw.split(' ')[0], data: this.outputRaw })
-      this.loading = false
+      this.loading = true;
+      const g = new Generator();
+      g.LoadLibraryDir('character', 'lists');
+
+      console.log(g);
+
+      console.log(Generator.WeightedSelection(genders));
+
+      g.Generate(template);
+
+      // this.outputRaw = await new CharacterGenerator().Generate(template)
+      // this.outputHtml = this.converter.makeHtml(this.outputRaw)
+      // this.history.push({ name: this.outputRaw.split(' ')[0], data: this.outputRaw })
+      this.loading = false;
     },
   },
-})
+};
 </script>

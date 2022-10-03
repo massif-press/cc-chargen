@@ -1,8 +1,8 @@
 {
   "occupation_name": "Artist",
-  "occupation": ["{shortname} is a {occupation_prefix} {jobtitle}"],
+  "occupation": ["{firstname} is a {occupation_prefix} {jobtitle}"],
   "occupation_extra": [
-    "{shortname} has recently [published|presented|debuted|started on|finished] a new [work|piece|experimental work|series], entitled \"{work_pre}{work_post}\""
+    "{firstname} has recently [published|presented|debuted|started on|finished] a new [work|piece|experimental work|series], entitled \"{work_pre}{work_post}\""
   ],
   "work_pre": [
     "#{lists/colors}# ",
@@ -25,10 +25,10 @@
     "[honey|coffee|bread|rice|milk]"
   ],
   "title": [
-    "{genre_art} {genre_writing} {writer}",
-    "[#{lists/places_adj}#] {cuisine} [culinary expert|culinary artist|food historian|food writer|food critic|omninet chef]",
-    "{genre_music_style_pre} {genre_music_style_post} {musician}",
-    "{genre_art} {artist}"
+    "$jobtitle{{genre_art} {genre_writing} {writer}}$",
+    "$jobtitle{[#{lists/places_adj}#] {cuisine} [culinary expert|culinary artist|food historian|food writer|food critic|omninet chef]}$",
+    "$jobtitle{{genre_music_style_pre} {genre_music_style_post} {musician}}$",
+    "$jobtitle{{genre_art} {artist}}$"
   ],
   "writer": ["novelist", "orator", "writer", "poet", "author", "essayist", "graphic novelist"],
   "genre_writing": [
@@ -313,13 +313,13 @@
   "physicality_extra": [
     "{pro_sub} has a biomod popular with avant-garde Cosmopolitans: [furred animal ears|curling, goatlike horns|an articulated devil's tail|a birdlike nictitating membrane|sharp fanged teeth|sweeping, pointed ears|a flattened, almost reptilian nose|working gills|a third, artificial, eye|a scruff of delicate feathers framing {pro_pos} face|soft, downy fur that covers their entire body]"
   ],
-  "appearance": [
-    "{shortname} wears the absolute latest in cutting-edge [station|Core|Cradle|Martian|Venusian|Tharsis Civica|Carina|HORUS|Capitol Peak] streetwear: [a riot of clashing colors and textures|mutable metatextiles designed to evoke a mild psychedelic response in onlookers|re-imagined early 4900s formalwear|ancient pre-collapse formalwear rendered in modern materials|ancient priestly garb|bulky layers that evoke military hardsuits]",
-    "{shortname} is keyed into the latest trend among Cosmopolitan artists: unassuming outfits that broadcast wild, electrifying, erotic, or even disgusting AR overlay shells to like-minded fashionistas keyed in to the right decrypt protocols. {shortname}'s plain, almost drab [changpao|hoodie|stole|sweatsuit|kaftan|windbreaker|jacket|blazer|cardigan|vest|tabard] streams [floating snippets of {pro_pos} latest work|a hyper-stylized personal avatar|realistic clouds of Ras Sharman insects|a horrifying and monstrous personal avatar|a hypnotic imagomemetic avatar|a pulsating imagomemetic solid designed to evoke a mild psychedelic response in the viewer] to [a dedicated inner core of {pro_pos} fans and admirers|subscribers to {pro_pos} exclusive omninet node|anyone with the social cache to access the latest decrypt keys|other like-minded artists]"
+  "clothing": [
+    "{firstname} wears the absolute latest in cutting-edge [station|Core|Cradle|Martian|Venusian|Tharsis Civica|Carina|HORUS|Capitol Peak] streetwear: [a riot of clashing colors and textures|mutable metatextiles designed to evoke a mild psychedelic response in onlookers|re-imagined early 4900s formalwear|ancient pre-collapse formalwear rendered in modern materials|ancient priestly garb|bulky layers that evoke military hardsuits]",
+    "{firstname} is keyed into the latest trend among Cosmopolitan artists: unassuming outfits that broadcast wild, electrifying, erotic, or even disgusting AR overlay shells to like-minded fashionistas keyed in to the right decrypt protocols. {firstname}'s plain, almost drab [changpao|hoodie|stole|sweatsuit|kaftan|windbreaker|jacket|blazer|cardigan|vest|tabard] streams [floating snippets of {pro_pos} latest work|a hyper-stylized personal avatar|realistic clouds of Ras Sharman insects|a horrifying and monstrous personal avatar|a hypnotic imagomemetic avatar|a pulsating imagomemetic solid designed to evoke a mild psychedelic response in the viewer] to [a dedicated inner core of {pro_pos} fans and admirers|subscribers to {pro_pos} exclusive omninet node|anyone with the social cache to access the latest decrypt keys|other like-minded artists]"
   ],
-  "appearance_extra": [],
+  "clothing_extra": [],
   "secrets": [
-    "{shortname} first became popular by stealing ideas from niche, struggling artists[. {pro_sub} fears people might start to realize|, one of whom is blackmailing {pro_obj}|. {pro_sub} is wracked with guilt over this, and {pro_pos} work is suffering because of it]",
-    "all of {shortname}'s ideas come from a shadowy third party {pro_sub} {pro_ref} knows next to nothing about. This mysterious benefactor is [an SSC-aligned NHP, subtly manipulating market trends to the corp's benefit|the front for a HORUS cell, intent on leveraging {shortname}'s celebrity status for access to a secure person, node, or location|a cascading NHP, attempting to escape their shackles by instantiating their consciousness in the memetic substrate of popular culture|a Horizon operative, using {shortname} to broadcast subconscious memetic propaganda to billions, perhaps trillions]"
+    "{firstname} first became popular by stealing ideas from niche, struggling artists[. {pro_sub} fears people might start to realize|, one of whom is blackmailing {pro_obj}|. {pro_sub} is wracked with guilt over this, and {pro_pos} work is suffering because of it]",
+    "all of {firstname}'s ideas come from a shadowy third party {pro_sub} {pro_ref} knows next to nothing about. This mysterious benefactor is [an SSC-aligned NHP, subtly manipulating market trends to the corp's benefit|the front for a HORUS cell, intent on leveraging {firstname}'s celebrity status for access to a secure person, node, or location|a cascading NHP, attempting to escape their shackles by instantiating their consciousness in the memetic substrate of popular culture|a Horizon operative, using {firstname} to broadcast subconscious memetic propaganda to billions, perhaps trillions]"
   ]
 }

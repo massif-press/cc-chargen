@@ -1,0 +1,32 @@
+[
+  {
+    "name": "man",
+    "weight": 48,
+    "pronouns": {
+      "sub": "he",
+      "obj": "him",
+      "pos": "his",
+      "ref": "himself"
+    }
+  },
+  {
+    "name": "woman",
+    "weight": 46,
+    "pronouns": {
+      "sub": "she",
+      "obj": "her",
+      "pos": "her",
+      "ref": "herself"
+    }
+  },
+  {
+    "name": "person",
+    "weight": 6,
+    "pronouns": {
+      "sub": "they",
+      "obj": "them",
+      "pos": "their",
+      "ref": "themselves"
+    }
+  }
+]

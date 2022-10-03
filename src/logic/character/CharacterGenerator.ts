@@ -18,6 +18,7 @@ const genders = [
       pos: 'his',
       ref: 'himself',
     },
+    replace: 'man',
   },
   {
     name: 'woman',
@@ -28,6 +29,7 @@ const genders = [
       pos: 'her',
       ref: 'herself',
     },
+    replace: 'woman',
   },
   {
     name: 'person',
@@ -77,40 +79,31 @@ class CharacterGenerator {
   public valueMap = new Map<string, string>()
 
   public grammaticalGender = 'man'
-  public namePrefix = ''
-  public nameSuffix = ''
-  public firstname = ''
-  public middlename = ' '
-  public lastname = ''
-  public minorHousename = ''
-  public majorHousename = ''
-  public physicalAppearance = ''
-  public backgroundAppearance = ''
-  public nickname = ''
+  // public namePrefix = ''
+  // public nameSuffix = ''
+  // public firstname = ''
+  // public middlename = ' '
+  // public lastname = ''
+  // public nickname = ''
   public jobtitle = ''
 
   public async Generate(preset: any): Promise<string> {
     this.preset = preset
 
     this.gender = genders[weightedSelection(genders)]
-    this.grammaticalGender =
-      this.gender.name === 'person' ? (Math.random() > 0.5 ? 'man' : 'woman') : this.gender.name
+    this.grammaticalGender = this.gender.replace
+    if (!this.grammaticalGender)
+      this.grammaticalGender = _.sample(genders.filter(x => !!x.replace).map(x => x.replace))
 
     this.background = require(`@/assets/data/character/backgrounds/${getRandom(
       preset.background_selections
     )}.json`)
 
-    if (this.background.background_name === 'Noble') {
-      const houses = require('@/assets/data/character/names/housenames')
-      this.minorHousename = _.sample(houses.minor)
-      this.majorHousename = _.sample(houses.major)
-    }
-
     this.occupation = require(`@/assets/data/character/occupations/${_.sample(
       this.background.occupations
     )}.json`)
 
-    this.jobtitle = this.poolSelectText(_.sample(this.occupation.title))
+    this.jobtitle = _.sample(this.occupation.title)
 
     this.society = require(`@/assets/data/character/societies/${getRandom(
       preset.society_selections
@@ -133,18 +126,22 @@ class CharacterGenerator {
       x => x.name === affiliationName
     )
 
-    await this.getName()
+    // this.initializeValueMap(['name'])
 
-    let out = `# ${this.fullName} (${this.gender.pronouns.sub}/${this.gender.pronouns.obj})
+    // console.log(this.valueMap)
+
+    // await this.getName()
+
+    // let out = `# ${this.fullName} (${this.gender.pronouns.sub}/${this.gender.pronouns.obj})
+    let out = `#{name} (${this.gender.pronouns.sub}/${this.gender.pronouns.obj})
 ## ${this.jobtitle} 
-
-
+{firstname} {lastname} {jobtitle}
 ---
 
 ## Appearance
 ${this.generateField('physicality', 3)}
 
-${this.generateField('appearance', 3)}
+${this.generateField('clothing', 3)}
 
 ## Occupation
 ${this.generateField('occupation', 3)}
@@ -165,7 +162,9 @@ ${this.generateField('history_recent', 3)}
 ${this.generateField('relationships', 3, true)}
 `
 
-    // TODO:
+    out = this.removeEscapes(out)
+
+    out = this.keywordReplace(out)
 
     if (Math.random() > 0.2) {
       const s = _.sample(this.replaceMap.get('secrets'))
@@ -174,13 +173,34 @@ ${this.generateField('relationships', 3, true)}
 
     out = this.setValueMap(out)
 
+    // let limit = 100
+    // while (limit > 0 && out.includes('}$')) {
+    //   console.log('left: ', limit)
+    //   out = this.setValueMap(out)
+    //   limit--
+    // }
+
     let limit = 100
     while (limit > 0 && (out.includes('|') || out.includes('[') || out.includes('{'))) {
+      out = this.setValueMap(out)
       out = this.poolSelectText(out)
       limit--
     }
 
+    console.log(this.valueMap)
+
     return this.finalizeText(out)
+  }
+
+  private removeEscapes(input: string): string {
+    return input.replaceAll('\\\\', '\\')
+  }
+
+  private keywordReplace(input: string): string {
+    let out = input
+    out = out.replaceAll('%gender', this.grammaticalGender)
+
+    return out
   }
 
   private get replaceMap(): Map<string, any> {
@@ -222,16 +242,18 @@ ${this.generateField('relationships', 3, true)}
   }
 
   private finalizeText(input: string): string {
-    return input.replace(/(^|\. *)([a-z])/g, function(match, separator, char) {
+    let out = input.replace(/(^|\. *)([a-z])/g, function(match, separator, char) {
       return separator + char.toUpperCase()
     })
+    out = out.replaceAll('  ', ' ')
+    return out
   }
 
-  private setValueMap(input: string) {
+  private setValueMap(input: string): string {
     let out = input
-    // set map : @set:key{values}@
+    // set map : $key{values}$
     // collect key
-    const keynameRegex = /(?<=\$)(.*?)(?={)/g
+    const keynameRegex = /(?<=(?<!\\)\$)(.*?)(?={)/g
     const key = out.match(keynameRegex)?.at(0) || ''
 
     if (!key) return out
@@ -247,7 +269,18 @@ ${this.generateField('relationships', 3, true)}
     // replace value selection set with valuemap key
     out = out.replace(replaceVal, key)
 
-    const val = this.poolSelectText(`{${replaceVal}}`)
+    // const val = this.poolSelectText(`{${replaceVal}}`).replace(/[{}]/g, '')
+
+    let val = replaceVal
+
+    let limit = 25
+    while (limit > 0 && (out.includes('|') || out.includes('[') || out.includes('{'))) {
+      val = this.poolSelectText(`${replaceVal}`)
+      limit--
+    }
+    // const val = this.poolSelectText(`{${replaceVal}}`)
+
+    console.log(val)
 
     this.valueMap.set(key, val)
 
@@ -259,47 +292,56 @@ ${this.generateField('relationships', 3, true)}
     return out
   }
 
+  // private initializeValueMap(keys: string[]) {
+  //   const str = keys.map(k => `{${k}}`).join(' ')
+  //   this.setValueMap(this.poolSelectText(str))
+  // }
+
   private poolSelectText(input: string): string {
     let out = input
     // basic multi-select: []
-    const choiceRegex = /(?<=\[)(.*?)(?=\])/g
+    const choiceRegex = /(?<=(?<!\\)\[)(.*?)(?=\])/g
     const matchedChoices = out.match(choiceRegex) || []
-    matchedChoices.forEach(str => {
+    matchedChoices.forEach(s => {
+      const str = this.keywordReplace(s)
       const cArr = str.split('|')
       const choice = _.sample(cArr)
-      out = out.replace(`[${str}]`, choice)
+      out = out.replace(`[${s}]`, choice)
     })
 
     // prop lookup: {}
-    const insertRegex = /(?<=\{)(.*?)(?=\})/g
+    const insertRegex = /(?<=(?<!\\)\{)(.*?)(?=\})/g
     const matchedInserts = out.match(insertRegex) || []
-    matchedInserts.forEach(str => {
+    matchedInserts.forEach(s => {
+      const str = this.keywordReplace(s)
       const pct = str.split('%')
       if (pct.length > 1) {
         if (floatBetween(0, 100) > Number(pct[1])) {
-          out = out.replace(`{${str}}`, '')
+          out = out.replace(`{${s}}`, '')
         } else {
           const replace = this.replaceStr(pct[0])
-          out = out.replace(`{${str}}`, replace)
+          out = out.replace(`{${s}}`, replace)
         }
       } else {
         const replace = this.replaceStr(str)
-        out = out.replace(`{${str}}`, replace)
+        out = out.replace(`{${s}}`, replace)
       }
     })
 
     //list lookup : #{}#
-    const lookupRegex = /(?<=#{)(.*?)(?=}#)/g
+    const lookupRegex = /(?<=(?<!\\)#{)(.*?)(?=}#)/g
     const lookupInserts = out.match(lookupRegex) || []
-    lookupInserts.forEach(str => {
-      out = out.replace(`#{${str}}#`, pullRandom(str, 1)[0])
+    lookupInserts.forEach(s => {
+      const str = this.keywordReplace(s)
+      out = out.replace(`#{${s}}#`, pullRandom(str, 1)[0])
     })
 
     //substitute lookup : @{}@
-    const subRegex = /(?<=@{)(.*?)(?=}@)/g
+    const subRegex = /(?<=(?<!\\)@{)(.*?)(?=}@)/g
     const subInserts = out.match(subRegex) || []
-    subInserts.forEach(str => {
-      out = out.replace(`@{${str}}@`, inject(str))
+    subInserts.forEach(s => {
+      const str = this.keywordReplace(s)
+      out = out.replace(`@{${s}}@`, inject(str))
     })
 
     return out
@@ -313,14 +355,14 @@ ${this.generateField('relationships', 3, true)}
       return this.valueMap.get(input)
     }
 
-    // todo: replace this with a map, like above. build map from multiple sources
+    // TODO: replace this with a map, like above. build map from multiple sources
     switch (input) {
-      case 'fullname':
-        return `${this.firstname}${this.middlename} ${this.lastname}`
+      // case 'fullname':
+      //   return `${this.firstname}${this.middlename} ${this.lastname}`
       case 'hon':
         return this.gender.name === 'man' ? 'Lord' : this.gender.name === 'woman' ? 'Lady' : 'Peer'
-      case 'shortname':
-        return this.nickname ? this.nickname : this.firstname
+      // case 'firstname':
+      //   return this.nickname ? this.nickname : this.firstname
       case 'pro_ref':
         return this.gender.pronouns.ref
       case 'pro_sub':
@@ -331,26 +373,22 @@ ${this.generateField('relationships', 3, true)}
         return this.gender.pronouns.obj
       case 'gender':
         return this.gender.name
-      case 'minor_housename':
-        return this.minorHousename
-      case 'major_housename':
-        return this.majorHousename
       case 'gen_name_family':
-        return `${this.genName(true)} ${this.lastname}`
+        return `${this.genName(true)} {lastname}`
       case 'gen_name':
         return this.genName()
-      case 'jobtitle':
-        return this.jobtitle
+      // case 'jobtitle':
+      //   return this.jobtitle
       default:
         return `{${input}}`
     }
   }
 
-  private get fullName(): string {
-    return capitalize(
-      `${this.namePrefix}${this.firstname}${this.middlename} ${this.lastname}${this.nameSuffix}`
-    )
-  }
+  // private get fullName(): string {
+  //   return capitalize(
+  //     `${this.namePrefix}${this.firstname}${this.middlename} ${this.lastname}${this.nameSuffix}`
+  //   )
+  // }
 
   private generateField(key: string, maxExtras: number, list?: boolean): string {
     let out = ''
@@ -414,39 +452,39 @@ ${this.generateField('relationships', 3, true)}
     return name
   }
 
-  private async getName(): Promise<void> {
-    // TODO: nicknames
+  // private async getName(): Promise<void> {
+  //   // TODO: nicknames
 
-    const firstnames = pullRandom(`character/names/basic/${this.grammaticalGender}`, 8)
-    const lastnames = pullRandom('character/names/basic/surname', 8)
+  //   const firstnames = pullRandom(`character/names/basic/${this.grammaticalGender}`, 8)
+  //   const lastnames = pullRandom('character/names/basic/surname', 8)
 
-    let nameMods = this.replaceMap.get('name_mods') as any
-    if (!nameMods) nameMods = baseNameMods
+  //   let nameMods = this.replaceMap.get('name_mods') as any
+  //   if (!nameMods) nameMods = baseNameMods
 
-    this.firstname = firstnames[0]
+  //   this.firstname = firstnames[0]
 
-    if (nameMods.extraName)
-      nameMods.extraName.forEach((c, i) => {
-        if (Math.random() < c) this.middlename += ` ${firstnames[i + 1]}`
-      })
+  //   if (nameMods.extraName)
+  //     nameMods.extraName.forEach((c, i) => {
+  //       if (Math.random() < c) this.middlename += ` ${firstnames[i + 1]}`
+  //     })
 
-    this.lastname = `${lastnames[0]}`
+  //   this.lastname = `${lastnames[0]}`
 
-    if (nameMods.extraSurname)
-      nameMods.extraSurname.forEach((c, i) => {
-        if (Math.random() < c) this.lastname += `-${lastnames[i + 1]}`
-      })
+  //   if (nameMods.extraSurname)
+  //     nameMods.extraSurname.forEach((c, i) => {
+  //       if (Math.random() < c) this.lastname += `-${lastnames[i + 1]}`
+  //     })
 
-    if (nameMods.suffixChance)
-      if (Math.random() < nameMods.suffixChance) {
-        this.nameSuffix += `${_.sample(nameMods.suffixes)}`
-      }
+  //   if (nameMods.suffixChance)
+  //     if (Math.random() < nameMods.suffixChance) {
+  //       this.nameSuffix += `${_.sample(nameMods.suffixes)}`
+  //     }
 
-    if (nameMods.prefixChance)
-      if (Math.random() < nameMods.prefixChance) {
-        this.namePrefix = `${_.sample(nameMods.prefixes)} ${this.namePrefix}`
-      }
-  }
+  //   if (nameMods.prefixChance)
+  //     if (Math.random() < nameMods.prefixChance) {
+  //       this.namePrefix = `${_.sample(nameMods.prefixes)} ${this.namePrefix}`
+  //     }
+  // }
 }
 
 export { CharacterGenerator }

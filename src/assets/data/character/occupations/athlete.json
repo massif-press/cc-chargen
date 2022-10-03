@@ -1,6 +1,6 @@
 {
   "occupation_name": "Athlete",
-  "occupation": ["{shortname} is a {occupation_prefix} {jobtitle}"],
+  "occupation": ["{firstname} is a {occupation_prefix} {jobtitle}"],
   "occupation_extra": ["TODO"],
   "title": [
     "professional {genre_athlete}",
@@ -61,7 +61,7 @@
   ],
   "physicality": [],
   "physicality_extra": [],
-  "appearance": [],
-  "appearance_extra": [],
+  "clothing": [],
+  "clothing_extra": [],
   "secrets": []
 }

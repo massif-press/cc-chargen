@@ -1,14 +1,14 @@
-import _ from 'lodash'
+// import _ from 'lodash'
 
-function pullRandom(path: string, count: number): string[] {
-  const data = require(`raw-loader!@/assets/data/${path}.txt`).default
-  const arr = data.split('\n')
-  return _.sampleSize(arr, count).map(x => x.replace(/[\n\r]/g, ''))
-}
+// function pullRandom(path: string, count: number): string[] {
+//   const data = require(`raw-loader!@/assets/data/${path}.txt`).default
+//   const arr = data.split('\n')
+//   return _.sampleSize(arr, count).map(x => x.replace(/[\n\r]/g, ''))
+// }
 
-function inject(path: string): string {
-  return require(`raw-loader!@/assets/data/${path}.txt`).default
-}
+// function inject(path: string): string {
+//   return require(`raw-loader!@/assets/data/${path}.txt`).default
+// }
 
 // function callsign(): string {
 //   const callsigns = require('raw-loader!@/assets/generators/callsigns.txt').default.concat(
@@ -69,4 +69,4 @@ function inject(path: string): string {
 //   return output
 // }
 
-export { pullRandom, inject }
+// export { pullRandom, inject }

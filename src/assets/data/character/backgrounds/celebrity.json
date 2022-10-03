@@ -21,16 +21,16 @@
     "acclaimed",
     "preeminent"
   ],
-  "appearance": [
+  "clothing": [
     "a subtle -- yet elegant -- outfit of dark, muted tones, in apparent contravention of their celebrity status",
     "a [tight|skintight|sheer] undersuit, layered with [metatextile|polyfabric|smartfabric|nanofiber|reticulated demifiber] [panels|shards|patches|sheets|leaves|feathers|fronds|membranes|blankets|lamina] and wide, [puffy|wrinkled|flowing] sleeves",
-    "a [high-necked|low-cut] #{lists/colors}# [dress|suit], [precisely|stylishly] cut for [bare arms|bare shoulders|a bare midriff], with [tight|loose|wide|flowing|short] [trousers|slacks|trews]. The outfit is [crisscrossed by|overlaid with|encircled by|layered with] light-emitting bands, [gently glowing|gently pulsing|that pulse languidly|colored to match {shortname}'s eyes|colored to match {shortname}'s hair|colored to reflect {shortname}'s mood]",
+    "a [high-necked|low-cut] #{lists/colors}# [dress|suit], [precisely|stylishly] cut for [bare arms|bare shoulders|a bare midriff], with [tight|loose|wide|flowing|short] [trousers|slacks|trews]. The outfit is [crisscrossed by|overlaid with|encircled by|layered with] light-emitting bands, [gently glowing|gently pulsing|that pulse languidly|colored to match {firstname}'s eyes|colored to match {firstname}'s hair|colored to reflect {firstname}'s mood]",
     "an array of [wide|angular|jagged|ovoid|undulating|shuddering|free-floating] #{lists/colors}# [metatextile|polyfabric|smartfabric|nanofiber|reticulated demifiber] [panels|shards|patches|sheets|leaves|feathers|fronds|membranes|blankets|lamina], the pinnacle of [high|experimental|Cosmopolitan|Spaceborn] fashion",
     "a [puffy|silken|military-style] #{lists/colors}# [blouson|bolero|bomber jacket] with a [synthetic fur fringe|wide, concealing hood|seal for a detachable helmet|cargo netting wrap|webbing of straps and carabiners], over [nothing at all|hydrophobic swimwear|polytextile sportswear|silken yếm|a full-body hardsuit interface|a tight shirt|a loose shirt|a sheer top|cropped undergarments|skintight bodysuit]",
     "the latest Smith-Shimano contemporary fashion lines: [bright colors|muted colors|shades of black|brilliant hues|shimmering metallics|gleaming synthetic diamondfiber|chromatic metaplastics|ultralight nanotextiles|pulsating organotextiles|undulating organofiber|neurolinked kinetextile], [enticing cuts|alluring cuts|draped scarves|elegant lines|angular silhouettes|modest lines|sophisticated cuts|classic lines|throwback trim], and [mountains of jewelry|a dusting of jewelry|the latest personal microdrone|the latest SSC dataslate|a kitschy throwback GMS dataslate]",
     "a [skintight|full] bodysuit of [temperature-regulating|figure-enhancing|jet black|slate grey|opalescent] [metatextile|polyfabric|smartfabric|nanofiber|reticulated demifiber], studded with miniature holoprojectors that project [the translucent illusion of a stylized mech|sheets of flowing, tessellating patterns that cascade like water|falling water|falling snow|gently drifting cherry blossoms|wisps of wine-dark nebulae|falling stars|mist, pooling quietly around {pro_pos} feet|tongues of flame|a cartoonish \"x-ray\" of {pro_pos} body as {pro_obj} moves|cascading sheets of light|a constellation of stars]"
   ],
-  "appearance_extra": [
+  "clothing_extra": [
     "{pro_sub} wears [dark|mirrored|opaque, opalescent] [shades|sunglasses|visors|eye coverings|lenses], very nearly all of the time",
     "{pro_sub} is almost always covered by a [long|flowing|bulky|voluminous] [opalescent|transparent|translucent|sheer|mesh|diamondfiber lace|neon green] [longcoat|overcoat|raincoat|poncho|rain slicker|trenchcoat]",
     "a hooded cowl with an inbuilt atmosphere filter mask",
@@ -41,11 +41,11 @@
     "the shoulder pauldrons and upper arms of an ultralight but [military|far-field|hazard environment]-rated hardsuit",
     "a [military|far-field|Harrison Armory]-style [ballistic vest|tactical vest|chest rig]",
     "tall, [high-heeled|low-heeled|angular|riding-heeled] boots, [crisscrossed with straps|adorned with faux-armor plates|adorned with foamed metal plates|made almost entirely of tinted areogel|made of glossy synthetic sharkskin|topped with armored, hardsuit-style kneepads]",
-    "a [small shoulder pauldron|small backpack] with an enclosure that hosts [beautiful and ultra-hardy Venusian air coral, wafting gently|a shoal of delicate Jovian plankton, quietly flitting around {shortname}'s outfit|living xenofloral blooms|a clutch of tiny, furry xenofauna]"
+    "a [small shoulder pauldron|small backpack] with an enclosure that hosts [beautiful and ultra-hardy Venusian air coral, wafting gently|a shoal of delicate Jovian plankton, quietly flitting around {firstname}'s outfit|living xenofloral blooms|a clutch of tiny, furry xenofauna]"
   ],
   "secrets": [
-    "{shortname} is desperately tired of {pro_pos} fame and wants to fade into anonymity. {pro_sub} has a plan to [fake {pro_pos} own death|commit a harmless but deeply embarrassing faux pas|abandon {pro_pos} career entirely] and [assume a constructed identity|live a quiet agrarian life on a distant planet|open a small cafe on a distant station|join a HORUS cell]",
+    "{firstname} is desperately tired of {pro_pos} fame and wants to fade into anonymity. {pro_sub} has a plan to [fake {pro_pos} own death|commit a harmless but deeply embarrassing faux pas|abandon {pro_pos} career entirely] and [assume a constructed identity|live a quiet agrarian life on a distant planet|open a small cafe on a distant station|join a HORUS cell]",
     "{fullname} is not a real person, but a complex fiction created by an SSC media team to covertly promote their subsidiary brands",
-    "{shortname} is actually a [5|7|9|12|15]th generation clone, thanks to {pro_pos} penchant for [excessive partying|heavy drug use|extreme sports|Sparri blood-bets|megafauna safaris|unsanctioned coronal surfing]. Unfortunately, [clone fidelity is starting to break down|{pro_sub} has been decanted Tabula Rasa, with no memory of who {pro_sub} used to be and no real skill, and has been trying maintain {pro_pos} lifestyle by deception, but people are beginning to ask questions|manna has run out and there isn't anything left for day-to-day expenses, much less a new clone]"
+    "{firstname} is actually a [5|7|9|12|15]th generation clone, thanks to {pro_pos} penchant for [excessive partying|heavy drug use|extreme sports|Sparri blood-bets|megafauna safaris|unsanctioned coronal surfing]. Unfortunately, [clone fidelity is starting to break down|{pro_sub} has been decanted Tabula Rasa, with no memory of who {pro_sub} used to be and no real skill, and has been trying maintain {pro_pos} lifestyle by deception, but people are beginning to ask questions|manna has run out and there isn't anything left for day-to-day expenses, much less a new clone]"
   ]
 }

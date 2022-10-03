@@ -25,12 +25,12 @@
     "eccentric ",
     "pioneering "
   ],
-  "occupation": ["{shortname} works for [{university}|{org}]"],
+  "occupation": ["{firstname} works for [{university}|{org}]"],
   "university": ["The University of [Cradle|Mars|Venus|Luna|Io|Ganymede], #{lists/places}# Campus"],
   "physicality": [],
   "physicality_extra": [],
   "garb_chest": ["a long [white|grey|black] lab coat"],
-  "appearance_extra": [],
+  "clothing_extra": [],
   "secrets": [],
   "relationships_extra": [
     "{gen_name}, professional rival",

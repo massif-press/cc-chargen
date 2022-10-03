@@ -2,7 +2,7 @@
   "occupation_name": "Mathematician",
   "org": ["The #{lists/places}# institute"],
   "occupation_extra": [
-    "{shortname} has recently [began work on|published] [an article|a dissertation|an essay|a case study|a set of technical notes|a systematic review|a series of editorials|a series of commentaries] in {pro_pos} field, entitled \"{work}\""
+    "{firstname} has recently [began work on|published] [an article|a dissertation|an essay|a case study|a set of technical notes|a systematic review|a series of editorials|a series of commentaries] in {pro_pos} field, entitled \"{work}\""
   ],
   "title": ["{occupation_prefix%3} [applied|theoretical] {math_pre} {math} mathematician"],
   "math_pre_pre": [
@@ -62,7 +62,7 @@
   ],
   "physicality": [],
   "physicality_extra": [],
-  "appearance": [],
-  "appearance_extra": [],
+  "clothing": [],
+  "clothing_extra": [],
   "secrets": []
 }

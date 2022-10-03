@@ -1,9 +1,12 @@
 {
-  "appearance": ["a latest-gen SSC Slyphsuit, a gently-pulsating symbiotic garment-organism"],
+  "name": [
+    "$firstname{#{character/names/basic/%gender}#}$ $lastname{#{character/names/basic/surname}#}$"
+  ],
+  "clothing": ["a latest-gen SSC Slyphsuit, a gently-pulsating symbiotic garment-organism"],
   "history_early": [
-    "{shortname} [was born|was born and raised] in the #{lists/states}# [district|neighborhood|quarter|community] of #{lists/archipelagos}# [Habitat|Toroid|Torus|Cylinder|Asteroid|Ring|Platform], a [minor|major|thriving|quiet|popular|unpopular] Cradle station near #{lists/cradle_system}#{birth_circumstance}",
-    "{shortname} is a[ true|] Cradle [metropolitan|native], [born|born and raised] in the [city|town] of [New |Noveau |Novo |Nuut |Baru |Adisi |Novi |Nei |Putiyat |Taze |Hou-|Okusha-|Saeloun |||]#{lists/cities}# on #{lists/cradle_system}#{birth_circumstance}",
-    "{shortname} [was born|was born and raised] on #{lists/archipelagos}#, a [minor|major|thriving|quiet|core|key|central|Cosmopolitan] Union-aligned world [within|in|on|of] the #{lists/lines}#{birth_circumstance}"
+    "{firstname} [was born|was born and raised] in the #{lists/states}# [district|neighborhood|quarter|community] of #{lists/archipelagos}# [Habitat|Toroid|Torus|Cylinder|Asteroid|Ring|Platform], a [minor|major|thriving|quiet|popular|unpopular] Cradle station near #{lists/cradle_system}#{birth_circumstance}",
+    "{firstname} is a[ true|] Cradle [metropolitan|native], [born|born and raised] in the [city|town] of [New |Noveau |Novo |Nuut |Baru |Adisi |Novi |Nei |Putiyat |Taze |Hou-|Okusha-|Saeloun |||]#{lists/cities}# on #{lists/cradle_system}#{birth_circumstance}",
+    "{firstname} [was born|was born and raised] on #{lists/archipelagos}#, a [minor|major|thriving|quiet|core|key|central|Cosmopolitan] Union-aligned world [within|in|on|of] the #{lists/lines}#{birth_circumstance}"
   ],
   "birth_circumstance": [
     "",
