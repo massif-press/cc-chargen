@@ -1,8 +1,8 @@
 {
   "key": "Cosmopolitan",
-  "definitions": ["cosmopolitan"],
-  "properties": {
-    "propkey": "propkey output"
+  "values": {
+    "testprop": ["testprop out 1", "testprop out 2", "testprop out 3"],
+    "testdef": "testdef__1"
   },
-  "templates": ["hello {inline 1|inline 2} {propkey}"]
+  "templates": ["hello {inline 1|inline 2} {testprop} {testdef}"]
 }

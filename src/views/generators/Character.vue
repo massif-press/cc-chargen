@@ -139,11 +139,12 @@ export default {
     async getCharacter(template: any) {
       this.loading = true;
       const g = new Generator();
-      g.LoadLibraryDir('character', 'lists');
+      // g.LoadLibraryDir('character', 'lists');
+      g.LoadLibraryObject(templates.cosmopolitan);
 
       console.log(g);
 
-      console.log(Generator.WeightedSelection(genders));
+      // console.log(Generator.WeightedSelection(genders));
 
       g.Generate(template);
 

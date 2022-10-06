@@ -1,3 +1,4 @@
-import cosmopolitan from './cosmopolitan.json'
+import cosmopolitan from './cosmopolitan.json';
+import baron from './baron.json';
 
-export { cosmopolitan }
+export { cosmopolitan, baron };

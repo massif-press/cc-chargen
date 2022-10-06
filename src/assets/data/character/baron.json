@@ -1,0 +1,8 @@
+{
+  "key": "Baronic Noble",
+  "definitions": [],
+  "properties": {
+    "propkey2": "propkey2 output"
+  },
+  "templates": ["hello2 {inline 3|inline 4} {propkey2}"]
+}

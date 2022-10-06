@@ -1,165 +1,113 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 import _ from 'lodash';
-import fs from 'fs';
-
-class Model {
-  Configurations: Configuration[];
-  Definitions: object;
-}
-
-class Configuration {
-  Definitions: object;
-  Fields: object;
-}
+import { GeneratorLibrary } from './generatorLibrary';
+import { LibraryData } from './libraryData';
+import { cLog } from './util';
 
 interface WeightedItem {
   weight: number;
 }
 
+interface templateItem {
+  templates: string[];
+}
+
 class Generator {
-  public Library: object;
-  public Dictionary: Map<string, string>;
-  // public Model: Model
+  public Library: GeneratorLibrary;
   public ValueMap: Map<string, string[]>;
 
-  constructor() {
-    // this.Model = model
-    this.Library = {};
-    this.Dictionary = new Map<string, string>();
+  constructor(library?: GeneratorLibrary) {
+    if (library) this.Library = library;
     this.ValueMap = new Map<string, string[]>();
   }
 
-  public Generate(Configuration: Configuration) {
-    console.log(Configuration);
-    // traverse and collect property tree
-    // collect fields
-    // compose dictionary
-    // compose valuemap
-    // traverse template tree and select templates
-    // compose templates
+  public LoadLibrary(library: GeneratorLibrary) {
+    const start = new Date().getTime();
+
+    this.Library = library;
+
+    library.Content.forEach((e: LibraryData) => {
+      if (e.definitions) {
+        for (const def in e.definitions) {
+          this.Define(def, e.definitions[def]);
+        }
+      }
+      if (e.values) {
+        for (const prop in e.values) {
+          this.AddValueMap(prop, e.values[prop]);
+        }
+      }
+      if (e.templates) {
+        e.templates.forEach((t) => {
+          this.AddValueMap(e.key, t);
+        });
+      }
+    });
+
+    let ms = (new Date().getTime() - start).toString();
+    if (ms === '0') ms = '<1';
+    cLog(`⏱️ Library loaded in ${ms}ms`);
+  }
+
+  public Generate(template?: string | string[] | templateItem): string {
+    if (!this.Library) {
+      cLog(
+        '🈳 No library loaded! Load a GeneratorLibrary with the LoadLibrary function',
+        'error'
+      );
+      return '';
+    }
+
+    let baseTemplate;
+    if (typeof template === 'string') baseTemplate = template;
+    else if (Array.isArray(template)) baseTemplate = _.sample(template);
+    else {
+      if (!template) template = _.sample(this.Library.Content) as templateItem;
+      baseTemplate = _.sample(template.templates);
+    }
+
     // define-replace loop
     // out
-    console.log('not yet implemented');
+    console.log(this.Library);
+    console.log(baseTemplate);
+    return 'not yet implemented';
   }
 
-  // public async LoadLibraryDir(...filters: string[]) {
-  //   const start = new Date().getTime();
-  //   let cache = {};
+  // -- ValueMap ---------
 
-  //   async function importAll(r) {
-  //     r.keys().forEach((key) => (cache[key] = r(key)));
-  //   }
-
-  //   fs.readdirSync('/assets/data/').forEach(async (e) => {
-  //     importAll(await import(e));
-  //   });
-
-  //   for (const key in cache) {
-  //     if (!filters.some((str) => key.includes(str))) delete cache[key];
-  //   }
-
-  //   for (const key in cache) {
-  //     filters.forEach((f) => {
-  //       if (key.includes(f)) {
-  //         const subkey = key?.split(`${f}/`)?.pop()?.replace('.json', '');
-  //         const pArr = subkey?.split('/');
-  //         if (_.has(this.Library, pArr)) this.AppendLibrary(pArr, cache[key]);
-  //         else this.SetLibrary(pArr, cache[key]);
-  //       }
-  //     });
-  //   }
-
-  //   cache = {};
-  //   let ms = (new Date().getTime() - start).toString();
-  //   if (ms === '0') ms = '<1';
-  //   console.info(`Library loaded in ${ms}ms`);
-  //   console.log(this.Library);
-  // }
-
-  public LoadLibraryObject(...objs: object[]) {
-    const start = new Date().getTime();
-    objs.forEach((obj) => {
-      for (const key in obj) {
-        if (_.has(this.Library, key)) this.AppendLibrary(key, obj[key]);
-        else this.SetLibrary(key, obj[key]);
-      }
-    });
-
-    let ms = (new Date().getTime() - start).toString();
-    if (ms === '0') ms = '<1';
-    console.info(`Library loaded in ${ms}ms`);
-  }
-
-  public async LoadLibraryFile(...paths: string[]) {
-    const start = new Date().getTime();
-    paths.forEach(async (path) => {
-      let cache = await import(path);
-
-      for (const key in cache) {
-        if (_.has(this.Library, key)) this.AppendLibrary(key, cache[key]);
-        else this.SetLibrary(key, cache[key]);
-      }
-
-      cache = null;
-    });
-
-    let ms = (new Date().getTime() - start).toString();
-    if (ms === '0') ms = '<1';
-    console.info(`Library loaded in ${ms}ms`);
-  }
-
-  public SetLibrary(path: _.PropertyPath, data: string[]) {
-    _.set(this.Library, path, data);
-  }
-
-  public AppendLibrary(path: _.PropertyPath, data: string[]) {
-    const e = _.get(this.Library, path, data);
-    _.set(this.Library, path, [...e, ...data]);
-  }
-
-  public DeleteLibrary(path: _.PropertyPath) {
-    _.unset(this.Library, path);
-  }
-
-  public GetLibrary(path: _.PropertyPath): string[] {
-    return _.get(this.Library, path);
-  }
-
-  public HasLibrary(path: _.PropertyPath): boolean {
-    return _.has(this.Library, path);
+  public Define(key: string, value: string) {
+    if (!this.HasValueMap(key)) this.ValueMap.set(key, [value]);
+    else
+      cLog(`🔒 A definition already exists for ${key} (${value})`, 'warning');
   }
 
   public SetValueMap(key: string, value: string | string[]) {
+    //TODO: split |s
+    //TODO: add weights
     this.ValueMap.set(key, Array.isArray(value) ? value : [value]);
   }
-  public AppendValueMap(key: string, value: string | string[]) {
+
+  public AddValueMap(key: string, value: string | string[]) {
+    //TODO: split |s
+    //TODO: add weights
     const val = Array.isArray(value) ? value : [value];
     if (this.HasValueMap(key))
       this.ValueMap.set(key, [...this.GetValueMap(key), ...val]);
     else this.ValueMap.set(key, val);
   }
+
   public GetValueMap(key: string): string[] {
     return this.ValueMap.get(key) || [];
   }
+
   public HasValueMap(key: string): boolean {
     return this.ValueMap.has(key);
   }
+
   public DeleteValueMap(key: string) {
     this.ValueMap.delete(key);
   }
 
-  public GetDefinition(key: string): string {
-    return this.Dictionary.get(key) || '';
-  }
-  public HasDefinition(key: string) {
-    return this.Dictionary.has(key);
-  }
-  public DeleteDefinition(key: string) {
-    this.Dictionary.delete(key);
-  }
-  public SetDefinition(key: string, val: string) {
-    this.Dictionary.set(key, val);
-  }
+  // ------ utility
 
   public static IntBetween = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1) + min);
