@@ -26,9 +26,10 @@
   - [LibraryData](#librarydata)
   - [Example JSON](#example-json)
   - [Dynamic Generation](#dynamic-generation)
-    - [Managing Definitions](#managing-definitions)
-    - [Managing Templates](#managing-templates)
-    - [Managing Values](#managing-values)
+    - [Definitions](#definitions)
+    - [Templates](#templates)
+    - [Values](#values)
+      - [Value Items](#value-items)
     - [Utility Functions](#utility-functions)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
@@ -396,7 +397,7 @@ LibraryData outline:
 {
   key: string,
   definitions: Map<string, string>,
-  values: Map<string, string | string[]>
+  values: Map<string, string | string[]>,
   templates: string[]
 }
 ```
@@ -480,30 +481,34 @@ Create a LibraryData with:
 const myData = new LibraryData(key: string);
 ```
 
-### Managing Definitions
+all fields (`key`, `definitions`, `values`, and `templates`) on a LibraryData object are public, so you can manipulate them directly, but convenience methods are provided:
+
+### Definitions
 
 ```ts
-myData.Definitions;
+myData.definitions;
 ```
 
 ```ts
 Define(key: string, value: string)
 ```
 
+This function will throw an error if the key is already defined
+
 ```ts
 ClearDefinition(key: string)
 ```
 
-### Managing Templates
+Removes a definition.
+
+### Templates
 
 ```ts
-myData.Templates;
+myData.templates;
 ```
 
-Returns an array of all templates on the object.
-
 ```ts
-AddTemplate(...value: string)
+AddTemplate(...value: string[])
 ```
 
 Adds one or more template strings. Templates are automatically given the same key as its containing LibraryData.
@@ -526,48 +531,68 @@ ClearTemplates(index: number)
 
 Removes all templates on the object.
 
-### Managing Values
+### Values
 
 ```ts
-myData.Values;
+myData.values;
 ```
-
-Returns a map of all key-value pairs on the object.
 
 ```ts
-GetValueItem(key: string): {value: string, weight: number}[]
+GetValue(key: string): {value: string, weight: number}[]
 ```
 
-Get an array of all values (and their weights) at the provided key. If the key does not exist, this will return `null`.
+Get an array of all value items (and their weights) at the provided key. If the key does not exist, this will return `null`.
 
 ```ts
-AddValueItem(key: string, value: string | string[], weight?: number | number[])
+AddValue(key: string, value: string | string[], weight?: number | number[])
 ```
 
-If it already exists, the the value will be added to the existing key. Values can be added as an array of strings, or with any chargen syntax (eg. `{item 1`|item 2|item 3}`). Item weights can be optionally added as a single number, which will be given to all values, or, as an array of numbers which will be assigned to the values in order (ie value[3] will be weighted by weight[3]). Weights can be passed via chargen syntax as well (`{item 1:5`|item 2:3|item 3:1}`)
+If it already exists, the the value item will be added to the existing key. Values can be added as an array of strings, or with any chargen syntax (eg. `{item 1|item 2|item 3}`). Item weights can be optionally added as a single number, which will be given to all values, or, as an array of numbers which will be assigned to the values in order (ie `value[3]` will be weighted by `weight[3]`). Weights can be passed via chargen syntax as well (`{item a:5|item b:3|item c:1}`). Weights passed as a parameter will overwrite weights derived from syntax.
 
 ```ts
-SetValueWeight(key: string, index: number, weight: number)
+SetValue(key: string, value: string | string[], weight?: number | number[])
 ```
 
-Sets a value's weight based on its index in the array.
+As above, but will overwrite an existing key
+
+```ts
+ClearValue(key: string)
+```
+
+Clears all values for the given key. An empty value set will be left blank at rendering, but will **not** throw an error on generation.
 
 ```ts
 ClearValueWeights(key: string)
 ```
 
-Sets all key value weights to `1`
+Sets the weight of all items under the key to `1`
 
 ```ts
-ClearValueItem(key: string)
-```
-
-Clears all values for the given string. An empty value set will be left blank at rendering, and will **not** throw an error on generation.
-
-```ts
-DeleteValueItem(key: string)
+DeleteValue(key: string, index: number)
 ```
 
 Removes a key and all of its associated values. A missing key **will** throw an error on generation.
+
+### Value Items
+
+The following functions can be used to manipulate the specific elements a Value can select over (its internal selection array).
+
+```ts
+SetValueItemWeight(key: string, index: number, weight: number)
+```
+
+Sets a value's item's weight based on its index in the array.
+
+```ts
+ClearValueItem(key: string, index: number)
+```
+
+Sets the value item at `key[index]` to an empty string with weight `1`
+
+```ts
+DeleteValueItem(key: string, index: number)
+```
+
+Removes a value item at `key[index]`
 
 ### Utility Functions
