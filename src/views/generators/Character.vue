@@ -108,11 +108,11 @@
 </template>
 
 <script lang="ts">
-import { CharacterGenerator } from '../../logic/character/CharacterGenerator';
 import { Generator } from '../../logic/generator';
 import * as templates from '../../assets/data/character/index';
 import showdown from 'showdown';
-import genders from '../../assets/data/character/genders.json';
+// import genders from '../../assets/data/character/genders.json';
+import { GeneratorLibrary } from '../../logic/generatorLibrary';
 
 export default {
   name: 'home',
@@ -140,7 +140,8 @@ export default {
       this.loading = true;
       const g = new Generator();
       // g.LoadLibraryDir('character', 'lists');
-      g.LoadLibraryObject(templates.cosmopolitan);
+      const lib = new GeneratorLibrary(templates.cosmopolitan, templates.baron);
+      g.LoadLibrary(lib);
 
       console.log(g);
 

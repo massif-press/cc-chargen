@@ -1,5 +1,6 @@
 import { cLog } from './util';
 import _ from 'lodash';
+import { ValueItem } from './generator';
 
 class LibraryData {
   key: string;
@@ -7,11 +8,41 @@ class LibraryData {
   values: object;
   templates: string[];
 
-  constructor(key: string) {
+  constructor(
+    key: string,
+    definitions?: object,
+    values?: object,
+    templates?: string[]
+  ) {
     this.key = key;
-    this.definitions = {};
-    this.values = {};
-    this.templates = [];
+    this.definitions = definitions || {};
+    this.values = values || {};
+    this.templates = templates || [];
+  }
+
+  public static Convert(json: string | object): LibraryData {
+    const c = typeof json === 'string' ? JSON.parse(json) : json;
+    if (!c.key) {
+      cLog(
+        `🔑 Error converting object to LibraryData: item lacks key property`,
+        'error'
+      );
+      throw new Error(`object has no key field: ${c}`);
+    }
+    return new LibraryData(
+      c.key,
+      c.definitions,
+      this.prepValueObject(c.values),
+      c.templates
+    );
+  }
+
+  private static prepValueObject(obj: object) {
+    const out = {};
+    for (const k in obj) {
+      out[k] = LibraryData.PrepValues(obj[k]);
+    }
+    return out;
   }
 
   public Define(key: string, value: string) {
@@ -55,7 +86,7 @@ class LibraryData {
     if (this.values[key])
       this.values[key] = [
         ...this.values[key],
-        ...this.prepValues(value, weight),
+        ...LibraryData.PrepValues(value, weight),
       ];
     else this.SetValue(key, value, weight);
   }
@@ -65,7 +96,7 @@ class LibraryData {
     value: string | string[],
     weight?: number | number[]
   ) {
-    this.values[key] = this.prepValues(value, weight);
+    this.values[key] = LibraryData.PrepValues(value, weight);
   }
 
   public SetValueItem(key: string, index: number, value: string, weight = 1) {
@@ -113,20 +144,35 @@ class LibraryData {
     this.values[key] = [{ value: '', weight: 1 }];
   }
 
-  private prepValues(
-    values: string | string[],
+  public static PrepValues(
+    values: any,
     weights?: number | number[]
-  ): { value: string; weight: number }[] {
-    let v = Array.isArray(values) ? values : values.split('|');
-    let w: number[] = [];
+  ): ValueItem[] {
+    let v, w;
 
-    [v, w] = this.splitValueWeights(v);
+    if (typeof values === 'string') values = values.split('|');
 
-    if (weights) {
-      const wArr = Array.isArray(weights) ? weights : [weights];
-      for (const i of wArr) {
-        w[i] = wArr[i];
+    if (typeof values[0] === 'string') {
+      v = values;
+      w = [];
+
+      [v, w] = this.SplitValueWeights(v);
+
+      if (weights) {
+        const wArr = Array.isArray(weights) ? weights : [weights];
+        for (const i of wArr) {
+          w[i] = wArr[i];
+        }
       }
+    } else if (Array.isArray(values[0])) {
+      v = values.map((x) => x[0]);
+      w = values.map((x) => x[1] || 1);
+    } else if (values[0].value !== undefined) {
+      v = values.map((x) => x.value);
+      w = values.map((x) => x.weight || 1);
+    } else {
+      cLog('🚨', 'Inappropriate or malformed value item detected', 'error');
+      throw new Error(values);
     }
 
     return v.map((x, i) => ({
@@ -135,10 +181,11 @@ class LibraryData {
     }));
   }
 
-  private splitValueWeights(arr: string[]): [string[], number[]] {
+  public static SplitValueWeights(arr: string[]): [string[], number[]] {
     let values: string[] = [];
     let weights: number[] = [];
     arr.forEach((str) => {
+      if (typeof str !== 'string') return;
       // capture :number, ignore escape /:
       const match = str.match(/(?<!\\)(?:\:)\d+/);
       if (match && match[0]) {
@@ -153,9 +200,9 @@ class LibraryData {
     return [values, weights];
   }
 
-  private checkIndex(index: number, arrKey: string) {
+  public checkIndex(index: number, arrKey: string) {
     if (!Number.isInteger(index)) {
-      cLog(`📙 Error setting ${arrKey}: inappropriate index value`, 'error');
+      cLog(`📙`, `Error setting ${arrKey}: inappropriate index value`, 'error');
       throw new Error(`${index} cannot be used as index`);
     }
     if (index > _.property(`this.${arrKey}`).length - 1 || index < 0) {
@@ -171,7 +218,8 @@ class LibraryData {
   private checkKey(key: string, objKey: string) {
     if (!_.property(`this.${objKey}.${key}`)) {
       cLog(
-        `📙 Error clearing ${objKey}: LibraryData contains no ${objKey} for ${key}`,
+        `📙`,
+        `Error clearing ${objKey}: LibraryData contains no ${objKey} for ${key}`,
         'error'
       );
       throw new Error(`LibraryData is undefined at ${objKey}.${key}`);

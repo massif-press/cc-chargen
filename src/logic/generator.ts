@@ -1,27 +1,38 @@
 import _ from 'lodash';
 import { GeneratorLibrary } from './generatorLibrary';
 import { LibraryData } from './libraryData';
-import { cLog } from './util';
-
-interface WeightedItem {
-  weight: number;
-}
+import { cLog, FloatBetween, WeightedSelection } from './util';
 
 interface templateItem {
   templates: string[];
 }
 
+type ValueItem = {
+  value: string;
+  weight: number;
+};
+
+class GeneratorOptions {
+  CleanMultipleSpaces: boolean = true;
+  CapitalizeFirst: boolean = true;
+  IgnoreMissingKeys: boolean = true;
+  MaxIterations: number = 100;
+}
+
 class Generator {
   public Library: GeneratorLibrary;
-  public ValueMap: Map<string, string[]>;
+  public ValueMap: Map<string, ValueItem[]>;
+
+  private _timer;
+  private _output = '';
 
   constructor(library?: GeneratorLibrary) {
     if (library) this.Library = library;
-    this.ValueMap = new Map<string, string[]>();
+    this.ValueMap = new Map<string, ValueItem[]>();
   }
 
   public LoadLibrary(library: GeneratorLibrary) {
-    const start = new Date().getTime();
+    this.startTimer();
 
     this.Library = library;
 
@@ -37,65 +48,240 @@ class Generator {
         }
       }
       if (e.templates) {
-        e.templates.forEach((t) => {
-          this.AddValueMap(e.key, t);
+        e.templates.forEach((value) => {
+          this.AddValueMap(e.key, [{ value, weight: 1 }]);
         });
       }
     });
 
-    let ms = (new Date().getTime() - start).toString();
-    if (ms === '0') ms = '<1';
-    cLog(`⏱️ Library loaded in ${ms}ms`);
+    this.endTimer('Library loaded');
   }
 
-  public Generate(template?: string | string[] | templateItem): string {
+  public Generate(
+    template?: string | string[] | templateItem,
+    options: GeneratorOptions = new GeneratorOptions()
+  ): string {
+    this.startTimer();
+
     if (!this.Library) {
       cLog(
-        '🈳 No library loaded! Load a GeneratorLibrary with the LoadLibrary function',
+        '🈳',
+        'No library loaded! Load a GeneratorLibrary with the LoadLibrary function',
         'error'
       );
       return '';
     }
+    this.startTimer();
 
-    let baseTemplate;
-    if (typeof template === 'string') baseTemplate = template;
-    else if (Array.isArray(template)) baseTemplate = _.sample(template);
-    else {
-      if (!template) template = _.sample(this.Library.Content) as templateItem;
-      baseTemplate = _.sample(template.templates);
+    this._output = this.getBaseTemplate(template);
+    let loops = options.MaxIterations;
+    let selectionsRemaining = true;
+    while (loops && selectionsRemaining) {
+      selectionsRemaining = this.process();
+      loops--;
     }
 
-    // define-replace loop
-    // out
-    console.log(this.Library);
-    console.log(baseTemplate);
-    return 'not yet implemented';
+    if (!loops) {
+      cLog(
+        '🔁',
+        'Generator has exceeded its iteration limit. This likely means an referenced key cannot be resolved. The FindMissingValues() function can help debug these issues.',
+        'warning'
+      );
+    }
+
+    this.endTimer(`Item generated (${100 - loops}  loops)`);
+
+    console.log(this._output);
+
+    return this._output;
   }
 
-  // -- ValueMap ---------
+  private process(): boolean {
+    const contFlags = new Array(5).fill(false);
+    // remove @pct misses
+    contFlags[0] = this.resolvePcts();
+    // remove @pct misses
+    contFlags[1] = this.resolveInlineSelectionSets();
+    // assign keywords
+    contFlags[2] = this.assignKeys();
+    // resolve inline selections
+    contFlags[3] = this.resolveInline();
+    // do other selections
+    contFlags[4] = this.resolveSets();
+
+    return contFlags.includes(true);
+  }
+
+  private resolveInlineSelectionSets() {
+    let found = false;
+    // collapse all inline sets of sets %like|this%
+    // group 0 is full match, group 1 is content, not including syntactical elements
+    const inlineRegex = /(?<!\`)[?>%](.*?.)[?<=%]/g;
+    const matches = [...this._output.matchAll(inlineRegex)];
+    matches.forEach((match) => {
+      console.log(match);
+      if (match[1].includes('|')) {
+        found = true;
+        console.log(match[0]);
+        this._output = this._output.replace(
+          match[1],
+          this._getInlineValue(match[1])
+        );
+      }
+    });
+
+    return found;
+  }
+
+  private assignKeys(): boolean {
+    let found = false;
+    // find all @key
+    // group 0 is full match, group 1 is key, group 2 is content, including syntactical elements
+    // backtick escapes
+    const keywordRegex = /(?<!\`)@(.*?)([?>{%].*?[?<=}%])/g;
+    const matches = [...this._output.matchAll(keywordRegex)];
+    matches.forEach((match) => {
+      found = true;
+      if (match[2].includes('{')) {
+        // inline selection
+        const val = this._getInlineValue(match[2]);
+        this.Define(match[1], val);
+        this._output = this._output.replace(match[0], val);
+      } else {
+        // array selection
+        const vmKey = match[2].split('%').join('');
+        console.log(vmKey);
+        if (this.HasValueMap(vmKey)) {
+          const sel = this._getMapValue(vmKey);
+          this.Define(match[1], sel);
+          this._output = this._output.replace(match[0], sel);
+        }
+      }
+    });
+    return found;
+  }
+
+  private resolveInline(): boolean {
+    let found = false;
+    // find all {inline|selections}
+    // group 0 is full match, group 1 is content, not including syntactical elements
+    // backtick escapes
+    const inlineRegex = /(?<!\`)[?>{](.*?)[?<=}]/g;
+    const matches = [...this._output.matchAll(inlineRegex)];
+    matches.forEach((match) => {
+      found = true;
+      this._output = this._output.replace(
+        match[0],
+        this._getInlineValue(match[1])
+      );
+    });
+
+    return found;
+  }
+
+  private resolveSets(): boolean {
+    let found = false;
+    // find all %sets%
+    // group 0 is full match, group 1 is content, not including syntactical elements
+    // backtick escapes
+    const inlineRegex = /(?<!\`)[?>%](.*?)[?<=%]/g;
+    const matches = [...this._output.matchAll(inlineRegex)];
+    matches.forEach((match) => {
+      found = true;
+      if (this.HasValueMap(match[1])) {
+        this._output = this._output.replace(
+          match[0],
+          this._getMapValue(match[1])
+        );
+      }
+    });
+
+    return found;
+  }
+
+  private _getInlineValue(inlineStr: string): string {
+    const valueItems = LibraryData.PrepValues(inlineStr);
+    return (WeightedSelection(valueItems) as ValueItem).value;
+  }
+
+  private _getMapValue(mapKey: string): string {
+    const selArr = this.GetValueMap(mapKey);
+    return (WeightedSelection(selArr) as ValueItem).value;
+  }
+
+  private resolvePcts(): boolean {
+    let found = false;
+    // find all @pctN{x} and @pctN%x%
+    // group 0 is full match, group 1 is pct, group 2 is content, including syntactical elements
+    // backtick escapes
+    const pctRegex = /(?<!\`)@pct(\.?\d*\.?\d*)([?>{%].*?[?<=}%])/g;
+    const matches = [...this._output.matchAll(pctRegex)];
+    matches.forEach((match) => {
+      found = true;
+      if (this.rollPct(match[1])) {
+        this._output = this._output.replace(match[0], match[2]);
+      } else {
+        this._output = this._output.replace(match[0], '');
+      }
+    });
+    return found;
+  }
+
+  private rollPct(p: string): boolean {
+    const n = Number(p);
+    if (isNaN(n)) {
+      cLog(`🚨','generator encountered a non-number weight`, 'error');
+      throw new Error(`${p} cannot be cast to number`);
+    }
+    // roll under pct value for success
+    return FloatBetween(0, 100) < n;
+  }
+
+  private startTimer() {
+    this._timer = new Date().getTime();
+  }
+
+  private endTimer(msg: string) {
+    let ms = (new Date().getTime() - this._timer).toString();
+    if (ms === '0') ms = '<1';
+    cLog('⏱️', `${msg} in ${ms}ms`);
+  }
+
+  private getBaseTemplate(template: any): string {
+    try {
+      if (typeof template === 'string') return template;
+      else if (Array.isArray(template)) return _.sample(template);
+      else {
+        if (!template)
+          template = _.sample(this.Library.Content) as templateItem;
+        return _.sample(template.templates);
+      }
+    } catch (error) {
+      cLog(
+        `🚨','inappropriate or malformed template/template container sent to generator`,
+        'error'
+      );
+      throw new Error(template);
+    }
+  }
 
   public Define(key: string, value: string) {
-    if (!this.HasValueMap(key)) this.ValueMap.set(key, [value]);
+    if (!this.HasValueMap(key)) this.ValueMap.set(key, [{ value, weight: 1 }]);
     else
-      cLog(`🔒 A definition already exists for ${key} (${value})`, 'warning');
+      cLog(`🔒','A definition already exists for ${key} (${value})`, 'warning');
   }
 
-  public SetValueMap(key: string, value: string | string[]) {
-    //TODO: split |s
-    //TODO: add weights
-    this.ValueMap.set(key, Array.isArray(value) ? value : [value]);
+  public SetValueMap(key: string, data: ValueItem[]) {
+    this.ValueMap.set(key, data);
   }
 
-  public AddValueMap(key: string, value: string | string[]) {
-    //TODO: split |s
-    //TODO: add weights
-    const val = Array.isArray(value) ? value : [value];
+  public AddValueMap(key: string, data: ValueItem[]) {
     if (this.HasValueMap(key))
-      this.ValueMap.set(key, [...this.GetValueMap(key), ...val]);
-    else this.ValueMap.set(key, val);
+      this.ValueMap.set(key, [...this.GetValueMap(key), ...data]);
+    else this.ValueMap.set(key, data);
   }
 
-  public GetValueMap(key: string): string[] {
+  public GetValueMap(key: string): ValueItem[] {
     return this.ValueMap.get(key) || [];
   }
 
@@ -106,172 +292,6 @@ class Generator {
   public DeleteValueMap(key: string) {
     this.ValueMap.delete(key);
   }
-
-  // ------ utility
-
-  public static IntBetween = (min, max) => {
-    return Math.floor(Math.random() * (max - min + 1) + min);
-  };
-
-  public static FloatBetween = (min, max) => {
-    return Math.random() * (max - min) + min;
-  };
-
-  public static Capitalize = (str) => {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  };
-
-  public static WeightedSelection = (collection: WeightedItem[]) => {
-    if (!collection) {
-      return null;
-    }
-
-    const totals: number[] = [];
-    let total = 0;
-    for (let i = 0; i < collection.length; i++) {
-      total += collection[i].weight || 1;
-      totals.push(total);
-    }
-    const rnd = Math.floor(Math.random() * total);
-    let selected = collection[0];
-    for (let i = 0; i < totals.length; i++) {
-      if (totals[i] > rnd) {
-        selected = collection[i];
-        break;
-      }
-    }
-
-    return selected;
-  };
 }
 
-const isValidPoolData = (test: any): boolean => {
-  if (typeof test === 'string') return true;
-  if (!Array.isArray(test)) {
-    console.error(`Invalid pool data: item is not string or array`);
-    return false;
-  }
-  for (let i = 0; i < test.length; i++) {
-    if (typeof test[i] !== 'string') {
-      console.error(
-        `Invalid pool data: array at index ${i} is ${typeof test[
-          i
-        ]}, not a string `
-      );
-      return false;
-    }
-  }
-  return true;
-};
-
-const ConvertToMap = (input: object): Map<string, string[]> => {
-  const map = new Map<string, string[]>();
-  for (const key in input) {
-    if (!isValidPoolData(input[key])) {
-      throw new Error(
-        `Error: unable to convert to map. Property "${key}" is not a string or array of strings`
-      );
-    }
-    const value = typeof input[key] === 'string' ? [input[key]] : input[key];
-    map.set(key, value);
-  }
-  return map;
-};
-
-const ImportJson = async (path: string): Promise<Map<string, string[]>> => {
-  return ConvertToMap(import(`${path}.json`));
-};
-
-const ImportText = async (path: string): Promise<Map<string, string[]>> => {
-  const load = await import(`raw-loader!${path}.txt`);
-  const data = load.default.split('\n');
-  const key = path.split('/').pop();
-  const map = new Map<string, string[]>();
-  map.set(key as string, data);
-  return map;
-};
-
-const Pool = (...input: Map<string, string[]>[]): Map<string, string[]> => {
-  const out = new Map<string, any>();
-  input.forEach((m) => {
-    for (const key of m.keys()) {
-      if (out.has(key))
-        out.set(key, [...(m.get(key) as string[]), ...out.get(key)]);
-      else out.set(key, m.get(key));
-    }
-  });
-  return out;
-};
-
-// const SetKey = (input: string): string => {
-//   const regex = /(?<!\\)@(.*?){\K(.*?)(?=\})/g
-// }
-
-// const PoolReplace = (input: string): string => {
-//   let out = input
-
-//   const insertRegex = /(?<=(?<!\\)\{)(.*?)(?=\})/g
-//   const matchedInserts = out.match(insertRegex) || []
-//   matchedInserts.forEach(s => {})
-
-//   return out
-// }
-
-// const replaceString = (str: string) => {
-//   const pct = str.split('%')
-//   if (pct.length > 1) {
-//     if (floatBetween(0, 100) > Number(pct[1])) {
-//       return ''
-//     } else {
-//       return getReplacement(pct[0])
-//     }
-//   } else {
-//     return getReplacement(str)
-//   }
-// }
-
-const getReplacement = (key: string, pools: Map<string, string[]>) => {
-  if (Array.from(pools.keys()).some((x) => x === key))
-    return _.sample(pools.get(key));
-
-  return `{${key}}`;
-};
-
-// private replaceStr(input: string): string {
-//   if (Array.from(this.replaceMap.keys()).some(x => x === input))
-//     return _.sample(this.replaceMap.get(input))
-
-//   if (Array.from(this.valueMap.keys()).some(x => x === input)) {
-//     return this.valueMap.get(input)
-//   }
-
-//   // TODO: replace this with a map, like above. build map from multiple sources
-//   switch (input) {
-//     // case 'fullname':
-//     //   return `${this.firstname}${this.middlename} ${this.lastname}`
-//     case 'hon':
-//       return this.gender.name === 'man' ? 'Lord' : this.gender.name === 'woman' ? 'Lady' : 'Peer'
-//     // case 'firstname':
-//     //   return this.nickname ? this.nickname : this.firstname
-//     case 'pro_ref':
-//       return this.gender.pronouns.ref
-//     case 'pro_sub':
-//       return this.gender.pronouns.sub
-//     case 'pro_pos':
-//       return this.gender.pronouns.pos
-//     case 'pro_obj':
-//       return this.gender.pronouns.obj
-//     case 'gender':
-//       return this.gender.name
-//     case 'gen_name_family':
-//       return `${this.genName(true)} {lastname}`
-//     case 'gen_name':
-//       return this.genName()
-//     // case 'jobtitle':
-//     //   return this.jobtitle
-//     default:
-//       return `{${input}}`
-//   }
-// }
-
-export { Generator, ConvertToMap, ImportJson, ImportText, Pool };
+export { Generator, ValueItem };

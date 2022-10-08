@@ -1,8 +1,12 @@
 {
   "key": "Baronic Noble",
-  "definitions": [],
-  "properties": {
+  "definitions": {
     "propkey2": "propkey2 output"
   },
-  "templates": ["hello2 {inline 3|inline 4} {propkey2}"]
+  "values": {
+    "nice": "holla holla get dolla"
+  },
+  "templates": [
+    "hey hey buddy @yes{whats|up} %propkey2% i mean @cool{where:1|my:3|dudes:5|at:7} @wow%nice% `{not|here}"
+  ]
 }

@@ -5,8 +5,11 @@ class GeneratorLibrary {
   private _content: LibraryData[];
 
   constructor(...libraryData: LibraryData[]) {
+    this._content = [];
     if (libraryData) {
-      libraryData.map((x) => this.SetData(x));
+      libraryData.map((x) => {
+        this.SetData(x);
+      });
     }
   }
 
@@ -17,7 +20,7 @@ class GeneratorLibrary {
   public HasLibrary(key: string | LibraryData): boolean {
     const k = this.getKeyStr(key);
     if (k) return this.contentIndex(k) > -1;
-    cLog('📙 Bad parameter passed to Library.HasLibrary', 'error');
+    cLog('📙', 'Bad parameter passed to Library.HasLibrary', 'error');
     throw new Error(`${key} is not string or LibraryData`);
   }
 
@@ -33,7 +36,7 @@ class GeneratorLibrary {
   }
 
   public SetData(data: LibraryData) {
-    this._content.push(data);
+    this._content.push(LibraryData.Convert(data));
   }
 
   public DeleteData(key: string | LibraryData) {
@@ -49,7 +52,7 @@ class GeneratorLibrary {
   private mergeData(data: LibraryData) {
     this._content[this.contentIndex(data.key)] = {
       ...this._content[data.key],
-      ...data,
+      ...LibraryData.Convert(data),
     };
   }
 
@@ -60,7 +63,7 @@ class GeneratorLibrary {
   private checkExists(key: string) {
     if (!this.HasLibrary(key)) {
       cLog(
-        `📙 Error deleting LibraryData: LibraryData of key ${key} not found in library`,
+        `📙','Error deleting LibraryData: LibraryData of key ${key} not found in library`,
         'error'
       );
       throw new Error(`${key} not found`);

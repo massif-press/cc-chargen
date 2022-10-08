@@ -30,7 +30,7 @@
     - [Templates](#templates)
     - [Values](#values)
       - [Value Items](#value-items)
-    - [Utility Functions](#utility-functions)
+- [FAQ](#faq)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
@@ -150,12 +150,12 @@ The first optional parameter is the starting template:
 The second optional parameter is a GeneratorOptions object:
 
 ```ts
- class GeneratorOptions {
-  CleanMultipleSpaces: boolean, // remove all whitespace segments greater than length 1
-  CapitalizeFirst: boolean // capitalize the first character after every newline character
-  IgnoreMissingKeys: boolean // ignore any missing keys instead of erroring out
-  MaxIterations: number // number of times the parser will recursively iterate through the output before it quits
- }
+class GeneratorOptions {
+  CleanMultipleSpaces: boolean; // remove all whitespace segments greater than length 1
+  CapitalizeFirst: boolean; // capitalize the first character after every newline character
+  IgnoreMissingKeys: boolean; // ignore any missing keys instead of erroring out
+  MaxIterations: number; // number of times the parser will recursively iterate through the output before it quits
+}
 ```
 
 If no second parameter is supplied, the following default options will be used:
@@ -168,6 +168,17 @@ If no second parameter is supplied, the following default options will be used:
     MaxIterations: 100
   }
 ```
+
+The generator repeats the following loop until it can't find anything else to do or it hits its MaxIterations value:
+
+| step | process                                                                       |
+| ---- | ----------------------------------------------------------------------------- |
+| 1    | find any `@pct` flags and keep or remove those items based on percent chance  |
+| 2    | resolve any inline sets _of_ selection sets                                   |
+| 3    | find any `@key` definitions and assign a value to the definition, if possible |
+| 4    | find and resolve any inline selection sets                                    |
+| 5    | find and replace keywords, resolve other selection sets                       |
+| 6    | increment iteration counter and return to step #1                             |
 
 ## Debugging
 
@@ -193,20 +204,21 @@ Searches through the Library to find any multiple instances of definitions mappe
 
 ## tl;dr
 
-| syntax                    | result                                                                                               |
-| ------------------------- | ---------------------------------------------------------------------------------------------------- |
-| {prop}                    | sample from the ValueMap at key "prop" (or Library if it doesn't exist)                              |
-| %prop                     | same as above                                                                                        |
-| %prop%                    | same as above (used when chaining or nesting keywords, see [Keyword Syntax](#keyword-syntax))        |
-| {inline\|sample}          | sample from ["inline", "sample"]                                                                     |
-| {inline:1\|sample:2}      | weighted sample (1 and 2, respectively)                                                              |
-| @pct10{prop}              | sample from prop 10% of the time, otherwise ignore                                                   |
-| @key{prop}                | assign sample from prop to `key`                                                                     |
-| @key{inline\|sample}      | assign either "inline" or "sample" to `key`                                                          |
-| @key{inline:3\|sample:10} | same as above, but with selection weights                                                            |
-| ^{any}                    | capitalize the first letter of finalized selection (`hello world` => `Hello world`)                  |
-| ^^{any}                   | capitalize the first letter of all words in the finalized selection (`hello world` => `Hello World`) |
-| ^^^{any}                  | capitalize all letters in the finalized selection (`hello world` => `HELLO WORLD`)                   |
+| syntax                 | result                                                                                               |
+| ---------------------- | ---------------------------------------------------------------------------------------------------- |
+| %prop%                 | sample from the ValueMap at key "prop"                                                               |
+| %prop_a\|prop_b%       | sample from the ValueMap at key "prop_a" OR "prop_b"                                                 |
+| %prop_a:1\|prop_b:3%   | same as above but with selection weights                                                             |
+| {inline\|sample}       | sample from ["inline", "sample"]                                                                     |
+| {inline:1\|sample:2}   | weighted sample (of weights 1 and 2, respectively)                                                   |
+| @pct10%prop%           | sample from prop 10% of the time, otherwise ignore (01-99)                                           |
+| @pct10{inline\|sample} | same as above, but for an inline selection set                                                       |
+| @key%prop%             | define sample from prop as `key`                                                                     |
+| @key{inline\|sample}   | define either "inline" or "sample" as `key`                                                          |
+| ^%any%                 | capitalize the first letter of finalized selection (`hello world` => `Hello world`)                  |
+| ^{hello\|world}        | same as above for "hello" or "world" ("Hello", "World")                                              |
+| ^^%any%                | capitalize the first letter of all words in the finalized selection (`hello world` => `Hello World`) |
+| ^^^%any%               | capitalize all letters in the finalized selection (`hello world` => `HELLO WORLD`)                   |
 
 ### Reserved Characters
 
@@ -214,7 +226,7 @@ Searches through the Library to find any multiple instances of definitions mappe
 - within a sample set: `|`
 - `:` is reserved only if it is immediately proceeded by an integer
 
-These characters can be escaped with a backslash (`\`).
+These characters can be escaped with a backtick (\`). This is because the backslash (\\) is a valid JSON escape character. Backticks can be written as `` (two consecutive backticks)
 
 Additionally, the following strings cannot be used as definitions or value keys:
 
@@ -376,7 +388,7 @@ Doubling the caret (`^^`) will capitalize every word in the selection set. Tripl
 
 (every album data string in the above example being saved in lower case)
 
-All capitalization sequences can be escaped by prepending a single backslash: `\^` `\^^` and `\^^^`
+All capitalization sequences can be escaped by prepending a single backtick: `\^` `\^^` and `\^^^`
 
 Capitalization sequences should come first in a set of reserved characters:
 
@@ -409,7 +421,54 @@ LibraryData outline:
 - A definition with selection syntax will never be resolved into a single value. Defining something `"{like|this}"` will mean that a choice between `like` _or_ `this` will be made _every_ time the key is invoked
 - Overlapping definitions will be ignored as soon as a key is defined. You can examine a Library for these with the `Generator.OverlappingDefinitions()` function, which will return a list of all colliding definition keys.
 
-**Values** are standard key-value pairs. They are converted to `{key: string, value: string, weight: number}` objects when the Generator loads a library. Multiple LibraryData objects can contain values with the same key, which will be merged on Library load.
+**Values** are standard pairs of keys and ValueItem arrays. You can write them a number of different ways, and they'll be converted to `{key: string, value: string, weight: number}` objects when the Generator loads a library. Multiple LibraryData objects can contain values with the same key, which will be merged on Library load.
+
+### Value JSON syntax
+
+All of the following are equivalent, and will be converted to the same key - value/weight array pairs when loaded:
+
+```json
+    "valueKey": "item_a:2|item_b:3|item_c:1",
+```
+
+```json
+    "valueKey": [
+      "item_a:2",
+      "item_b:3",
+      "item_c:1"
+    ],
+```
+
+```json
+    "valueKey": [
+      { "value": "item_a", "weight": 2 },
+      { "value": "item_b", "weight": 3 },
+      { "value": "item_c", "weight": 1 }
+    ],
+```
+
+```json
+    "valueKey": [
+      ["item_a", 2],
+      ["item_b", 3],
+      ["item_c", 1]
+    ],
+```
+
+in every case, these are converted to:
+
+```ts
+{
+  key: "valueKey"
+  values: [
+    {value: "item_a", weight: 2}
+    {value: "item_a", weight: 3}
+    {value: "item_a", weight: 1}
+  ]
+}
+```
+
+which style you choose is a matter of preference. It's important to note that the `:n` weight syntax and the `weight` property can be omitted completely in one or all value items, and the item weight will automatically be assigned a default value of `1`.
 
 **Templates** are key-value pairs, but take the key of the LibraryData object that defines them. Additionally, the Generator will begin its generation process by selecting from the `templates` array if passed an index, a LibraryData key, or a LibraryData object. This allows for library organization by injecting template keys into other templates, for example:
 
@@ -595,4 +654,20 @@ DeleteValueItem(key: string, index: number)
 
 Removes a value item at `key[index]`
 
-### Utility Functions
+# FAQ
+
+**Can I sell my version of chargen? Can I sell something that uses this module?**
+
+> This tool is protected under the GNU General Public License v3.0. This means you **cannot** sell a fork of this as closed-source software. However, you **can** sell your own software that uses this tool, as long as you publish any upgrades or modifications to chargen as open-source. You can likewise sell data for chargen, as long as any modifications to the tool itself are kept open-source. Please see the LICENSE file included in this repo for more details.
+
+**If Definitions and Templates are ultimately converted to ValueMap items, what's to stop me from defining all my data as values?**
+
+> Nothing, and that's a completely valid way to lay our your library data. Definitions and Templates are simply organizational tools.
+
+**If Definitions and Templates are ultimately converted to ValueMap items, what's to stop me from defining all my data as values?**
+
+> Nothing, and that's a completely valid way to lay our your library data. Definitions and Templates are simply organizational tools.
+
+**There are no self-referential checks. Does that mean I can make runaway loops?**
+
+> Yes, however the generator will bail after a number of iteration (100 by default), so it's unlikely to cause a crash unless you dramatically increase the iteration limit.
