@@ -15,7 +15,7 @@ const Capitalize = (str) => {
 };
 
 const WeightedSelection = (collection: WeightedItem[]) => {
-  if (!collection) {
+  if (!collection || !collection.length) {
     return null;
   }
 

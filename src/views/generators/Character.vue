@@ -108,11 +108,11 @@
 </template>
 
 <script lang="ts">
-import { Generator } from '../../logic/generator';
+import { Generator } from '../../lib/generator';
 import * as templates from '../../assets/data/character/index';
 import showdown from 'showdown';
 // import genders from '../../assets/data/character/genders.json';
-import { GeneratorLibrary } from '../../logic/generatorLibrary';
+import { GeneratorLibrary } from '../../lib/generatorLibrary';
 
 export default {
   name: 'home',

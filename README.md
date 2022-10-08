@@ -180,6 +180,8 @@ The generator repeats the following loop until it can't find anything else to do
 | 5    | find and replace keywords, resolve other selection sets                       |
 | 6    | increment iteration counter and return to step #1                             |
 
+It then returns a string
+
 ## Debugging
 
 ```ts

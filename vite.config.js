@@ -16,4 +16,13 @@ export default defineConfig({
   build: {
     target: 'es2021',
   },
+  test: {
+    include: ['src/**/*.test.ts'],
+    coverage: {
+      include: ['src/**/*.ts', '!src/**/*.{d}.ts'],
+      reportsDirectory: 'coverage',
+      enabled: true,
+      reporter: ['text', 'lcov', 'json'],
+    },
+  },
 });

@@ -292,6 +292,18 @@ class Generator {
   public DeleteValueMap(key: string) {
     this.ValueMap.delete(key);
   }
+
+  public TestGeneration() {
+    //TODO
+  }
+
+  public FindMissingValues() {
+    //TODO
+  }
+
+  public OverlappingDefinitions() {
+    //TODO
+  }
 }
 
 export { Generator, ValueItem };
