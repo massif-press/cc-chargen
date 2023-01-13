@@ -1,13 +1,5 @@
 <template>
   <v-container>
-    <v-card color="grey darken-3">
-      <v-card-text>
-        These generators produce basic output for a LANCER GM, used as a general
-        starting point when creating a character, location, or faction. For more
-        involved and detailed items, check the PREMADES tab above. Interested in
-        contributing? Check the #COMP-CON channel in the official LANCER Discord
-      </v-card-text>
-    </v-card>
     <v-tabs v-model="type" tile color="purple accent-2" grow>
       <v-tab> Character </v-tab>
 

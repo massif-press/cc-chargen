@@ -3,30 +3,30 @@
     "name": "man",
     "weight": 48,
     "pronouns": {
-      "sub": "he",
-      "obj": "him",
-      "pos": "his",
-      "ref": "himself"
+      "pro_sub": "he",
+      "pro_obj": "him",
+      "pro_pos": "his",
+      "pro_ref": "himself"
     }
   },
   {
     "name": "woman",
     "weight": 46,
     "pronouns": {
-      "sub": "she",
-      "obj": "her",
-      "pos": "her",
-      "ref": "herself"
+      "pro_sub": "she",
+      "pro_obj": "her",
+      "pro_pos": "her",
+      "pro_ref": "herself"
     }
   },
   {
     "name": "person",
     "weight": 6,
     "pronouns": {
-      "sub": "they",
-      "obj": "them",
-      "pos": "their",
-      "ref": "themselves"
+      "pro_sub": "they",
+      "pro_obj": "them",
+      "pro_pos": "their",
+      "pro_ref": "themselves"
     }
   }
 ]

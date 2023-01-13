@@ -1,12 +1,12 @@
 {
   "occupation_name": "Doctor",
   "org": [
-    "The #{lists/states}# [Community|Emergency|City|Public|University] [Hospital|Medical Center|Clinic]",
-    "The [#{lists/lastnames_short}#|#{lists/lastnames_short}#-#{lists/lastnames_short}#] Center for [Public Health|Specialty Surgery|Nanotechnological Medicine|Pediatric Care|Nanosurgery|Paracausal Medicine|Long-term Intensive Care]"
+    "The #{lists/states}# {Community|Emergency|City|Public|University} {Hospital|Medical Center|Clinic}",
+    "The {#{lists/lastnames_short}#|#{lists/lastnames_short}#-#{lists/lastnames_short}#} Center for {Public Health|Specialty Surgery|Nanotechnological Medicine|Pediatric Care|Nanosurgery|Paracausal Medicine|Long-term Intensive Care}"
   ],
   "occupation": [],
   "occupation_extra": [],
-  "title": ["{occupation_prefix%3} {doctor}"],
+  "title": ["{occupation_prefix%3} %doctor%"],
   "doctor": [
     "abdominal radiologist",
     "addiction psychiatrist",

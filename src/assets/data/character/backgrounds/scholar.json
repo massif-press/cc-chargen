@@ -1,39 +1,44 @@
 {
-  "background_name": "Scholar",
-  "name_mods": {
+  "key": "background",
+  "definitions": {
+    "background": "Noble",
     "prefixChance": 0.98,
     "prefixes": ["Dr.", "Professor"]
   },
-  "occupations": ["scientist", "mathematician", "doctor"],
-  "occupation_prefix": [
-    "respected ",
-    "cutting-edge ",
-    "highly esteemed",
-    "respected ",
-    "esteemed ",
-    "well-regarded",
-    "brilliant ",
-    "genius ",
-    "fringe ",
-    "crackpot ",
-    "radical ",
-    "unorthodox ",
-    "innovative ",
-    "distinctive ",
-    "groundbreaking ",
-    "crank ",
-    "eccentric ",
-    "pioneering "
-  ],
-  "occupation": ["{firstname} works for [{university}|{org}]"],
-  "university": ["The University of [Cradle|Mars|Venus|Luna|Io|Ganymede], #{lists/places}# Campus"],
-  "physicality": [],
-  "physicality_extra": [],
-  "garb_chest": ["a long [white|grey|black] lab coat"],
-  "clothing_extra": [],
-  "secrets": [],
-  "relationships_extra": [
-    "{gen_name}, professional rival",
-    "{gen_name}, [colleague|research collaborator|associate|coworker]"
-  ]
+  "values": {
+    "occupations": ["scientist", "mathematician", "doctor"],
+    "occupation_prefix": [
+      "respected ",
+      "cutting-edge ",
+      "highly esteemed",
+      "respected ",
+      "esteemed ",
+      "well-regarded",
+      "brilliant ",
+      "genius ",
+      "fringe ",
+      "crackpot ",
+      "radical ",
+      "unorthodox ",
+      "innovative ",
+      "distinctive ",
+      "groundbreaking ",
+      "crank ",
+      "eccentric ",
+      "pioneering "
+    ],
+    "occupation": ["%firstname% works for {%university%|%org%}"],
+    "university": [
+      "The University of {Cradle|Mars|Venus|Luna|Io|Ganymede}, #{lists/places}# Campus"
+    ],
+    "physicality": ["test"],
+    "physicality_extra": ["test"],
+    "garb_chest": ["a long {white|grey|black} lab coat"],
+    "clothing_extra": ["test"],
+    "secrets": ["test"],
+    "relationships_extra": [
+      "%gen_name%, professional rival",
+      "%gen_name%, {colleague|research collaborator|associate|coworker}"
+    ]
+  }
 }

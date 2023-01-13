@@ -588,6 +588,13 @@ glob@^7.0.0, glob@^7.1.3, glob@^7.1.4:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
+gmgen@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/gmgen/-/gmgen-1.0.5.tgz#b537c2b6dbe2130df1500904a92feab88dd2f953"
+  integrity sha512-Q+525T7HKRA/UgiqtvKvDagc2dwutedPri4maCw+AseUf7jw23BIf6ebVuUkcDdumdu0L9QKLgJ7I6hYeULD0Q==
+  dependencies:
+    lodash "^4.17.21"
+
 has-flag@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/has-flag/-/has-flag-4.0.0.tgz#944771fd9c81c81265c4d6941860da06bb59479b"

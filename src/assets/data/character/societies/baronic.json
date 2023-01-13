@@ -1,0 +1,15 @@
+{
+  "key": "society",
+  "definitions": {
+    "society": "Karrakin Barony"
+  },
+  "values": {
+    "affiliations": [
+      "neo-passacaglians",
+      "hagiographers",
+      "federalists",
+      "republicans",
+      "liberals"
+    ]
+  }
+}

@@ -15,8 +15,8 @@
     "secrets": [],
     "ideals": [],
     "opinions": [
-      "Union has been too lenient [about Pillar violations|on Pillar violators] recently",
-      "the DoJ/HR has been too slow in responding to [economic oppression|Rim outlaws|Barony aggression|Diasporan aid requests]"
+      "Union has been too lenient {about Pillar violations|on Pillar violators} recently",
+      "the DoJ/HR has been too slow in responding to {economic oppression|Rim outlaws|Barony aggression|Diasporan aid requests}"
     ],
     "flaws": [],
     "relationships": []
@@ -64,11 +64,11 @@
     "secrets": [],
     "ideals": [],
     "opinions": [
-      "prohibitions against [trans|post]human [experimentation|augmentation|research|immanentization] must be abolished",
+      "prohibitions against {trans|post}human {experimentation|augmentation|research|immanentization} must be abolished",
       "we must re-instate the Colonial Mission",
       "rapid colonial expansion is the only hope for peace in the Rim",
-      "[secComm|the second committee] had some [good|decent|workable|viable] [ideas|positions]",
-      "[the central committee|centcomm] is dominated by [far-left|nsc] radicals",
+      "{secComm|the second committee} had some {good|decent|workable|viable} {ideas|positions}",
+      "{the central committee|centcomm} is dominated by {far-left|nsc} radicals",
       "\"anthrochauvinism\" is a smear by radicals to demean the New Humanity Front",
       "Forward Progress is the future of the NHF",
       "the NSC harbors dangerous radicals",
@@ -80,7 +80,14 @@
   {
     "name": "new solidarity coalition",
     "member": "new solidarity coalitionist",
-    "prefixes": ["leftist", "far-left", "anarchist", "interventionist", "anticorporate", "radical"],
+    "prefixes": [
+      "leftist",
+      "far-left",
+      "anarchist",
+      "interventionist",
+      "anticorporate",
+      "radical"
+    ],
     "clothing_extra": [],
     "secrets": [],
     "ideals": [],
@@ -130,7 +137,7 @@
       "devoted"
     ],
     "clothing_extra": [
-      "{pro_sub} wears an icon of Passacaglia, Imperial Messiah, wreathed in [gold|platinum|jade|onyx|sapphires|emeralds] on the back of {pro_pos} right hand, in the [traditional|classical|ancient] style"
+      "%pro_sub% wears an icon of Passacaglia, Imperial Messiah, wreathed in {gold|platinum|jade|onyx|sapphires|emeralds} on the back of %pro_pos% right hand, in the {traditional|classical|ancient} style"
     ],
     "secrets": [],
     "ideals": [],

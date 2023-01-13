@@ -2,37 +2,39 @@
   "occupation_name": "Mathematician",
   "org": ["The #{lists/places}# institute"],
   "occupation_extra": [
-    "{firstname} has recently [began work on|published] [an article|a dissertation|an essay|a case study|a set of technical notes|a systematic review|a series of editorials|a series of commentaries] in {pro_pos} field, entitled \"{work}\""
+    "%firstname% has recently {began work on|published} {an article|a dissertation|an essay|a case study|a set of technical notes|a systematic review|a series of editorials|a series of commentaries} in %pro_pos% field, entitled \"%work%\""
   ],
-  "title": ["{occupation_prefix%3} [applied|theoretical] {math_pre} {math} mathematician"],
+  "title": [
+    "{occupation_prefix%3} {applied|theoretical} %math_pre% %math% mathematician"
+  ],
   "math_pre_pre": [
     "reticulated",
     "laminar",
     "liminal",
-    "[a|b|c|prime|reverse|rotated|n]-manifold",
-    "[non|]linear",
-    "[de|re|]combinatory",
-    "[de|re|]constructed",
+    "{a|b|c|prime|reverse|rotated|n}-manifold",
+    "{non|}linear",
+    "{de|re|}combinatory",
+    "{de|re|}constructed",
     "invariant",
     "fixed-point",
     "region-collaborative",
     "lattice",
-    "[a|b|c|prime|reverse|rotated|n]-phase",
-    "[demi|para|quasi]phas[e|al]",
+    "{a|b|c|prime|reverse|rotated|n}-phase",
+    "{demi|para|quasi}phas{e|al}",
     "vector-invariant",
-    "multi[scale|plane|planar]",
+    "multi{scale|plane|planar}",
     "novel",
     "hybrid",
     "quadratic",
     "incomplete",
-    "[un|demi|meta|para|quasi|semi|]stable",
+    "{un|demi|meta|para|quasi|semi|}stable",
     "quantum",
-    "[non-|]robust model",
-    "[non-|para-|demi-|quasi-|] [optimal|variable|fuzzy|metric|generalized|generalizable|harmonic|stochastic|dynamic|aggregated]"
+    "{non-|}robust model",
+    "{non-|para-|demi-|quasi-|} {optimal|variable|fuzzy|metric|generalized|generalizable|harmonic|stochastic|dynamic|aggregated}"
   ],
   "math_pre": [
-    "[{math_pre_pre}|] #{lists/lastnames_short}#-#{lists/lastnames_short}#",
-    "[{math_pre_pre}]"
+    "{%math_pre_pre%|} #{lists/lastnames_short}#-#{lists/lastnames_short}#",
+    "{%math_pre_pre%}"
   ],
   "math": [
     "topology",
@@ -45,17 +47,17 @@
     "computation"
   ],
   "work_pre": [
-    "[deep-learning based|NHP directed|paracausal|fuzzy partial|non-fuzzy partial|variable selection|optimized] models",
-    "[time-delay|stability|paracausal|routing-based] systems",
-    "on the [robustness|sensitivity|t-invariance|assessment methods|optimization models at use]",
-    "[quantum|paracausal|quasi-paracausal] tree searching",
+    "{deep-learning based|NHP directed|paracausal|fuzzy partial|non-fuzzy partial|variable selection|optimized} models",
+    "{time-delay|stability|paracausal|routing-based} systems",
+    "on the {robustness|sensitivity|t-invariance|assessment methods|optimization models at use}",
+    "{quantum|paracausal|quasi-paracausal} tree searching",
     "algorithm design"
   ],
-  "work": ["{work_pre} in {math_pre_pre} {math_pre} {math}{work_post}"],
+  "work": ["%work_pre% in %math_pre_pre% %math_pre% %math%%work_post%"],
   "work_post": [
-    ": advances in using a [small|large|incomplete] training dataset",
-    " driven by a [non|demi|meta|para|quasi|semi|]generalized [SLT|VAR|CTT|MKV|Log-2|SD-VAR|#{lists/lastnames_short}#-#{lists/lastnames_short}#] growth simulation",
-    ": a review of [several|cerain|specific] [nonparametric estimators|new negativity conditions|autoregressive models|complex simulation models]",
+    ": advances in using a {small|large|incomplete} training dataset",
+    " driven by a {non|demi|meta|para|quasi|semi|}generalized {SLT|VAR|CTT|MKV|Log-2|SD-VAR|#{lists/lastnames_short}#-#{lists/lastnames_short}#} growth simulation",
+    ": a review of {several|cerain|specific} {nonparametric estimators|new negativity conditions|autoregressive models|complex simulation models}",
     ", an omnibus",
     ", an assay",
     ""

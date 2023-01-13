@@ -1,41 +1,41 @@
 {
   "occupation_name": "Scientist",
-  "org": ["The #{lists/places}# institute [for|of] {science}"],
-  "title": ["{occupation_prefix%3}{science} {scientist}"],
+  "org": ["The #{lists/places}# institute {for|of} %science%"],
+  "title": ["{occupation_prefix%3}%science% %scientist%"],
   "science": [
-    "[quantum|nanoscale|femtoscale|picoscale|blink|blinkspace|fusion|cold fusion|exotic|singularity|paracausal|demiparacausal|baryonic|exotic matter|n-mass|acausal|tachyon|quantum gravitational|planck-negative|metamaterial|computational|supersymmetric|monopole|string|membrane|manifold|bimetric|gravitational|planetary|stellar|entanglement|atomic|molecular|condensed matter|high energy|] [astro|]physics",
-    "[paracausal|exotic|n-mass|metamaterial|computational|monopole|nuclear|stellar|materials|entanglement|analytical|bio|] [xeno|]chemistry",
-    "[nano|micro|xeno|astro|exotic |evolutionary ]biololgy",
-    "[xeno|][eco|eco|geo|oceano|metero|zoo|archaeo|astro|psycho|anthropo|pharmaco]logy",
-    "[xeno|]botany"
+    "{quantum|nanoscale|femtoscale|picoscale|blink|blinkspace|fusion|cold fusion|exotic|singularity|paracausal|demiparacausal|baryonic|exotic matter|n-mass|acausal|tachyon|quantum gravitational|planck-negative|metamaterial|computational|supersymmetric|monopole|string|membrane|manifold|bimetric|gravitational|planetary|stellar|entanglement|atomic|molecular|condensed matter|high energy|} {astro|}physics",
+    "{paracausal|exotic|n-mass|metamaterial|computational|monopole|nuclear|stellar|materials|entanglement|analytical|bio|} {xeno|}chemistry",
+    "{nano|micro|xeno|astro|exotic |evolutionary }biololgy",
+    "{xeno|}{eco|eco|geo|oceano|metero|zoo|archaeo|astro|psycho|anthropo|pharmaco}logy",
+    "{xeno|}botany"
   ],
   "scientist": ["researcher", "experimentalist", "theoretician"],
   "occupation_extra": [
-    "{firstname} has recently [began work on|published] [an article|a dissertation|an essay|a case study|a set of technical notes|a systematic review|a series of editorials|a series of commentaries] in {pro_pos} field, entitled \"{work}\""
+    "%firstname% has recently {began work on|published} {an article|a dissertation|an essay|a case study|a set of technical notes|a systematic review|a series of editorials|a series of commentaries} in %pro_pos% field, entitled \"%work%\""
   ],
   "work": [
-    "{work_pre} meta-analyses of contemporary {science}{work_post}",
-    "para-, quasi-, and acausality in modern {science} experimental structure{work_post}",
-    "[a concise |an extended ]encyclopedia of [experimental|theoretical] {science}",
-    "[a concise |an extended ]treatise on {science}{work_post}",
-    "[a concise |an extended ]introduction to {science} data analysis, book [II|III|IV|V|VI|VII]",
-    "[a concise |an extended ]technical history of [nonlinear analysis of|structural analyses of|critical concepts in|quaternary|critical assessments of] {science}",
-    "a [student's|layperson's|technician's|researcher's] guide to [experimental|theoretical|nonlinear|contemporary|modern|classical] {science}",
-    "{work_pre} false vacuum dynamics in fine-scale {science} simulation{work_post}",
-    "{work_pre} parameter estimation for [simulational|experimental|hypothetical] {science}",
-    "dealing with systemic uncertainties in [simulational|experimental|hypothetical] {science}{work_post}",
-    "advanced functional {science}: analysis, processing, and application",
-    "effective multifunctional architectures for {science} [simulations|experiments|hypothetical frameworks]{work_post}",
-    "fundamentals of applied {science}{work_post}",
-    "{science} and you{work_post}",
-    "advances in {science}{work_post}"
+    "%work_pre% meta-analyses of contemporary %science%%work_post%",
+    "para-, quasi-, and acausality in modern %science% experimental structure%work_post%",
+    "{a concise |an extended }encyclopedia of {experimental|theoretical} %science%",
+    "{a concise |an extended }treatise on %science%%work_post%",
+    "{a concise |an extended }introduction to %science% data analysis, book {II|III|IV|V|VI|VII}",
+    "{a concise |an extended }technical history of {nonlinear analysis of|structural analyses of|critical concepts in|quaternary|critical assessments of} %science%",
+    "a {student's|layperson's|technician's|researcher's} guide to {experimental|theoretical|nonlinear|contemporary|modern|classical} %science%",
+    "%work_pre% false vacuum dynamics in fine-scale %science% simulation%work_post%",
+    "%work_pre% parameter estimation for {simulational|experimental|hypothetical} %science%",
+    "dealing with systemic uncertainties in {simulational|experimental|hypothetical} %science%%work_post%",
+    "advanced functional %science%: analysis, processing, and application",
+    "effective multifunctional architectures for %science% {simulations|experiments|hypothetical frameworks}%work_post%",
+    "fundamentals of applied %science%%work_post%",
+    "%science% and you%work_post%",
+    "advances in %science%%work_post%"
   ],
   "work_pre": [
-    "[deep|paracausal|NHP-directed] learning models in",
+    "{deep|paracausal|NHP-directed} learning models in",
     "modulated",
     "n-manifold",
-    "[R-VIR|CCIL|GVIM|P-theory|HK-theory]-based",
-    "[hetero|homo]geneous",
+    "{R-VIR|CCIL|GVIM|P-theory|HK-theory}-based",
+    "{hetero|homo}geneous",
     "a survey of",
     "a modern course in",
     "advanced",
@@ -61,7 +61,7 @@
     ": synthetic strategies and industrial applications",
     ": methods and applications",
     ": an introduction to practice and principles",
-    ": understanding the [VTR|LQM|M-DOWN|ZX|GQMR|LVBV|Q-Mediated|V-Mediated] system"
+    ": understanding the {VTR|LQM|M-DOWN|ZX|GQMR|LVBV|Q-Mediated|V-Mediated} system"
   ],
   "physicality": [],
   "physicality_extra": [],

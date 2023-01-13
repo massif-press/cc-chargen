@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@mdi/font": "5.9.55",
+    "gmgen": "^1.0.5",
     "lodash": "^4.17.21",
     "roboto-fontface": "*",
     "showdown": "^2.1.0",
@@ -28,12 +29,5 @@
     "vite-plugin-vuetify": "^1.0.0-alpha.12",
     "vitest": "^0.24.0",
     "vue-cli-plugin-vuetify": "~2.5.8"
-  },
-  "type": "module",
-  "exports": {
-    ".": {
-      "import": "./dist/my-lib.js",
-      "require": "./dist/my-lib.umd.cjs"
-    }
   }
 }

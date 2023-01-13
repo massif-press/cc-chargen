@@ -1,4 +1,7 @@
-[
+{
+  "key": "cities",
+  "values": {
+    "city": [
   "A'opo",
   "Aabenraa",
   "Aalborg",
@@ -3817,4 +3820,4 @@
   "Örebro",
   "Östersund",
   "Ústí"
-]
+]}}

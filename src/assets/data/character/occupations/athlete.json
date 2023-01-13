@@ -1,12 +1,12 @@
 {
   "occupation_name": "Athlete",
-  "occupation": ["{firstname} is a {occupation_prefix} {jobtitle}"],
-  "occupation_extra": ["TODO"],
+  "occupation": ["%firstname% is a %occupation_prefix% %jobtitle%"],
+  "occupation_extra": [],
   "title": [
-    "professional {genre_athlete}",
-    "pro {genre_athlete}",
-    "pro circuit {genre_athlete}",
-    "premier league {genre_athlete}"
+    "professional %genre_athlete%",
+    "pro %genre_athlete%",
+    "pro circuit %genre_athlete%",
+    "premier league %genre_athlete%"
   ],
   "genre_athlete": [
     "mech racer",
@@ -49,11 +49,11 @@
     "wrestler",
     "mech wrestler",
     "calcio storico athlete",
-    "buzkashi horse{gender}",
-    "buzkashi mech{gender}",
-    "neo-oină bat{gender}",
+    "buzkashi horse%gender%",
+    "buzkashi mech%gender%",
+    "neo-oină bat%gender%",
     "arnis weaponmaster",
-    "swords{gender}",
+    "swords%gender%",
     "beikou player",
     "zero-g bossaball player",
     "bo-taoshist",

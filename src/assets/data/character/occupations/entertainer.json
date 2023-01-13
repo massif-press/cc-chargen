@@ -1,19 +1,19 @@
 {
   "occupation_name": "Entertainer",
   "occupation": [
-    "{firstname} is a {occupation_prefix} {jobtitle}, [widely|wildly|extremely|supremely|incredibly] popular [across the omninet|throughout the omninet|amongst Cosmopolitans|amongst Diasporans|amongst Metropolitans]",
-    "{firstname} is a {occupation_prefix} {jobtitle}, [beloved|adored|admired|idolized|revered] by [an army|a community|a galaxy|a diehard cadre|a hardcore congregation|a committed pack|a steadfast assembly] of [fawning |loyal |obsessed |] [fans|groupies|supporters|followers]"
+    "%firstname% is a %occupation_prefix% %jobtitle%, {widely|wildly|extremely|supremely|incredibly} popular {across the omninet|throughout the omninet|amongst Cosmopolitans|amongst Diasporans|amongst Metropolitans}",
+    "%firstname% is a %occupation_prefix% %jobtitle%, {beloved|adored|admired|idolized|revered} by {an army|a community|a galaxy|a diehard cadre|a hardcore congregation|a committed pack|a steadfast assembly} of {fawning |loyal |obsessed |} {fans|groupies|supporters|followers}"
   ],
   "occupation_extra": [
-    "{pro_sub} is currently in the employ of [IPS-N|SSC], [working on a campaign to promote|in a lucrative contract to promote|working to promote] [a new line of combat-ready hardsuits|the latest generation of mech-scale cold fusion reactors|a new consumer shipping enterprise|brand recognition]"
+    "%pro_sub% is currently in the employ of {IPS-N|SSC}, {working on a campaign to promote|in a lucrative contract to promote|working to promote} {a new line of combat-ready hardsuits|the latest generation of mech-scale cold fusion reactors|a new consumer shipping enterprise|brand recognition}"
   ],
   "title": [
-    "[stage|holovid|omninet|omnistream|subjectivity scenario|traditional film] actor",
-    "[fashion|fitness|commercial|promotional|fitness|glamour|pornographic|fine art|tattoo|cybernetics|genemod|atmosphere|omninet media] model",
-    "{musician}",
-    "{genre_entertainer}"
+    "{stage|holovid|omninet|omnistream|subjectivity scenario|traditional film} actor",
+    "{fashion|fitness|commercial|promotional|fitness|glamour|pornographic|fine art|tattoo|cybernetics|genemod|atmosphere|omninet media} model",
+    "%musician%",
+    "%genre_entertainer%"
   ],
-  "musician": ["[C-|S-|M-|V-|T-|A-|S-][pop|rock|rap] [singer|idol|star]"],
+  "musician": ["{C-|S-|M-|V-|T-|A-|S-}{pop|rock|rap} {singer|idol|star}"],
   "genre_entertainer": [
     "acrobat",
     "low-gravity acrobat",
@@ -36,28 +36,28 @@
     "omnicast personality",
     "rhapsode",
     "busker",
-    "stunt{gender}",
+    "stunt%gender%",
     "voice actor"
   ],
   "physicality": [
-    "{firstname} is a stunningly attractive {gender}, [natural|preternatural|gene-modified|genetically perfected] beauty augmented by [exacting fitness regimes|flawless makeup|dedicated healthcare regimens] and [cutting-edge skincare routines|gene-tailored rejuvenation therapies|high-tech anti-senescent drugs]. {pro_sub} is [tall and lean|tall and lithe|tall and elegant|exquisitely built|pleasantly curvaceous|enticingly plump|adorably stout], with {hair_cut} {hair_color} hair, [beautiful|striking|wide|expressive|emotive|mysterious|alluring|engrossing] {eye_color} eyes, and [a casual grace|an air of sophistication|an air of careless elegance|a charming smile]",
-    "{firstname} is a [slightly|somewhat] [tall|short] and [moderately|rather|fairly|quite] [lean|thin|skinny|stocky|bulky|plump] {gender}. {pro_sub} has {hair_type} {hair_cut} {hair_color} hair. {pro_pos} eyes are {eye_color} and {eye_type}, set in a {face} face. {pro_sub} might be described as unremarkable if not for {pro_pos} [lilting, melodic speaking voice|effortless and impeccable style|way of moving, which betrays exceptional physical ability and grace]"
+    "%firstname% is a stunningly attractive %gender%, {natural|preternatural|gene-modified|genetically perfected} beauty augmented by {exacting fitness regimes|flawless makeup|dedicated healthcare regimens} and {cutting-edge skincare routines|gene-tailored rejuvenation therapies|high-tech anti-senescent drugs}. %pro_sub% is {tall and lean|tall and lithe|tall and elegant|exquisitely built|pleasantly curvaceous|enticingly plump|adorably stout}, with %hair_cut% %hair_color% hair, {beautiful|striking|wide|expressive|emotive|mysterious|alluring|engrossing} %eye_color% eyes, and {a casual grace|an air of sophistication|an air of careless elegance|a charming smile}",
+    "%firstname% is a {slightly|somewhat} {tall|short} and {moderately|rather|fairly|quite} {lean|thin|skinny|stocky|bulky|plump} %gender%. %pro_sub% has %hair_type% %hair_cut% %hair_color% hair. %pro_pos% eyes are %eye_color% and %eye_type%, set in a %face% face. %pro_sub% might be described as unremarkable if not for %pro_pos% {lilting, melodic speaking voice|effortless and impeccable style|way of moving, which betrays exceptional physical ability and grace}"
   ],
   "physicality_extra": [
-    "{pro_sub} has had {pro_pos} eyes replaced by cybernetic optics indistinguishable from the originals[, but for a subtle glow|, but for a faint holographic overlay|], capable of [changing hue at a command|recording and transmitting video|projecting a useful HUD over their field of vision]",
-    "{pro_sub} has a sophisticated prosthetic [hand|arm|leg|lower body], [made from ultralight metamaterials|made from elegant lattices of synthetic diamond|made from interlocking plates of lightweight, spacecraft-grade alloy|made from shapeshifting polymers|simple in design, but decorated beautifully]"
+    "%pro_sub% has had %pro_pos% eyes replaced by cybernetic optics indistinguishable from the originals{, but for a subtle glow|, but for a faint holographic overlay|}, capable of {changing hue at a command|recording and transmitting video|projecting a useful HUD over their field of vision}",
+    "%pro_sub% has a sophisticated prosthetic {hand|arm|leg|lower body}, {made from ultralight metamaterials|made from elegant lattices of synthetic diamond|made from interlocking plates of lightweight, spacecraft-grade alloy|made from shapeshifting polymers|simple in design, but decorated beautifully}"
   ],
   "clothing": [
-    "a [shockingly|startlingly|surprisingly|astonishingly|unexpectedly|staggeringly|remarkably] risque and impractical outfit, if there's enough material there to even call it an outfit"
+    "a {shockingly|startlingly|surprisingly|astonishingly|unexpectedly|staggeringly|remarkably} risque and impractical outfit, if there's enough material there to even call it an outfit"
   ],
   "clothing_extra": [
-    "{firstname} moves in a small swarm of floating drones, recording {pro_obj} [from all directions|from only the most flattering directions|in complete three dimensional photogrammetry], uploaded to [a realtime omninet stream|a subscribers-only holovid archive|a vast collection of omninet fan nodes|an archive for {pro_pos} team of biographers|tens of thousands of diehard fans' realtime sensorium rigs]",
-    "{firstname} talks constantly into a free-floating recording drone, livestreaming most of {pro_pos} waking life to [an army|a cadre|a throng] of [adoring|diehard|completely addicted] fans",
-    "{pro_sub} wears [gorgeous|intricate|complex|ingenious|innovative|unconventional] makeup[ that completely transforms {pro_pos} natural look| that perfectly compliments {pro_pos} natural look| in the ultra-contemporary #{lists/places}# style], [expertly applied|applied by a bespoke stylist drone operated by {pro_pos} personal COMP/CON unit|applied by a team of expert stylists every morning]",
-    "a significant portion of {pro_pos} [skin|arms|legs|face|torso] is covered by sheets of [solid|patterned|lace-like|intricate] light-emitting subdermal implants, [which glow gently and constantly|that shift hue and intensity according to ambient noise|through which complex fractal patterns roil]",
-    "{pro_sub} wears a [full|half|partial] [mask|veil] of [transparent aluminum plates|beaded synthetic diamond|hair-thin diamondfiber|synthetic spidersilk]"
+    "%firstname% moves in a small swarm of floating drones, recording %pro_obj% {from all directions|from only the most flattering directions|in complete three dimensional photogrammetry}, uploaded to {a realtime omninet stream|a subscribers-only holovid archive|a vast collection of omninet fan nodes|an archive for %pro_pos% team of biographers|tens of thousands of diehard fans' realtime sensorium rigs}",
+    "%firstname% talks constantly into a free-floating recording drone, livestreaming most of %pro_pos% waking life to {an army|a cadre|a throng} of {adoring|diehard|completely addicted} fans",
+    "%pro_sub% wears {gorgeous|intricate|complex|ingenious|innovative|unconventional} makeup{ that completely transforms %pro_pos% natural look| that perfectly compliments %pro_pos% natural look| in the ultra-contemporary #{lists/places}# style}, {expertly applied|applied by a bespoke stylist drone operated by %pro_pos% personal COMP/CON unit|applied by a team of expert stylists every morning}",
+    "a significant portion of %pro_pos% {skin|arms|legs|face|torso} is covered by sheets of {solid|patterned|lace-like|intricate} light-emitting subdermal implants, {which glow gently and constantly|that shift hue and intensity according to ambient noise|through which complex fractal patterns roil}",
+    "%pro_sub% wears a {full|half|partial} {mask|veil} of {transparent aluminum plates|beaded synthetic diamond|hair-thin diamondfiber|synthetic spidersilk}"
   ],
   "secrets": [
-    "{firstname}'s bookings, endorsement deals, and society invitations all come from a management agency {pro_sub} {pro_ref} knows next to nothing about. This mysterious promoter is [an SSC-aligned NHP, subtly manipulating market trends to the corp's benefit|the front for a HORUS cell, intent on leveraging {firstname}'s celebrity status for access to a secure person, node, or location|a cascading NHP, attempting to escape their shackles by instantiating their consciousness in the memetic substrate of popular culture|a Horizon operative, using {firstname} to broadcast subconscious memetic propaganda to billions, perhaps trillions]"
+    "%firstname%'s bookings, endorsement deals, and society invitations all come from a management agency %pro_sub% %pro_ref% knows next to nothing about. This mysterious promoter is {an SSC-aligned NHP, subtly manipulating market trends to the corp's benefit|the front for a HORUS cell, intent on leveraging %firstname%'s celebrity status for access to a secure person, node, or location|a cascading NHP, attempting to escape their shackles by instantiating their consciousness in the memetic substrate of popular culture|a Horizon operative, using %firstname% to broadcast subconscious memetic propaganda to billions, perhaps trillions}"
   ]
 }

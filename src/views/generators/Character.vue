@@ -2,31 +2,80 @@
   <v-container>
     <v-row>
       <v-col cols="auto" style="max-width: 20vw">
-        <div class="caption">TEMPLATE</div>
+        <div class="text-overline">SOCIETY</div>
         <v-list dense>
-          <v-list-item-group color="primary">
+          <v-list-item-group>
             <v-list-item
-              v-for="(t, i) in characterTemplates"
+              v-for="(s, i) in societies"
               :key="`ct_${i}`"
-              @click="getCharacter(t)"
+              :style="society === s ? 'color: #E040FB' : ''"
+              @click="
+                society = s;
+                background = '';
+              "
             >
-              <v-list-item-icon class="m-0 p-0">
-                <!-- <v-icon size="28" v-text="'cci-pilot'" /> -->
-              </v-list-item-icon>
               <v-list-item-content>
                 <v-list-item-title
                   class="text-button"
                   style="font-size: 13px !important"
-                  v-text="t.key"
+                  v-text="s"
                 />
               </v-list-item-content>
             </v-list-item>
           </v-list-item-group>
         </v-list>
       </v-col>
+      <v-expand-x-transition>
+        <v-col v-show="society" cols="auto" style="max-width: 20vw">
+          <div class="text-overline">BACKGROUND</div>
+          <v-list dense>
+            <v-list-item-group color="primary">
+              <v-list-item
+                v-for="(b, i) in getBackground(society)"
+                :key="`ct_${i}`"
+                :style="background === b ? 'color: #E040FB' : ''"
+                @click="background = b"
+              >
+                <v-list-item-content>
+                  <v-list-item-title
+                    class="text-button"
+                    style="font-size: 13px !important"
+                    v-text="b"
+                  />
+                </v-list-item-content>
+              </v-list-item>
+            </v-list-item-group>
+          </v-list>
+        </v-col>
+      </v-expand-x-transition>
       <v-divider vertical />
       <v-col>
         <div class="caption">OUTPUT</div>
+
+        <v-card>
+          <v-card-text class="pb-0 pt-1">
+            <div class="text-overline">TEMPLATE</div>
+            <div>
+              <span v-if="society" class="pl-1 text-h6">{{
+                capitalize(society)
+              }}</span
+              ><i v-else class="px-2 text-disabled">select society</i>
+              <span v-if="background" class="pl-1 text-h6">{{
+                capitalize(background)
+              }}</span
+              ><i v-else class="px-2 text-disabled">select background</i>
+            </div>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer />
+            <v-btn
+              color="#E040FB"
+              :disabled="!society || !background"
+              @click="getCharacter()"
+              >generate</v-btn
+            >
+          </v-card-actions>
+        </v-card>
 
         <v-tabs v-model="outputTab">
           <v-tab value="rendered">Rendered</v-tab>
@@ -35,7 +84,7 @@
         </v-tabs>
         <v-window v-model="outputTab">
           <v-window-item value="rendered">
-            <v-card>
+            <v-card outlined>
               <v-card-text v-html="outputHtml" />
             </v-card>
           </v-window-item>
@@ -62,11 +111,9 @@
             />
           </v-window-item>
         </v-window>
-        <v-row no-gutters justify="end">
-          <v-col cols="auto"
-            ><v-btn x-small outlined color="primary darken-1"
-              >Export</v-btn
-            ></v-col
+        <v-row justify="end">
+          <v-col cols="auto" class="mt-1"
+            ><v-btn text size="small">Export</v-btn></v-col
           >
         </v-row>
 
@@ -108,11 +155,9 @@
 </template>
 
 <script lang="ts">
-import { Generator } from '../../lib/generator';
 import * as templates from '../../assets/data/character/index';
 import showdown from 'showdown';
-// import genders from '../../assets/data/character/genders.json';
-import { GeneratorLibrary } from '../../lib/generatorLibrary';
+import Generate from '../../logic/CharacterGenerator';
 
 export default {
   name: 'home',
@@ -120,11 +165,14 @@ export default {
     type: 'character',
     selected: null,
     outputRaw: '',
-    outputHtml: '<i class="text--disabled">Select a generator template</i>',
+    outputHtml: '<i class="text-disabled">Select a generator template</i>',
     loading: false,
     outputTab: 0,
     history: [] as { name: string; data: string }[],
     converter: null,
+    societies: ['baronic', 'cosmopolitan', 'diasporan'],
+    society: '',
+    background: '',
   }),
   mounted() {
     this.converter = new showdown.Converter();
@@ -136,22 +184,44 @@ export default {
     },
   },
   methods: {
-    async getCharacter(template: any) {
+    getBackground() {
+      switch (this.society) {
+        case 'baronic':
+          return ['noble'];
+        case 'cosmopolitan':
+          return ['celebrity', 'scholar'];
+        default:
+          return '';
+      }
+    },
+    capitalize(str: string) {
+      return str
+        .split(' ')
+        .map((s) => s.substring(0, 1).toUpperCase() + s.substring(1))
+        .join(' ');
+    },
+    async getCharacter() {
       this.loading = true;
-      const g = new Generator();
-      // g.LoadLibraryDir('character', 'lists');
-      const lib = new GeneratorLibrary(templates.cosmopolitan, templates.baron);
-      g.LoadLibrary(lib);
+      const res = Generate(this.society, this.background);
+      // const g = new Generator();
+      // // g.LoadLibraryDir('character', 'lists');
+      // const lib = new GeneratorLibrary(templates.cosmopolitan, templates.baron);
+      // g.LoadLibrary(lib);
 
-      console.log(g);
+      // console.log(g);
 
-      // console.log(Generator.WeightedSelection(genders));
+      // // console.log(Generator.WeightedSelection(genders));
 
-      g.Generate(template);
+      // g.Generate(template);
 
-      // this.outputRaw = await new CharacterGenerator().Generate(template)
-      // this.outputHtml = this.converter.makeHtml(this.outputRaw)
-      // this.history.push({ name: this.outputRaw.split(' ')[0], data: this.outputRaw })
+      this.outputRaw = await res;
+
+      this.outputHtml = this.converter.makeHtml(this.outputRaw);
+      this.history.push({
+        name: this.outputRaw.split(' ')[0],
+        data: this.outputRaw,
+      });
+
       this.loading = false;
     },
   },
