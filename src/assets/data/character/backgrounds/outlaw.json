@@ -12,7 +12,7 @@
     "jobtitle": "^^%title%^"
   },
   "values": {
-    "occupations": ["pirate", "thief", "hunter"],
+    "occupations": ["pirate", "criminal"],
     "occupation_prefix": ["todo"],
     "occupation": ["todo"]
   }

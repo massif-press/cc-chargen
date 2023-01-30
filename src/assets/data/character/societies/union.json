@@ -4,12 +4,6 @@
     "society": "Union"
   },
   "values": {
-    "affiliations": [
-      "interstellar",
-      "fourth column",
-      "new humanity front",
-      "new solidarity coalition",
-      "verdant social arc"
-    ]
+    "affiliations": ["interstellar", "fc", "nhf", "nsc", "vsa"]
   }
 }

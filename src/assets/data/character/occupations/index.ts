@@ -6,8 +6,7 @@ import mathematician from './mathematician.json';
 import noble_occ from './noble.json';
 import scientist from './scientist.json';
 import pirate from './pirate.json';
-import thief from './thief.json';
-import hunter from './hunter.json';
+import criminal from './criminal.json';
 import construction from './construction.json';
 import service from './service.json';
 import agriculture from './agriculture.json';
@@ -21,8 +20,7 @@ export {
   noble_occ,
   scientist,
   pirate,
-  thief,
-  hunter,
+  criminal,
   construction,
   service,
   agriculture,

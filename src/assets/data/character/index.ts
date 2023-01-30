@@ -9,12 +9,12 @@ import {
   noble_occ,
   scientist,
   pirate,
-  hunter,
-  thief,
+  criminal,
   construction,
   service,
   agriculture,
 } from './occupations';
+import { fc, interstellar, nhf, nsc, vsa, independent } from './affiliations';
 import physicalities from './physicalities.json';
 
 export {
@@ -36,9 +36,14 @@ export {
   scientist,
   physicalities,
   pirate,
-  hunter,
-  thief,
+  criminal,
   construction,
   service,
   agriculture,
+  fc,
+  interstellar,
+  nhf,
+  nsc,
+  vsa,
+  independent,
 };

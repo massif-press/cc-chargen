@@ -2,9 +2,12 @@
   "key": "society",
   "definitions": {
     "society": "Cosmopolitan",
-    "clothing": "%clothing_choices%. @pct75%clothing_extra%"
+    "clothing": "%clothing_choices%. @pct75%clothing_extra%",
+    "politics": "%firstname% is a %political_prefix% %member%, who believes that %opinions%"
   },
   "values": {
+    "affiliations": ["interstellar", "fc", "nhf", "nsc", "vsa", "independent"],
+
     "clothing_choices": [
       "%firstname% wears a cropped jacket with decorative {alloy|foammetal|reinforced aerogel|carbon fiber|interlocking} plates over a {skintight bodysuit|form-fitting bodysuit|relaxed jumpsuit|reinforced jumpsuit|breathable speedsuit}, a stylized interpretation of a Lancer's combat suit",
       "%firstname% wears a {relaxed|thin|cropped} {graphic|plain|corporate|branded|printed} {t-shirt|v-neck|tank top|polo|jersey}{ under a %color% %textile% jacket|}, {straight|cargo|short|long|strapped|reinforced|baggy|loose} {pants|trousers}, and {chunky|extremely fashionable|bright %color%} {sneakers|shoes|boots}",

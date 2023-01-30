@@ -2,13 +2,13 @@
   "key": "background",
   "definitions": {
     "background": "Scholar",
-    "body_type": "{baseline:6|exotic}",
-    "prefix": "{Dr.|Professor}",
-    "physicality": "@compose(%body_type%_physicality)",
     "firstname": "%names%",
     "middlename": "%names%",
     "lastname": "{%surnames%:10|%surnames%-%surnames%}",
     "name": "^^@pct90%prefix% %firstname% @pct20%middlename% %lastname%^",
+    "body_type": "{baseline:6|exotic}",
+    "prefix": "{Dr.|Professor}",
+    "physicality": "@compose(%body_type%_physicality)",
     "jobtitle": "^^%title%^"
   },
   "values": {

@@ -22,14 +22,9 @@ const template = `
 %occupation%
 
 ## Personality
+%politics%
+<br>
 %personality%
-%opinions%
-%ideals%
-%flaws%
-
-
-## Relationships
-%relationships%
 
 ## Secrets
 %secrets%
@@ -38,10 +33,8 @@ const template = `
 
 const Generate = (society: string, background: string): string => {
   console.log(society, background);
-  console.log(data);
   const gen = new Generator();
   getLists(gen);
-  console.log(gen);
 
   gen.AddData(data[background]);
 
@@ -50,9 +43,17 @@ const Generate = (society: string, background: string): string => {
   const occupationSelection =
     data[_.sample(data[background].values.occupations)];
 
-  console.log(occupationSelection);
-
   gen.AddData(occupationSelection);
+
+  const affiliationSelection =
+    data[_.sample(data[society].values.affiliations)];
+
+  console.log(data[society].values);
+  console.log(data[society].values.affiliations);
+
+  console.log(affiliationSelection);
+
+  gen.AddData(affiliationSelection);
 
   gen.SetOption('Logging', logLevel.warning);
   // gen.SetOption('PreventEarlyExit', true);
@@ -76,9 +77,6 @@ const Generate = (society: string, background: string): string => {
 
   let output = gen.Generate(template);
   output = finalize(output);
-
-  console.log(gen);
-  console.log(gen.DefinitionMap);
 
   return output;
 };

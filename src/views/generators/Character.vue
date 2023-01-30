@@ -84,7 +84,7 @@
         </v-tabs>
         <v-window v-model="outputTab">
           <v-window-item value="rendered">
-            <v-card outlined>
+            <v-card variant="outlined">
               <v-card-text v-html="outputHtml" />
             </v-card>
           </v-window-item>
@@ -111,41 +111,54 @@
             />
           </v-window-item>
         </v-window>
-        <v-row justify="end">
-          <v-col cols="auto" class="mt-1"
-            ><v-btn text size="small">Export</v-btn></v-col
-          >
-        </v-row>
 
         <div v-show="history.length">
-          <v-divider class="mt-6 mb-3" />
-          <v-chip
+          <v-divider class="mt-6" />
+          <div class="text-overline">History ({{ history.length }})</div>
+          <v-alert
             v-for="(h, j) in history"
             :key="`history_item_${j}`"
-            small
+            density="compact"
             class="ma-1"
-            close
-            close-icon="mdi-close"
-            @click="output = h.data"
-            @click:close="history.splice(j, 1)"
+            :color="historyActive === h ? 'purple-darken-4' : ''"
           >
-            {{ h.name }}
-          </v-chip>
-          <v-row dense justify="end">
+            <v-row align="center">
+              <v-col cols="auto">
+                <span class="text-button">
+                  {{ h.name }}
+                </span>
+              </v-col>
+              <v-col />
+              <v-col cols="auto"
+                ><v-btn size="small" color="purple" @click="loadHistoryItem(h)"
+                  >Load</v-btn
+                ></v-col
+              >
+              <v-col cols="auto"
+                ><v-btn size="small" color="purple" @click="exportItem(h)"
+                  >Export</v-btn
+                ></v-col
+              >
+              <v-col cols="auto" class="ml-5"
+                ><v-btn
+                  size="small"
+                  color="red-darken-3"
+                  @click="deleteHistoryItem(j)"
+                  >Delete</v-btn
+                ></v-col
+              >
+            </v-row>
+          </v-alert>
+          <v-row dense justify="end" class="mt-3">
             <v-col cols="auto">
               <v-btn
-                x-small
-                outlined
-                color="error darken-2"
+                size="x-small"
+                variant="outlined"
+                color="pink darken-2"
                 @click="history = []"
               >
                 Delete All
               </v-btn>
-            </v-col>
-            <v-col cols="auto">
-              <v-btn x-small outlined color="primary darken-1"
-                >Export All</v-btn
-              >
             </v-col>
           </v-row>
         </div>
@@ -173,6 +186,7 @@ export default {
     societies: ['baronic', 'cosmopolitan', 'diasporan'],
     society: '',
     background: '',
+    historyActive: null,
   }),
   mounted() {
     this.converter = new showdown.Converter();
@@ -202,7 +216,7 @@ export default {
         .map((s) => s.substring(0, 1).toUpperCase() + s.substring(1))
         .join(' ');
     },
-    async getCharacter() {
+    getCharacter() {
       this.loading = true;
       const res = Generate(this.society, this.background);
       // const g = new Generator();
@@ -216,15 +230,41 @@ export default {
 
       // g.Generate(template);
 
-      this.outputRaw = await res;
+      this.outputRaw = res;
 
       this.outputHtml = this.converter.makeHtml(this.outputRaw);
-      this.history.push({
-        name: this.outputRaw.split(' ')[0],
+
+      this.history.unshift({
+        name: this.outputRaw.split('\n')[0].replaceAll('#', ''),
         data: this.outputRaw,
       });
 
+      this.historyActive = this.history[0];
+
       this.loading = false;
+    },
+    exportItem(item) {
+      console.log(item);
+      const link = document.createElement('a');
+      const file = new Blob([item.data], { type: 'text/plain' });
+
+      // Add file content in the object URL
+      link.href = URL.createObjectURL(file);
+
+      // Add file name
+      link.download = `${item.name.trim().replace(/ *\([^)]*\) */g, '')}.md`;
+
+      // Add click event to <a> tag to save file.
+      link.click();
+      URL.revokeObjectURL(link.href);
+    },
+    loadHistoryItem(item) {
+      this.outputRaw = item.data;
+      this.outputHtml = this.converter.makeHtml(this.outputRaw);
+      this.historyActive = item;
+    },
+    deleteHistoryItem(index) {
+      this.history.splice(index, 1);
     },
   },
 };
