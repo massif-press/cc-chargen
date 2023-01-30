@@ -1,10 +1,10 @@
 import _ from 'lodash';
-import { Generator, GeneratorLibrary, LibraryData } from 'gmgen';
+import { Generator, LibraryData } from 'gmgen';
 import genders from '../assets/data/character/genders.json';
 import * as data from '../assets/data/character';
 import * as lists from '../assets/data/lists';
-import { WeightedSelection } from 'gmgen/lib/util';
-import getNames from '../assets/data/character/names';
+import { logLevel, WeightedSelection } from 'gmgen/lib/util';
+import { getNames, aliases } from '../assets/data/character/names';
 
 const template = `
 # %name% (%pro_sub%/%pro_obj%) #
@@ -15,11 +15,8 @@ const template = `
 
 ## Appearance
 %physicality%
-
+<br>
 %clothing%
-
-
-
 
 ## Occupation
 %occupation%
@@ -30,10 +27,6 @@ const template = `
 %ideals%
 %flaws%
 
-## History
-%history_early%
-%history_middle%
-%history_recent%
 
 ## Relationships
 %relationships%
@@ -44,23 +37,28 @@ const template = `
 `;
 
 const Generate = (society: string, background: string): string => {
-  console.log(background);
+  console.log(society, background);
   console.log(data);
-  const lib = new GeneratorLibrary(data[background]);
-  getLists(lib);
+  const gen = new Generator();
+  getLists(gen);
+  console.log(gen);
 
-  lib.AddData(data[society]);
+  gen.AddData(data[background]);
+
+  gen.AddData(data[society]);
 
   const occupationSelection =
     data[_.sample(data[background].values.occupations)];
 
   console.log(occupationSelection);
 
-  lib.AddData(occupationSelection);
+  gen.AddData(occupationSelection);
 
-  const gen = new Generator(lib);
-  gen.SetOption('Logging', 5);
-  gen.SetOption('PreventEarlyExit', true);
+  gen.SetOption('Logging', logLevel.warning);
+  // gen.SetOption('PreventEarlyExit', true);
+  gen.SetOption('CleanEscapes', false);
+  gen.SetOption('ClearBracketSyntax', false);
+  gen.SetOption('ClearMissingKeys', false);
 
   const genderSelection = WeightedSelection(genders);
 
@@ -76,15 +74,16 @@ const Generate = (society: string, background: string): string => {
   gen.AddValueMap('surnames', LibraryData.PrepValues(getNames('surname')));
   // lib.SetData(new LibraryData('names', {}, getNames(genderSelection.name)));
 
+  let output = gen.Generate(template);
+  output = finalize(output);
+
   console.log(gen);
   console.log(gen.DefinitionMap);
 
-  let output = gen.Generate(template);
-  output = grammarPass(output);
   return output;
 };
 
-const grammarPass = (str: string): string => {
+const finalize = (str: string): string => {
   let input = str;
   // 0 is match, 1 is they, 2 is word
   const theyRegex = /(\bthey\s)(\w+)/gim;
@@ -102,14 +101,22 @@ const grammarPass = (str: string): string => {
     }
   });
 
+  input = input.replace(/([!?.]\s|\s"+)([a-z])/g, (m, $1, $2) => {
+    return $1 + $2.toUpperCase();
+  });
+
+  //TODO remove double punctuation
+
   return input;
 };
 
 //TODO: make this generic for all lists
-const getLists = (lib: GeneratorLibrary) => {
+const getLists = (gen: Generator) => {
   for (const key in lists) {
-    lib.AddData(lists[key]);
+    gen.AddData(lists[key]);
   }
+  gen.AddData(data.physicalities);
+  gen.AddData(aliases);
 };
 
 export default Generate;

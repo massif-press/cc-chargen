@@ -1,9 +1,15 @@
 {
   "key": "background",
   "definitions": {
-    "background": "Noble",
-    "prefixChance": 0.98,
-    "prefixes": ["Dr.", "Professor"]
+    "background": "Scholar",
+    "body_type": "{baseline:6|exotic}",
+    "prefix": "{Dr.|Professor}",
+    "physicality": "@compose(%body_type%_physicality)",
+    "firstname": "%names%",
+    "middlename": "%names%",
+    "lastname": "{%surnames%:10|%surnames%-%surnames%}",
+    "name": "^^@pct90%prefix% %firstname% @pct20%middlename% %lastname%^",
+    "jobtitle": "^^%title%^"
   },
   "values": {
     "occupations": ["scientist", "mathematician", "doctor"],
@@ -27,18 +33,11 @@
       "eccentric ",
       "pioneering "
     ],
-    "occupation": ["%firstname% works for {%university%|%org%}"],
-    "university": [
-      "The University of {Cradle|Mars|Venus|Luna|Io|Ganymede}, #{lists/places}# Campus"
+    "occupation": [
+      "%firstname% %occ_status% {%university%|%org%}.<br>%occupation_extra%."
     ],
-    "physicality": ["test"],
-    "physicality_extra": ["test"],
-    "garb_chest": ["a long {white|grey|black} lab coat"],
-    "clothing_extra": ["test"],
-    "secrets": ["test"],
-    "relationships_extra": [
-      "%gen_name%, professional rival",
-      "%gen_name%, {colleague|research collaborator|associate|coworker}"
+    "university": [
+      "The University of {Cradle|Mars|Venus|Luna|Io|Ganymede}, %place% Campus"
     ]
   }
 }

@@ -1,0 +1,11 @@
+{
+  "key": "occupation_service",
+  "templates": ["%title%"],
+  "definitions": {
+    "occupation_name": "service",
+    "title": "todo"
+  },
+  "values": {
+    "occupation_extra": ["TODO"]
+  }
+}

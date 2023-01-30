@@ -45,7 +45,7 @@
       "turquoise",
       "zircon"
     ],
-    "misc": [
+    "material_misc": [
       "Shape-memory alloy",
       "self-healing polymer",
       "smartglass",
@@ -64,6 +64,16 @@
       "superhydrophobic fabric",
       "aerogel",
       "bioplastic"
+    ],
+    "textile": [
+      "metatextile",
+      "polyfabric",
+      "smartfabric",
+      "nanofiber",
+      "reticulated demifiber",
+      "smart polymer",
+      "{nanotube-reinforced|hydrophobic|engineered|biofabricated|chromomorphic|luminescent} {chiffon|cotton|linen|wool|silk|velvet|denim}",
+      "synthetic {cotton|linen|wool|silk|leather}"
     ]
   }
 }

@@ -190,6 +190,8 @@ export default {
           return ['noble'];
         case 'cosmopolitan':
           return ['celebrity', 'scholar'];
+        case 'diasporan':
+          return ['worker', 'outlaw'];
         default:
           return '';
       }

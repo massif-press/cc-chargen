@@ -1,0 +1,76 @@
+{
+  "key": "occupation_construction",
+  "templates": ["%title%"],
+  "definitions": {
+    "occupation_name": "construction",
+    "con_job": "%con_jobs%",
+    "con_firm": "%firm_pre% %firm_post%",
+    "title": "%con_job%",
+    "occupation": "%jobs%"
+  },
+  "values": {
+    "occupation_extra": ["TODO"],
+    "jobs": [
+      "%firstname% {works as a|is a} %con_job% at ^^%con_firm%^, a %con_types% {that operates around|prominent throughout} {%line%|%places%}"
+    ],
+    "firm_pre": ["%surnames%", "%surnames%-%surnames%", "%stars%"],
+    "firm_post": [
+      "Heavy Industri{es|al}",
+      "{Drive|Print}works",
+      "Construction Machinery Conglomerate Ltd.",
+      "Ltd.",
+      "Critical Infrastructure Services",
+      "& Co.",
+      "Engineering {Group|}",
+      "{Drive|Motor|Reactor|} {Company|Group|Cooperative}",
+      "{Drives|Motors|Reactors}",
+      "Cooperative",
+      "Technologies",
+      ""
+    ],
+    "con_types": [
+      "shipyard",
+      "station infrastructure construction %con_businesses%",
+      "gate frame {construction|fabrication|manufacturing} %con_businesses%",
+      "blink infrastructure %con_businesses%",
+      "omninet node {construction|fabrication|manufacturing} %con_businesses%",
+      "arcology construction %con_businesses%",
+      "{planetary|station|orbital}-based construction %con_businesses%",
+      "frame {construction|design and construction|manufacturing|fabrication|development|production} %con_businesses%",
+      "{personal|mech-scale|ship-based|planetary} weapons {manufacturing|fabrication|development} %con_businesses%"
+    ],
+    "con_businesses": [
+      "firm",
+      "co-op",
+      "cooperative",
+      "enterprise",
+      "venture",
+      "operation",
+      "consortium",
+      "bureau",
+      "agency",
+      "conglomerate",
+      "combine"
+    ],
+    "con_jobs": [
+      "fore%gender%",
+      "{printer|systems|equipment|safety|project} manager",
+      "{assistant|print|} director",
+      "inspector",
+      "scheduler",
+      "{heavy|nanotech|remote|teleop} equipment operator",
+      "{print|field|systems|frame|CF-reactor|energy subsystems|structural} {technician|mechanic|assistant|engineer}",
+      "facility manager",
+      "coordinator",
+      "crew member",
+      "production manager",
+      "general laborer",
+      "COMP/CON {overseer|programmer|manager}",
+      "custodian",
+      "security guard",
+      "print code {architect|engineer}",
+      "{high-energy|plasma|metaplastic|microscale|nanoscale|picoscale|piezonuclear} welder",
+      "{printfab|p-output|vacuum|%material_misc%} {carpenter|wright|crafts%gender%}"
+    ]
+  }
+}

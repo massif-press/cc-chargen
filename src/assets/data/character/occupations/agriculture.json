@@ -1,0 +1,68 @@
+{
+  "key": "occupation_agriculture",
+  "templates": ["%title%"],
+  "definitions": {
+    "occupation_name": "agriculture",
+    "ag_job": "%ag_jobs%",
+    "title": "%ag_job%",
+    "occupation": "%jobs%"
+  },
+  "values": {
+    "occupation_extra": [
+      "%firstname% {oversees|manages|assists with} the processing of non-viable or excess production into edible rawmat for food-specific printers"
+    ],
+    "jobs": [
+      "%firstname% {works as a|is a} %ag_job% of {a small|an array of|a fairly large|a large|a prominent|a struggling} {%ag_types% %farm_type%:2|%exotic_farms%}",
+      "%firstname% {works as a|is a} %ag_job% on a {commercial|industrial|large-scale|Union-constructed} nutrient processing center that specializes in {enriched print loaf|non-perishable foodstuff for far field spacefaring|developing printable feed stock|gene-tailored feed stock|high purity nutrient extractions|high gravity xenoculture amendments|low gravity xenoculture amendments}",
+      "%firstname% {works as a|is a} %ag_job% at a {vat-grown meat|cultured meat|synthmeat} plant",
+      "%firstname% {works as a|is a} {%ag_job%|ranch hand|wrangler|livestock manager} on a {dairy|poultry|mariculture|aquaculture} ranch"
+    ],
+    "ag_types": [
+      "hydroponics",
+      "algae",
+      "aeroponics",
+      "atmoponics",
+      "algaculture",
+      "cellular agriculture",
+      "tissue engineering"
+    ],
+    "ag_jobs": [
+      "fore%gender%",
+      "manager",
+      "{nutrient systems|biowaste|genetic|photonics|atmosphere|growth medium} technician",
+      "substrate nutritionist",
+      "farmhand",
+      "{heavy|nanotech|remote|teleop} equipment operator",
+      "{print|field|systems|substrate|bioreactor|} {technician|mechanic}",
+      "fieldworker",
+      "facility manager",
+      "coordinator",
+      "crew member",
+      "production manager",
+      "general laborer",
+      "processor",
+      "COMP/CON {overseer|programmer|manager}",
+      "custodian",
+      "security guard"
+    ],
+    "farm_type": [
+      "farm",
+      "farming cooperative",
+      "corpro-owned farm",
+      "Union agricultural mission farm",
+      "family farm",
+      "urban farm",
+      "orbital farm",
+      "vertical farm",
+      "station-based farm"
+    ],
+    "exotic_farms": [
+      "centauri beetle apiary",
+      "lactree orchard",
+      "Dyson tree orchard",
+      "fungiculture vault",
+      "fluxweed vinyard",
+      "%places_adj% {orchid|wheat|barley|rice} paddy"
+    ]
+  }
+}

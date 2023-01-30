@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import * as names from './names.json';
+import aliases from './aliases.json';
 
 const getNames = (type: string): string[] => {
   switch (type) {
@@ -16,4 +17,4 @@ const getNames = (type: string): string[] => {
   }
 };
 
-export default getNames;
+export { getNames, aliases };

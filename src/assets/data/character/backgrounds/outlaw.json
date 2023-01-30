@@ -1,0 +1,19 @@
+{
+  "key": "background",
+  "definitions": {
+    "background": "Outlaw",
+    "body_type": "{baseline|exotic}",
+    "physicality": "@compose(%body_type%_physicality)",
+    "clothing": "TODO",
+    "firstname": "%names%",
+    "nickname": "{%criminals%:6|%callsigns%}",
+    "lastname": "{%surnames%:10|%surnames%-%surnames%}",
+    "name": "^^%firstname% {\"%nickname%\":6|} %lastname%^",
+    "jobtitle": "^^%title%^"
+  },
+  "values": {
+    "occupations": ["pirate", "thief", "hunter"],
+    "occupation_prefix": ["todo"],
+    "occupation": ["todo"]
+  }
+}

@@ -2,7 +2,9 @@
   "key": "background",
   "definitions": {
     "background": "Noble",
-    "physicality": "{%noble_physicality%:3|@compose(baseline_physicality_%gender%)} @pct30%noble_physicality_extra% @pct5%physicality_extra%",
+    "body_type": "{baseline:3|exotic}",
+    "physicality": "{%noble_physicality%:3|@compose(baseline_physicality)}. @pct30%noble_physicality_extra%. @pct5%physicality_extra%",
+    "clothing": "%clothing_base%. @pct90%clothing_extra%. @pct25%clothing_acc%",
     "firstname": "{%names%:3|%names% %names%}",
     "middlename": "%names%",
     "lastname": "{%surnames%:4|%surnames%-%surnames%}",
@@ -22,7 +24,7 @@
       " XXI",
       " XVII",
       " XXVII",
-      ", [Heir Apparent|Esteemed|Beloved|Foremost|Successor|Firstborn|Inheritor|Heir Presumptive|Scion|Successor|Issue] of House {minor_housename}"
+      ", {Heir Apparent|Esteemed|Beloved|Foremost|Successor|Firstborn|Inheritor|Heir Presumptive|Scion|Successor|Issue} of House %minor_housename%"
     ],
     "name_prefixes": [
       "%hon%",
@@ -45,22 +47,26 @@
       "The Illustrious %hon%",
       "%pro_pos% Excellence, %hon%",
       "%pro_pos% Excellency, %hon%",
-      "Potentiate, {hon}",
-      "The Most Honored {hon}",
-      "The Revered {hon}"
+      "Potentiate, %hon%",
+      "The Most Honored %hon%",
+      "The Revered %hon%"
     ],
     "occupations": ["noble_occ"],
     "noble_physicality": [
-      "%firstname% is a perfect human specimen, preserved and maintained at the pinnacle of physical health {by teams of physicians, pharmacists, and biological nanotechnicians|by heavy genetic modification|by regular intravenous infusions of nanotechnological apparatus|by a regimen of bespoke, genetically-tailored anti-senescent medication}. %pro_sub% is {tall and athletic|menacingly tall and muscular|beautifully lithe and elegant}, and speaks in a {melodic lilt|smooth and resonant tenor|silken murmur}. %firstname% has {wide|expressive|angular}, {piercing blue|sparkling green|gold-flecked|silver-flecked|shimmering purple|purple-flecked|orange-flecked|startling grey} eyes set in a perfectly symmetrical face. %pro_sub% wears %pro_pos% %hair_color% hair %hair_cut%.",
+      "%firstname% is a perfect human specimen, preserved and maintained at the pinnacle of physical health {by teams of physicians, pharmacists, and medical nanotechnicians|by heavy genetic modification|by regular intravenous infusions of nanotechnological apparatus|by a regimen of bespoke, genetically-tailored anti-senescent medication}. %pro_sub% is {tall and athletic|menacingly tall and muscular|beautifully lithe and elegant}, and speaks in a {melodic lilt|smooth and resonant tenor|silken murmur}. %firstname% has {wide|expressive|angular}, {piercing blue|sparkling green|gold-flecked|silver-flecked|shimmering purple|purple-flecked|orange-flecked|startling grey} eyes set in a perfectly symmetrical face. %pro_sub% wears %pro_pos% %hair_color% hair %hair_cut%.",
+
       "%firstname% is a heavily but subtly gene-edited human, designed to exemplify{, almost to an absurd degree,|} the popular conception of Karrakin perfection. %pro_sub% is {perfectly proportioned|unsettlingly tall|evocative of mythic heroes in terms of size and stature}, and speaks in a {soul-stirring commanding tenor|song-like, hypnotic vox}. %firstname% has {deep|liquid|profound}, {sapphire blue|emerald green|white-on-white|opal|pearlescent|amethyst} eyes set in a {perfectly symmetrical|chiseled|exquisitely dignified} face. %pro_sub% wears %pro_pos% %hair_color% hair %hair_cut%",
-      "%firstname% is ancient, clinging to life thanks to {constant nanomechanical injections|a constant regimen of genetically tailored anti-senescent drugs|a nearly-complete overhaul of their internal organs with biomechanical proxies}. %pro_sub% is {shepherded around by a retinue of House physicians and assistants|confined, nearly immobile, to an ambulatory life support machine|sealed within a life-supporting sarcophagus, interacting with the outside world through purely mechanical means}, and speaks in a {barely-audible whisper|exasperated wheeze|nearly unintelligible murmur}."
+
+      "%firstname% is ancient, clinging to life thanks to {constant nanomechanical injections|a gamut of genetically tailored anti-senescent drugs|a nearly-complete overhaul of their internal organs with biomechanical proxies}. %pro_sub% is {shepherded around by a retinue of House physicians and assistants|confined, nearly immobile, to an ambulatory life support machine|sealed within a life-supporting sarcophagus, interacting with the outside world through purely mechanical means|orbited by a small fleet of life support devices, assistant subalterns, and mobility apparatus, managed by a bespoke COMP/CON orchestrator}, and speaks in a {barely-audible whisper|exasperated wheeze|nearly unintelligible murmur}.",
+
+      "%firstname% is of unmodified, unaugmented Karrakin stock, nevertheless rigorously managed and carefully shepherded by eons of House genealogists and heredity engineers. %firstname% exhibits the genetic perfection (at least in eyes of Baronic elite) otherwise only achievable through extensive gene tailoring or extreme body modification. The ability for a House family to expend the vast resource expenditure that centuries of regulated breeding require, as well as the social and political cache to openly flout anti-eugenics precepts, confers extraordinary prestige in certain circles within the nobility. %firstname% exemplifies the {cleft chin|strong jaw|angular jaw|full lips}, {aquiline nose|high cheekbones|deep olive skin}, and {silver-grey eyes|flowing dark hair} of the mythic heroes of ancient Karrakis. %pro_sub% wears %pro_pos% hair %hair_cut%, and speaks in a {songlike lilt|commanding tenor|laconic Karrakin timbre}"
     ],
     "noble_physicality_extra": [
-      "%pro_sub% has a large, ragged scar that crosses %pro_pos% face, from %pro_pos% {right eye|right ear|left eye|left ear|forehead} to {the nape of %pro_pos% neck|%pro_pos% chin|%pro_pos% navel|%pro_pos% upper lip|%pro_pos% upper lip}, which %pro_sub% got {in an unsanctioned duel from %pro_pos% rival|in ceremonial combat|from an assassin's blade in a botched assassination attempt}",
+      "%pro_sub% has a large, ragged scar that crosses %pro_pos% face, from %pro_pos% {right eye|right ear|left eye|left ear|forehead} to {the nape of %pro_pos% neck|%pro_pos% chin|%pro_pos% navel|%pro_pos% upper lip|%pro_pos% upper lip}, which %pro_sub% got {from %pro_pos% rival in an unsanctioned duel|in ceremonial combat|from a botched assassination attempt}",
       "%pro_sub% has a {dark|bioreactive|subdermal} tattoo denoting devotion to the {Passions|Titan|Wolf|Harlequin|Broker|Fool|Magus|Builder|Pathfinder}",
       "%pro_sub% wear a set of dermal implants, mounted with {polished jewels|delicate chains of precious metals|gleaming sapphires|tiny, shimmering lights|interfacing hardware for %pro_pos% ceremonial armors}"
     ],
-    "clothing": [
+    "clothing_base": [
       "%firstname% is clad in a ancient set of heirloom armor, maintained by for centuries by %pro_pos% family's retainers as ceremonial garb. It {glistens with ceremonial oils|shimmers, betraying the installation of a modern field defense system|smells faintly of cherry blossoms|is, in fact, a replica of the real set, lost in a minor inter-house conflict decades ago|is widely held to be fashioned out of rare ores from Karakkis itself|hides a powerful synthmuscle bodysuit}",
       "%firstname% wears a {flowing|elegant|form-fitting} toga of {smartfabric|reactive metatextile|nanoactuated synththread}, maintaining %pro_pos% comfort across a wide variety of temperatures",
       "%firstname% wears a {floor|knee|thigh}-length gown of {exquisite|subtle|beautiful|dense|delicate|ultra-fine|soft|impeccable}, intricately hand-woven {smartfabric|reactive metatextile|nanoactuated synththread}",
@@ -70,16 +76,20 @@
     ],
     "clothing_extra": [
       "on %pro_pos% brow rests a symbolic diadem of House %major_housename%, connoting {authority|high Baronic esteem|battle-honor} and an air of {dignity|respectability|power|glory|reverence}",
-      "%pro_sub% wears a signet ring {embossed|engraved} with %pro_pos% family's crest, made to {evoke|suggest} %pro_pos% House's namesake",
+      "%pro_sub% wears a signet ring {embossed|engraved} with %pro_pos% family's crest, {evocative of|suggestive of} %pro_pos% House's namesake",
       "on %pro_pos% shoulders lays a full-length cape, decorated with {scenes from %pro_pos% family's history|subtle inlays of precious metals|a stylized depiction of Karrakis|a stylized fleet of starships|the constellations of Baronic space, rendered in diamond|an image of Passacaglia|an icon of Passacaglia|a stylized rendering of Passacaglia}",
       "around %pro_pos% neck is a necklace, {hung with precious gems|strung with the teeth of a apex predator native to Karrakis|inset with a representation of %pro_pos% House's namesake|off of which a set of miniature glow-orbs floats gently|from which is hung a restored shard of an ancient dagger, deeply pitted but shining with a mirror finish}",
       "%pro_sub% is crowned with a {towering|short|sweeping|halo-like}, {intricate|embellished|elegant} coronet",
       "%pro_sub% is crowned with a {wide pakol|tall gat|jade ayam|wide ba tầm|wide kasa|lightweight ngob|wide fulani|tufted fez|keffiyeh|tall mitre|stately mitre|tall stetson|wide stetson|tall top hat|wide tricorne|stately turban|bulbous turban|small zuicchetto}, {from which hang silken tassels|intricately decorated|made of extraordinarily expensive materials}",
-      "%pro_sub% carries a ceremonial {buckler|shield}, upon which is written {the lineage of %pro_pos% name|the motto of %pro_pos% house|the history of %pro_pos% house|}",
+      "%pro_sub% carries a ceremonial {buckler|shield}, upon which is written {the lineage of %pro_pos% name|the motto of %pro_pos% house|the history of %pro_pos% house}",
       "%pro_sub% carries a {ceremonial|heirloom|House|Baronic} {sword|scepter|censer|dagger|amulet|talisman}, {a hallmark of|an emblem of|a sign of|a symbol of|identifying} %pro_pos% House and considerable {station|esteem|rank|standing}",
       "while in public, %pro_sub% wears a mask {of a pure precious metal|of carbon nanofiber|of gleaming alloy|in the likeness of Passacaglia}",
       "%pro_sub% wears a {polished|engraved|lightweight} gorget that projects a subtle image of {Karrakis|the moon Arrudye|Ispahsalar|Khayradin|Tilimsan|Eyalet-a|Umara|Begum|distant Bo} about %pro_pos% head at all times, like a halo",
       "%pro_sub% smokes a long {antique|heirloom|embellished|lacquered|golden|silver|platinum|quartz|ebony} {kiseru|churchwarden|tyrolean|calabash} pipe, from which wafts a {pleasant citrus aroma|noxious smoke|cooling, minty vapor|an acrid fog|a purplish miasma|thick cloud of opaque vapor}"
+    ],
+    "clothing_acc": [
+      "about %pro_obj% waft soothing and subtly narcotic vapors, issued from {censers|incense burners|gilded aresolizers}, carried by {an orbit of hovering drones|a small team of clockwork subaltern|a small team of lavishly decorated subalterns|a small team of mute attendants|a cortège of spiritual attendants and advisors},",
+      "Nearby hovers %pro_pos% ornate and {gilded|bejeweled|silvered|gold-plated|ostentatious|tastefully minimalist} butler-drone, %firstname%'s personal COMP/CON valet, discreetly offering up (and acting as a receptacle for) drink bulbs, pipes, cosmetic powders, narcotic and medicinal pills, dataslates, and various other sundries"
     ],
     "secrets": [
       "in actuality, %firstname% is the latest in a long line of clones of the founder of the House, whom %pro_sub% claims as a distant ancestor. {However, clone fidelity has been deteriorating over the last several generations, and %pro_sub% is quickly losing %pro_pos% mental and physical faculties| This is in direct contravention of an ancient inter-House treaty|Unbeknownst to all, %pro_sub% is a failed clone, escaped from the vats. %pro_sub% killed the \"active\" clone and assumed %pro_pos% role. %pro_pos% retinue is beginning to suspect something is off|%pro_sub% is beginning to recover unlooked-for memories about a serious crime %pro_pos% progenitor committed|%pro_sub% has terrifying nightmares about his own death|%pro_pos% has terrifying nightmares of his decanting at the cloning vats, something that should not be possible|However, something went wrong with the personality transcription process, and %pro_sub% was decanted Tabula Rasa, and has been faking his identity the entire time}",

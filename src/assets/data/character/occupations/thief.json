@@ -1,0 +1,11 @@
+{
+  "key": "occupation_thief",
+  "templates": ["%title%"],
+  "definitions": {
+    "occupation_name": "Thief",
+    "title": "todo"
+  },
+  "values": {
+    "occupation_extra": ["TODO"]
+  }
+}

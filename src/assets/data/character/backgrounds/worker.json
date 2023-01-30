@@ -1,0 +1,16 @@
+{
+  "key": "background",
+  "definitions": {
+    "background": "Worker",
+    "body_type": "{baseline:12|exotic}",
+    "physicality": "@compose(%body_type%_physicality)",
+    "firstname": "%names%",
+    "middlename": "%names%",
+    "lastname": "{%surnames%:10|%surnames%-%surnames%}",
+    "name": "^^%firstname% @pct20%middlename% %lastname%^",
+    "jobtitle": "^^%title%^"
+  },
+  "values": {
+    "occupations": ["construction", "service", "agriculture"]
+  }
+}

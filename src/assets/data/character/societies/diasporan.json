@@ -1,0 +1,55 @@
+{
+  "key": "society",
+  "definitions": {
+    "society": "Diasporan",
+    "clothing": "%clothing_choices%"
+  },
+  "values": {
+    "clothing_choices": [
+      "%firstname% wears %clothing_top% and %clothing_bottom%:3",
+      "%firstname% wears %clothing_top%, %clothing_bottom% %clothing_extra%"
+    ],
+    "clothing_top": [
+      "%top_under%",
+      "a {far-field style|extreme temperature rated|temperature-regulating|long|multilayered|knee length|sleeveless|mid-length|cropped|puffy|long} {leather|synth-leather|vat-leather|waxed canvas|synthtextile|%textile%|worker's|cargo|utility|spacer's} {hooded|high-collar|} {jacket|coat|blazer|overcoat|anorak|cloak|slicker|amauti|blouson|cut-off vest|field jacket|gilet|haori|jinbei|magua|sadri|dopo|poncho} {decorated with %top_decoration%|emblazoned with %top_decoration%|worn over %top_under%|worn loose over %top_under%|worn tight over %top_under%|}"
+    ],
+    "clothing_bottom": [
+      "a pair of {multilayered|relaxed-fit|loose fitting|long|tailored|close-fitting|skinny|cropped} {leather|synth-leather|vat-leather|waxed canvas|synthtextile|denim|%textile%|worker's|cargo|utility|spacer's} {baji|shorts|trousers|pants|breeches|overalls}"
+    ],
+    "clothing_extra": [
+      "and a {small|large} {backpack|rucksack|messenger bag|daypack}, {covered in various stickers and patches|ruggedized with foammetal pads and jacketed aerogel plates|stuffed to bursting}",
+      "and an {alloy|reinforced} {epaulet|pauldron} {with a GMS standard utility mount|mounted with a simple sensor suite|mounted with a personal comms range extender|with an integrated secure communications broadcaster|, a base station for a personal microdrone}",
+      "and a {wide|thin|subtle|tasteful|garish|long|short} {necktie|pañuelo}",
+      "and a {long|thick|short|thin} {scarf|shawl|cape}",
+      "and a {plain|patterned|banded} {kiffyeh|turban|krama|headband|headscarf}",
+      "and a cap with %top_decoration%",
+      "and a {full|dark|wraparound|stylish|transparent|face shield-style} active HUD visor",
+      "and a set of {over-ear|in-ear} headphones and personal comms array",
+      "and a {colorful|luminescent} {hair clip|pair of earrings|necklace} with {tiny mounted holoprojectors|floating, twinkling maglev lights}",
+      "and a long {%color%|patterned} {hairband|headband}",
+      "and a broad {metaplastic|alloy|foamed metal|plant fiber|synthfiber|reinforced metatextile} {kasa|do'un|ngop|satgat|salakot|nón lá}",
+      "and a {plain|fashionable|thin|bulky} {bracelet|set of bangles|wristband}{with a basic but functional data uplink and holoprojector|with basic display and dataslate link|}",
+      "and {dark|transparent|wraparound|bulky} {glasses|goggles}",
+      "and {environment-rated|tactile-enhanced|multi-interface utility|mechanic's|reinforced|fashionable|thin|fingerless} gloves"
+    ],
+    "top_under": [
+      "a plain {t-shirt|shirt|undershirt|tunic|collarless shirt|robe|short robe|choli|barong}",
+      "a {worker's|spacer's|station|cargo} {flight suit|boiler suit|utility pullover}",
+      "a {stylish|throwback|classic|retro} jersey with %top_decoration%",
+      "a {skintight|tight|relaxed-fit} {wrap|bodysuit|leotard}"
+    ],
+    "top_decoration": [
+      "a logo for the %place% {Lions|Tigers|Bears|Hawks|Elephants|Owls|Dogs|Outrunners|Outlaws|Hunters|Monsters|Intimidators|Travelers|Rough Riders|Birds|Sox|Mudcats|Nights|Rockhounds|Kings|Princes|Queens|Mages|Barbarians|Bards|Paladins|Monks|Clerics}, a {prominent|beloved|perennially-losing} {mechracing|dust skiing|chessboxing|multiplane bossaball|zero-g cuju} team",
+      "the %stations% station {insignia|emblem}",
+      "the {SSC|IPS-N|HA|GMS} logo",
+      "a logo for {a line of SSC luxury electronics|a %line% tourism organization|a %place% shipping co-op|a minor goods manufacturer|a niche art scene|a popular contemporary artist}",
+      "the tour dates and locations for a {popular|niche|ultra-niche|throwback|classic} {Cradle|%places_adj%|precollapse|blinkspace|Diasporan|Cosmopolitan|Spaceborn|Spacer} {blues|dub|psychedelic|jazz|trap|hiphop|house|R&B|gravity metal|blinkpunk|xenocore} band",
+      "an array of flexible displays, {glowing gently|slowly shifting through the color spectrum|showing colors and patterns keyed to %firstname%'s emotions|currently out of juice|currently deactivated}",
+      "a {stylized version of|faithful reproduction of} a {popular|well known|little known} work of art by a %places_adj% {graffito|glitch artist|visual artist|comic artist}",
+      "some sort of logo or insignia, faded beyond legibility",
+      "{interlocking|crisscrossing} {lines|hexagons|squares|rectangles|geometric shapes}",
+      "a simple, repeating geometric pattern",
+      "{two|three|four|five} {broad|thin} {vertical|horizontal} stripes"
+    ]
+  }
+}

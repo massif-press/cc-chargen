@@ -1,30 +1,35 @@
 {
   "key": "society",
   "definitions": {
-    "background": "Cosmopolitan"
+    "society": "Cosmopolitan",
+    "clothing": "%clothing_choices%. @pct75%clothing_extra%"
   },
   "values": {
-    "name": [
-      "$firstname{#{character/names/basic/%gender}#}$ $lastname{#{character/names/basic/surname}#}$"
+    "clothing_choices": [
+      "%firstname% wears a cropped jacket with decorative {alloy|foammetal|reinforced aerogel|carbon fiber|interlocking} plates over a {skintight bodysuit|form-fitting bodysuit|relaxed jumpsuit|reinforced jumpsuit|breathable speedsuit}, a stylized interpretation of a Lancer's combat suit",
+      "%firstname% wears a {relaxed|thin|cropped} {graphic|plain|corporate|branded|printed} {t-shirt|v-neck|tank top|polo|jersey}{ under a %color% %textile% jacket|}, {straight|cargo|short|long|strapped|reinforced|baggy|loose} {pants|trousers}, and {chunky|extremely fashionable|bright %color%} {sneakers|shoes|boots}",
+      "%firstname% wears {an enticingly|an alluringly|a provocatively} open {%textile%|puffy|flowing} {jacket|coat|overcoat|longcoat|sport coat} over {bare skin|tight undergarments|sheer undergarments}",
+      "%firstname% wears a comfortable %textile% sweatshirt and simple, {relaxed|loose-fitting} {pants|trousers|shorts|overalls}",
+      "%firstname% wears a {tight|skintight|sheer} undersuit, layered with %textile% {panels|shards|patches|sheets|leaves|feathers|fronds|membranes|blankets|lamina} and wide, {puffy|wrinkled|flowing} sleeves",
+      "%firstname% wears a {high-necked|low-cut} %color% {dress|suit}, {precisely|stylishly} cut for {bare arms|bare shoulders|a bare midriff}, with {tight|loose|wide|flowing|short} {trousers|slacks|trews}. The outfit is {crisscrossed by|overlaid with|encircled by|layered with} light-emitting bands, {gently glowing|gently pulsing|that pulse languidly|colored to match %firstname%'s eyes|colored to match %firstname%'s hair|colored to reflect %firstname%'s mood}",
+      "%firstname% wears a floating array of {wide|angular|jagged|ovoid|undulating|shuddering|free-floating} %color% %textile% {panels|shards|patches|sheets|leaves|feathers|fronds|membranes|blankets|lamina}, buoyed by tiny diamond-encased envelopes of vacuum, the pinnacle of {high|experimental|Cosmopolitan|Spaceborn} fashion",
+      "%firstname% wears a {puffy|silken|military-style} %color% {blouson|bolero|bomber jacket} with a {synthetic fur fringe|wide, concealing hood|seal for a detachable helmet|cargo netting wrap|webbing of straps and carabiners}, over {nothing at all|hydrophobic swimwear|polytextile sportswear|silken yếm|a full-body hardsuit interface|a tight shirt|a loose shirt|a sheer top|cropped undergarments|skintight bodysuit}",
+      "%firstname% wears the latest Smith-Shimano contemporary fashion lines: {bright colors|muted colors|shades of black|brilliant hues|shimmering metallics|gleaming synthetic diamondfiber|chromatic metaplastics|ultralight nanotextiles|pulsating organotextiles|undulating organofiber|neurolinked kinetextile}, {enticing cuts|alluring cuts|draped scarves|elegant lines|angular silhouettes|modest lines|sophisticated cuts|classic lines|throwback trim}, and {mountains of jewelry|a dusting of jewelry|the latest personal microdrone|the latest SSC dataslate|a kitschy throwback GMS dataslate}",
+      "%firstname% wears a {skintight|full} bodysuit of {temperature-regulating|figure-enhancing|jet black|slate grey|opalescent} {metatextile|polyfabric|smartfabric|nanofiber|reticulated demifiber}, studded with miniature holoprojectors that project {the translucent illusion of a stylized mech|sheets of flowing, tessellating patterns that cascade like water|falling water|falling snow|gently drifting cherry blossoms|wisps of wine-dark nebulae|falling stars|mist, pooling quietly around %pro_pos% feet|tongues of flame|a cartoonish \"x-ray\" of %pro_pos% body as %pro_sub% moves|cascading sheets of light|a constellation of stars}"
     ],
-    "clothing": [
-      "a latest-gen SSC Slyphsuit, a gently-pulsating symbiotic garment-organism"
-    ],
-    "history_early": [
-      "%firstname% {was born|was born and raised} in the #{lists/states}# {district|neighborhood|quarter|community} of #{lists/archipelagos}# {Habitat|Toroid|Torus|Cylinder|Asteroid|Ring|Platform}, a {minor|major|thriving|quiet|popular|unpopular} Cradle station near #{lists/cradle_system}#%birth_circumstance%",
-      "%firstname% is a{ true|} Cradle {metropolitan|native}, {born|born and raised} in the {city|town} of {New |Noveau |Novo |Nuut |Baru |Adisi |Novi |Nei |Putiyat |Taze |Hou-|Okusha-|Saeloun |||}#{lists/cities}# on #{lists/cradle_system}#%birth_circumstance%",
-      "%firstname% {was born|was born and raised} on #{lists/archipelagos}#, a {minor|major|thriving|quiet|core|key|central|Cosmopolitan} Union-aligned world {within|in|on|of} the #{lists/lines}#%birth_circumstance%"
-    ],
-    "birth_circumstance": [
-      "",
-      " and raised {in a typical|in a modern|in a traditional|in a local|, as per the local tradition, in a|, as is typical for Cosmopolitans, in a|in the Cosmopolitan style, in a} community creche",
-      ", to {loving|well-meaning|highly educated|politically active|hard-working|indifferent|callous|disinterested} parents",
-      " and raised communally, {as per the Cosmopolitan standard| as per the local norms| typical of Cosmopolitan children}"
-    ],
-    "history_early_extra": [],
-    "history_middle": [],
-    "history_middle_extra": [],
-    "history_recent": [],
-    "history_recent_extra": []
+    "clothing_extra": [
+      "%pro_sub% also wears a %textile% {cloak|hooded cloak|long cape|short cape}",
+      "%pro_sub% wears {dark|mirrored|opaque, opalescent} {shades|sunglasses|visors|eye coverings|lenses}, very nearly all of the time",
+      "%pro_sub% is almost always covered by a {long|flowing|bulky|voluminous} {opalescent|transparent|translucent|sheer|mesh|diamondfiber lace|neon green} {longcoat|overcoat|raincoat|poncho|rain slicker|trenchcoat}",
+      "%pro_sub% also wears a hooded cowl with an inbuilt atmosphere filter mask",
+      "%pro_sub% also wears a {sleek|angular} {glass|holographic|transparent} visor",
+      "%pro_sub% also wears a {bulky|sleek|angular} personal {comms|sound} system, covering {%pro_pos% ears|the better part of %pro_pos% head}",
+      "%pro_sub% also wears the cowl and full helmet of an ultralight but {military|far-field|hazard environment}-rated hardsuit",
+      "%pro_sub% also wears a {working|nonworking|antique|modern|top-of-the-line|cutting-edge} hardsuit rebreather mask",
+      "%pro_sub% also wears the shoulder pauldrons and upper arms of an ultralight but {military|far-field|hazard environment}-rated hardsuit",
+      "%pro_sub% also wears a {military|far field|Harrison Armory}-style {ballistic vest|tactical vest|chest rig}",
+      "%pro_sub% also wears tall, {high-heeled|low-heeled|angular|riding-heeled} boots, {crisscrossed with straps|adorned with faux-armor plates|adorned with foamed metal plates|made almost entirely of tinted areogel|made of glossy synthetic sharkskin|topped with armored, hardsuit-style kneepads}",
+      "%pro_sub% also wears a {small shoulder pauldron|small backpack} with an enclosure that hosts {beautiful and ultra-hardy Venusian air coral, wafting gently|a shoal of delicate Jovian plankton, quietly flitting around %firstname%'s outfit|living xenofloral blooms|a clutch of tiny, furry xenofauna}"
+    ]
   }
 }
