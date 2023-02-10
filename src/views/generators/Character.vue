@@ -304,5 +304,6 @@ export default {
 <style>
 p {
   font-size: 1.15em;
+  margin-top: 10px;
 }
 </style>
