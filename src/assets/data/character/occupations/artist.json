@@ -7,7 +7,7 @@
     "occupation": "%firstname% is a %occupation_prefix% %title%"
   },
   "values": {
-    "celebrity_physicality": ["TODO %baseline_physicality%"],
+    "celebrity_physicality": ["%baseline_physicality%"],
     "occupation_extra": [
       "%firstname% has recently {published|presented|debuted|started on|finished} a new {work|piece|experimental work|series}, entitled \"%work_pre%%work_post%\""
     ],
