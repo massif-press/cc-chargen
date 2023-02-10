@@ -32,6 +32,13 @@
       "acclaimed",
       "preeminent"
     ],
+    "occupation_extra": [
+      "%pro_sub% is currently in the employ of {IPS-N|SSC}, {working on a campaign to promote|in a lucrative contract to promote|working to promote} {a new line of combat-ready hardsuits|the latest generation of mech-scale cold fusion reactors|a new consumer shipping enterprise|brand recognition}"
+    ],
+    "personality_detail": [
+      "%firstname% is {vain|narcissistic|self-obsessed|egotistic} and {haughty|conceited}, {and regards their celebrity status as natural recognition of %pro_pos% innate superiority|but is careful about %pro_pos% public image, and comes off as generous and convivial until the mask slips in moments of anger or stress|and regards everyone with less social cache or celebrity clout as inferior, but is embarrassingly obsequious towards anyone of a (perceived) higher standing|outwardly, but it is a coping mechanism to deal with the attention of celebrity -- %firstname% is actually quite shy and anxious}",
+      "%firstname% is {quiet and reserved|inwardly-focused and unsociable|restrained and unforthcoming}, {out of a profound desire for what little privacy %pro_sub% can maintain despite %pro_pos% celebrity status|generally lost in thought about %pro_pos% work|generally unable to keep up the high energy facade when outside of the public eye|in contravention of %pro_pos% public persona|but internally, is devious and merciless, and will go to extreme lengths to increase %pro_pos% celebrity status and undermine %pro_pos% rivals'|unusual for a person of such high social regard and wide celebrity|after a series of social faux pas that imperilled %pro_pos% celebrity status}"
+    ],
     "clothing_choices": [
       "%firstname% wears a subtle -- yet elegant -- outfit of dark, muted tones, in apparent contravention of their celebrity status"
     ],

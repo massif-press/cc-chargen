@@ -8,7 +8,24 @@
     "sport": "%genre_athlete%"
   },
   "values": {
-    "celebrity_physicality": ["TODO %baseline_physicality%"],
+    "celebrity_physicality": [
+      "%firstname% is a %gender% {at peak physical condition|in perfect physical condition|with a build befitting %pro_pos% career}, thanks to {a lifetime of intense training and conditioning|powerful gene-tailored anabolic-androgenic therapies|significant genetic enhancement|cutting-edge modified gravity training regimens|subtle and powerful cybernetic augmentation}. %pro_sub% {is tall and lean|is tall and lithe|is huge and muscular|looks carved from iron|looks carved from marble|is roped with sinewy muscle|bulges with muscle|ripples with muscle|is all lean, powerful muscle|huge and powerful|short, but powerfully built}. %pro_sub% has %hair_cut% %hair_color% hair, and {steady|piercing|shining|} %eye_color% eyes."
+    ],
+    "physicality_extra": [
+      "%pro_sub% has {extensive|prominent|full-body} {traditional ink|Sparri scarification|bioluminescent|programmable} tattoos, {advertising %pro_pos% current sponsors|chronicling %pro_pos% extensive professional career|most of which are obscene and pornographic|culturally important to %pro_pos% home planet|culturally important to %pro_pos% home station}",
+      "%firstname% has a prosthetic {arm|leg|hand}, due to an injury sustained {before entering the pro leagues|during %pro_pos% first professional season|in a training session|in an accident unrelated to %pro_pos% professional career}, {carefully regulated by the league committee to be human-equivalent|which %pro_sub% is still in the process of adapting to|which has given %pro_obj% a subtle but undeniable edge in their professional career, to the displeasure of certain competitors and their fans}"
+    ],
+    "personality_detail": [
+      "%firstname% is {incredibly self-assured|totally self-assured|completely self-confident}, {fitting for an athlete of %pro_pos% caliber|with the natural swagger of a lifelong athlete|to an infuriating degree|but has the natural charisma to make it work|but in a good-natured, almost naive way that comes off as endearing|at first blush, but this is a public facade, and %firstname% is actually quite anxious and insecure}",
+      "%firstname% is indifferent to and uninterested in everything except for %pro_pos% career as a %sport% (and {men|women|sex|Manna|high fashion|narcotics|ultra-fast luxury vehicles})",
+      "%firstname% exudes the {steely calm|level tranquility|monk-like serenity} of a top-tier athlete who has honed %pro_pos% body and mind towards the singular goal of excellence as a %sport%",
+      "%firstname% is -- frankly -- {kind of stupid|pretty dense|a dim bulb|vacuous and scatterbrained|dull-witted}, and while a natural and nearly unparalleled %sport%, {incredibly frustrating to talk to|just about impossible to work with|frustrating to even be around|is as gullible and naive as they come}"
+    ],
+    "occupation_extra": [
+      "%pro_sub% is currently in the employ of {IPS-N|SSC}, {working on a campaign to promote|in a lucrative contract to promote|working to promote} {a new line of combat-ready hardsuits|the latest generation of mech-scale cold fusion reactors|a new consumer shipping enterprise|brand recognition}",
+      "%firstname% is the official spokesperson of {a line of sports-oriented electrolyte beverages|a brand of high-performance sportswear|a line of nutritious energy bars|a station-based brewery|a mass market schedule 1 home printer} popular along the %line%, and {a cartoon likeness of|a stylized rendering of|} %pro_pos% face appears on all their packaging and promotional materials",
+      "%firstname% is a frequent guest and commentator on {a prominent|a popular|several} pro sports related omninet broadcasts, and is best known for %pro_pos% {controversial takes|insightful commentary|deep knowledge of stats|accurate predictions|terrible predictions|bawdy jokes|smack-talking|intense arguments with hosts and other guests}"
+    ],
     "titles": [
       "professional %sport%",
       "pro %sport%",

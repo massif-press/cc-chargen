@@ -6,29 +6,26 @@ import * as lists from '../assets/data/lists';
 import { logLevel, WeightedSelection } from 'gmgen/lib/util';
 import { getNames, aliases } from '../assets/data/character/names';
 
-const template = `
-# %name% (%pro_sub%/%pro_obj%) #
+let template = `
+# %name% (%pro_sub%/%pro_obj%)
 
 ## %jobtitle%
 
 ---
 
-## Appearance
 %physicality%
 <br>
 %clothing%
+<br><br>
 
-## Occupation
 %occupation%
+<br><br>
 
-## Personality
-%politics%
+^%personality_detail%^
 <br>
-%personality%
-
-## Secrets
-%secrets%
-
+^@pct60%politics%^
+<br><br>
+@pct20%secrets%
 `;
 
 const Generate = (society: string, background: string): string => {
@@ -58,8 +55,6 @@ const Generate = (society: string, background: string): string => {
   gen.SetOption('Logging', logLevel.warning);
   // gen.SetOption('PreventEarlyExit', true);
   gen.SetOption('CleanEscapes', false);
-  gen.SetOption('ClearBracketSyntax', false);
-  gen.SetOption('ClearMissingKeys', false);
 
   const genderSelection = WeightedSelection(genders);
 
@@ -103,7 +98,13 @@ const finalize = (str: string): string => {
     return $1 + $2.toUpperCase();
   });
 
-  //TODO remove double punctuation
+  input = input.replace(/[\.\s\.][..]/gm, '');
+
+  input = input.trim();
+
+  while (input.substring(input.length - 4) === '<br>') {
+    input = input.substring(0, input.length - 4).trim();
+  }
 
   return input;
 };

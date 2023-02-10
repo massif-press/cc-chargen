@@ -1,0 +1,37 @@
+{
+  "key": "affiliation",
+  "definitions": {
+    "name": "fourth column",
+    "member": "fourth columnist",
+    "political_prefix": "%political_prefixes%"
+  },
+  "values": {
+    "political_prefixes": [
+      "moderate",
+      "conservative",
+      "center-right",
+      "Karrakist",
+      "expansionist",
+      "small-Union",
+      "corporatist"
+    ],
+    "clothing_extra": [
+      "%firstname% wears a small {brooch|pin|insignia|band|ring} with an emblem representative of politically active fourth columnists"
+    ],
+    "ideals": [
+      "%firstname% holds individual freedom as the {foremost|primary} {goal|responsibility} of any {sound|legitimate|reasonable} political organization",
+      "%firstname% believes that privatization is will lead to {accelerated technological development|better economic outcomes|better Diasporan economic and technological development|increased efficiency}",
+      "%firstname% believes that {SSC|IPS-N|private corpos|interstellar corpos} should lead the way in humanity's {technological|economic} development"
+    ],
+    "opinions": [
+      "advancement is only possible through Union's economic expansion",
+      "private industry can do more, faster, with less waste than Union",
+      "Union bureaucracy must be downsized to maximize our freedom",
+      "Union must acquiesce to reasonable Barony requests",
+      "Karra-Bem deserves a stronger and more respected position in Union politics",
+      "Karrakis deserves a stronger voice in Union politics",
+      "Thirdcomm must shift to a stance of non-interventionism to promote regional self-determination",
+      "the NSC harbors dangerous radicals"
+    ]
+  }
+}

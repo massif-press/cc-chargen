@@ -11,14 +11,14 @@
               :style="society === s ? 'color: #E040FB' : ''"
               @click="
                 society = s;
-                background = '';
+                background = null;
               "
             >
               <v-list-item-content>
                 <v-list-item-title
                   class="text-button"
                   style="font-size: 13px !important"
-                  v-text="s"
+                  v-text="s.name"
                 />
               </v-list-item-content>
             </v-list-item>
@@ -31,21 +31,33 @@
           <v-list dense>
             <v-list-item-group color="primary">
               <v-list-item
-                v-for="(b, i) in getBackground(society)"
+                v-for="(b, i) in society.backgrounds"
                 :key="`ct_${i}`"
                 :style="background === b ? 'color: #E040FB' : ''"
                 @click="background = b"
               >
                 <v-list-item-content>
                   <v-list-item-title
-                    class="text-button"
+                    :class="`text-button ${
+                      b.active ? '' : 'text-grey-darken-2'
+                    }`"
                     style="font-size: 13px !important"
-                    v-text="b"
+                    v-text="b.background"
                   />
                 </v-list-item-content>
               </v-list-item>
             </v-list-item-group>
           </v-list>
+          <v-btn
+            variant="outlined"
+            color="purple-lighten-1"
+            size="x-small"
+            block
+            class="mt-2"
+            href="https://forms.gle/waTzu9K1NYEjaWbAA"
+            target="_blank"
+            ><v-icon left>mdi-plus</v-icon>suggest new</v-btn
+          >
         </v-col>
       </v-expand-x-transition>
       <v-divider vertical />
@@ -57,11 +69,11 @@
             <div class="text-overline">TEMPLATE</div>
             <div>
               <span v-if="society" class="pl-1 text-h6">{{
-                capitalize(society)
+                capitalize(society.name)
               }}</span
               ><i v-else class="px-2 text-disabled">select society</i>
               <span v-if="background" class="pl-1 text-h6">{{
-                capitalize(background)
+                capitalize(background.background)
               }}</span
               ><i v-else class="px-2 text-disabled">select background</i>
             </div>
@@ -70,19 +82,47 @@
             <v-spacer />
             <v-btn
               color="#E040FB"
-              :disabled="!society || !background"
+              :disabled="
+                !society || !background || (background && !background.active)
+              "
               @click="getCharacter()"
               >generate</v-btn
             >
           </v-card-actions>
         </v-card>
-
-        <v-tabs v-model="outputTab">
+        <v-card
+          v-if="background && !background.active"
+          variant="outlined"
+          color="red-darken-4"
+          class="my-2 mx-4"
+        >
+          <v-card-text>
+            <v-row align="center">
+              <v-col><v-divider /></v-col>
+              <v-col cols="auto" class="mx-1"><b>NO DATA</b></v-col>
+              <v-col><v-divider /></v-col>
+            </v-row>
+            <p
+              class="text-grey-lighten-2 text-center mt-2"
+              style="font-size: 1.2em"
+            >
+              CC-CHARGEN has no generator data for
+              <v-chip size="small" class="text-button mx-1"
+                >{{ society.name }} {{ background.background }}</v-chip
+              ><br />would you like to
+              <a href="https://forms.gle/waTzu9K1NYEjaWbAA" target="_blank"
+                >suggest a few ideas?</a
+              >
+            </p>
+          </v-card-text>
+        </v-card>
+        <v-tabs v-else v-model="outputTab">
           <v-tab value="rendered">Rendered</v-tab>
           <v-tab value="markdown">Markdown</v-tab>
           <v-tab value="html">HTML</v-tab>
         </v-tabs>
-        <v-window v-model="outputTab">
+        <span v-if="background && !background.active" />
+        <v-window v-else v-model="outputTab">
           <v-window-item value="rendered">
             <v-card variant="outlined">
               <v-card-text v-html="outputHtml" />
@@ -110,6 +150,19 @@
               rows="20"
             />
           </v-window-item>
+          <v-row justify="end">
+            <v-col cols="auto">
+              <v-btn
+                variant="outlined"
+                color="purple-lighten-1"
+                size="x-small"
+                class="mt-2"
+                href="https://forms.gle/waTzu9K1NYEjaWbAA"
+                target="_blank"
+                ><v-icon left>mdi-plus</v-icon>suggest generator data</v-btn
+              >
+            </v-col>
+          </v-row>
         </v-window>
 
         <div v-show="history.length">
@@ -169,6 +222,7 @@
 
 <script lang="ts">
 import * as templates from '../../assets/data/character/index';
+import societies from './societies.json';
 import showdown from 'showdown';
 import Generate from '../../logic/CharacterGenerator';
 
@@ -183,7 +237,7 @@ export default {
     outputTab: 0,
     history: [] as { name: string; data: string }[],
     converter: null,
-    societies: ['baronic', 'cosmopolitan', 'diasporan'],
+    societies: societies,
     society: '',
     background: '',
     historyActive: null,
@@ -198,18 +252,6 @@ export default {
     },
   },
   methods: {
-    getBackground() {
-      switch (this.society) {
-        case 'baronic':
-          return ['noble'];
-        case 'cosmopolitan':
-          return ['celebrity', 'scholar'];
-        case 'diasporan':
-          return ['worker', 'outlaw'];
-        default:
-          return '';
-      }
-    },
     capitalize(str: string) {
       return str
         .split(' ')
@@ -218,17 +260,7 @@ export default {
     },
     getCharacter() {
       this.loading = true;
-      const res = Generate(this.society, this.background);
-      // const g = new Generator();
-      // // g.LoadLibraryDir('character', 'lists');
-      // const lib = new GeneratorLibrary(templates.cosmopolitan, templates.baron);
-      // g.LoadLibrary(lib);
-
-      // console.log(g);
-
-      // // console.log(Generator.WeightedSelection(genders));
-
-      // g.Generate(template);
+      const res = Generate(this.society.name, this.background.background);
 
       this.outputRaw = res;
 
@@ -244,7 +276,6 @@ export default {
       this.loading = false;
     },
     exportItem(item) {
-      console.log(item);
       const link = document.createElement('a');
       const file = new Blob([item.data], { type: 'text/plain' });
 
@@ -269,3 +300,9 @@ export default {
   },
 };
 </script>
+
+<style>
+p {
+  font-size: 1.15em;
+}
+</style>

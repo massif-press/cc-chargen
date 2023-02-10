@@ -1,0 +1,15 @@
+{
+  "key": "affiliation",
+  "definitions": {
+    "name": "independent",
+    "member": "independent",
+    "political_prefix": "%political_prefixes%"
+  },
+  "values": {
+    "political_prefixes": ["apolitical", "isolationist", "non-political"],
+    "opinions": [
+      "politics should be left to the professionals",
+      "politics doesn't interest %pro_obj% -- just let %pro_obj% live %pro_pos% life!"
+    ]
+  }
+}

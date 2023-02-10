@@ -1,0 +1,31 @@
+{
+  "key": "affiliation",
+  "definitions": {
+    "name": "interstellar",
+    "member": "interstellarian",
+    "political_prefix": "%political_prefixes%"
+  },
+  "values": {
+    "political_prefixes": [
+      "moderate",
+      "Pillar-first",
+      "center-left",
+      "Auxiliary Doctrinaire",
+      "BCA-first",
+      "typical",
+      "center-left"
+    ],
+    "ideals": [
+      "%firstname% believes deeply in the project of Union and the utopian pillars it strives to uphold",
+      "%firstname% believes that humanity should be allowed to flourish under the gentle stewardship of Union"
+    ],
+    "opinions": [
+      "Union has been too lenient {about Pillar violations|on Pillar violators} recently",
+      "the DoJ/HR has been too slow in responding to {economic oppression|Rim outlaws|Barony aggression|Diasporan aid requests}",
+      "Union needs to work harder to excise the systemic biases and prejudices that arose during SecComm",
+      "CentComm {is doing a good job|needs some fresh ideas|should center Diasporan voices|needs to listen to its Cosmopolitan constituency|needs to listen to its Metropolitan constituency}",
+      "The New Solidarity Coalition makes too many radical demands of CentComm",
+      "CentComm makes too many concessions to {the Fourth Column|the New Humanity Front}"
+    ]
+  }
+}

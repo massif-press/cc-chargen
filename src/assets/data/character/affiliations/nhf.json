@@ -1,0 +1,38 @@
+{
+  "key": "affiliation",
+  "definitions": {
+    "name": "new humanity front",
+    "member": "new humanist",
+    "political_prefix": "%political_prefixes%"
+  },
+  "values": {
+    "political_prefixes": [
+      "conservative",
+      "far-right",
+      "fringe",
+      "federalist",
+      "radical",
+      "anthrochauvinist",
+      "colonialist",
+      "Forward Progress"
+    ],
+    "ideals": [
+      "%firstname% believes that {colonial expansion|transhuman experimentation} is a core human right",
+      "%firstname% believes that the collective goal of humanity is to develop itself into a posthuman intelligence, whatever form that may be",
+      "%firstname% believes that unrestrained body -- and consciousness -- modification is an unalienable right",
+      "%firstname% believes that opponents to human progress throughout the galaxy must be stopped, with violence if necessary"
+    ],
+    "opinions": [
+      "prohibitions against {trans|post}human {experimentation|augmentation|research|immanentization} must be abolished",
+      "Union must re-instate the Colonial Mission for true galactic stability",
+      "rapid colonial expansion is the only hope for peace in the Rim",
+      "{SecComm|the second committee} had some {good|smart|workable|viable} ideas",
+      "{the central committee|CentComm} is dominated by {far-left|NSC|New Solidarity Coalition} radicals",
+      "the term \"anthrochauvinism\" is a smear by radicals to demean the New Humanity Front",
+      "Forward Progress is the future of the New Humanity Front",
+      "the {fNSC|New Solidarity Coalition} harbors dangerous radicals",
+      "Those {fNSC|New Solidarity Coalition} radicals are dangerous anarchists",
+      "Union must provide its full support to Harrison Armory {on the Rim|throughout the Dawnline Shore}"
+    ]
+  }
+}

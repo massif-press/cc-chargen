@@ -1,0 +1,63 @@
+[
+  {
+    "name": "neo-passacaglians",
+    "member": "neo-passacaglian",
+    "affixes": [
+      "hardline",
+      "arch-conservative",
+      "conservative",
+      "fringe",
+      "devout",
+      "reactionary",
+      "devoted"
+    ],
+    "clothing_extra": [
+      "%pro_sub% wears an icon of Passacaglia, Imperial Messiah, wreathed in {gold|platinum|jade|onyx|sapphires|emeralds} on the back of %pro_pos% right hand, in the {traditional|classical|ancient} style"
+    ],
+    "secrets": [],
+    "ideals": [],
+    "opinions": [],
+    "flaws": [],
+    "relationships": []
+  },
+  {
+    "name": "hagiographers",
+    "member": "hagiographer",
+    "clothing_extra": [],
+    "secrets": [],
+    "ideals": [],
+    "opinions": [],
+    "flaws": [],
+    "relationships": []
+  },
+  {
+    "name": "federalists",
+    "member": "federalist",
+    "clothing_extra": [],
+    "secrets": [],
+    "ideals": [],
+    "opinions": [],
+    "flaws": [],
+    "relationships": []
+  },
+  {
+    "name": "republicans",
+    "member": "republican",
+    "clothing_extra": [],
+    "secrets": [],
+    "ideals": [],
+    "opinions": [],
+    "flaws": [],
+    "relationships": []
+  },
+  {
+    "name": "liberals",
+    "member": "liberal",
+    "clothing_extra": [],
+    "secrets": [],
+    "ideals": [],
+    "opinions": [],
+    "flaws": [],
+    "relationships": []
+  }
+]

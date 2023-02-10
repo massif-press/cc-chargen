@@ -1,0 +1,40 @@
+{
+  "key": "affiliation",
+  "definitions": {
+    "name": "new solidarity coalition",
+    "member": "new solidarity coalitionist",
+    "political_prefix": "%political_prefixes%"
+  },
+  "values": {
+    "prefixes": [
+      "leftist",
+      "far-left",
+      "anarchist",
+      "interventionist",
+      "anticorporate",
+      "radical"
+    ],
+    "clothing_extra": [
+      "%firstname% always has a {set of|little constellation of|small array of} {buttons|stickers|pins|tiny holoprojectors|electropaint tattoos} of NSC political slogans, leftist group emblems, and the like, representative of issues and organizations important to the New Solidarity Coalition",
+      "%firstname% wears a {xenofloral boutonnière|set of stone cufflinks|a plain cloth headband|a small, plain ring|a simple jute necklace|a black beret|a patterned cloth bandana|a geometrically-patterned scarf|a woven kaffiyeh|a plain iron hairpin|a bright cravat|a dark khăn vấn}, a symbol of solidarity with {Hercynian natives|Ungrateful laborers|the Albatross|Horizon|Diasporan revolutionaries|Rim revolutionaries|DoJ/HR liberation teams}"
+    ],
+    "ideals": [
+      "%firstname% believes {that private property is an affront|in permanent revolution throughout the galaxy|there is no war but class war}",
+      "%firstname% believes strongly in the personhood and inalienable rights of NHP intelligences"
+    ],
+    "opinions": [
+      "corpro-states must be abolished entirely",
+      "Union's foremost goal should be the liberation of every last exploited individual",
+      "Socialism cannot only exist in the Cosmopol, the Rim must be organized and liberated",
+      "ThirdComm {has not gone far enough|is backsliding into reactionary policy}",
+      "Union is in danger of becoming a degenerated workers' state. The {Metropol|Cosmopol} must organize!",
+      "Allowing Karrakin to have a say in Union politics is a deformation of the Union project",
+      "Any privatization of Union is a direct attack against the galactic proletariat",
+      "the {freedom|liberation} of NHPs is a moral imperative"
+    ],
+    "secrets": [
+      "%firstname% has held a leadership position in a HORUS cell for a number of years",
+      "%firstname% has knowledge regarding the {true identity|location|true nature} of OMETEOTL, (in)famous Horizon pamphleteer"
+    ]
+  }
+}

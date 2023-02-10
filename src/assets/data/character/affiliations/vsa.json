@@ -1,0 +1,23 @@
+{
+  "key": "affiliation",
+  "definitions": {
+    "name": "verdant social arc",
+    "member": "VSA member",
+    "political_prefix": "%political_prefixes%"
+  },
+  "values": {
+    "political_prefixes": [
+      "anti-colonialist",
+      "diasporanist",
+      "left-leaning",
+      "isolationist",
+      "diaspora-isolationist",
+      "anti-interventionist"
+    ],
+    "ideals": ["%firstname% believes that self-determination is a human right"],
+    "opinions": [
+      "The Rim deserves to forge its own destiny",
+      "the NSC is too radical to create effective change"
+    ]
+  }
+}

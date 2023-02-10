@@ -1,0 +1,107 @@
+[
+  {
+    "name": "baronic",
+    "backgrounds": [
+      {
+        "background": "noble",
+        "active": true
+      },
+      {
+        "background": "colonist",
+        "active": false
+      },
+      {
+        "background": "ungrateful",
+        "active": false
+      },
+      {
+        "background": "soldier",
+        "active": false
+      }
+    ]
+  },
+  {
+    "name": "cosmopolitan",
+    "backgrounds": [
+      {
+        "background": "celebrity",
+        "active": true
+      },
+      {
+        "background": "scholar",
+        "active": true
+      },
+      {
+        "background": "spaceborn",
+        "active": false
+      },
+      {
+        "background": "starship pilot",
+        "active": false
+      }
+    ]
+  },
+  {
+    "name": "diasporan",
+    "backgrounds": [
+      {
+        "background": "colonist",
+        "active": false
+      },
+      {
+        "background": "worker",
+        "active": false
+      },
+      {
+        "background": "outlaw",
+        "active": false
+      },
+      {
+        "background": "mercenary",
+        "active": false
+      }
+    ]
+  },
+  {
+    "name": "union",
+    "backgrounds": [
+      {
+        "background": "NHP",
+        "active": false
+      },
+      {
+        "background": "bureaucrat",
+        "active": false
+      },
+      {
+        "background": "far-field",
+        "active": false
+      },
+      {
+        "background": "DoJ/HR",
+        "active": false
+      },
+      {
+        "background": "spec ops",
+        "active": false
+      }
+    ]
+  },
+  {
+    "name": "corpro-state",
+    "backgrounds": [
+      {
+        "background": "suit",
+        "active": true
+      },
+      {
+        "background": "worker",
+        "active": false
+      },
+      {
+        "background": "citizen",
+        "active": false
+      }
+    ]
+  }
+]
