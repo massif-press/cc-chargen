@@ -92,7 +92,7 @@
     "backgrounds": [
       {
         "background": "suit",
-        "active": true
+        "active": false
       },
       {
         "background": "worker",
